@@ -6,7 +6,7 @@
 /*   By: mchocho <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/23 15:38:06 by mchocho           #+#    #+#             */
-/*   Updated: 2019/07/23 16:44:04 by mchocho          ###   ########.fr       */
+/*   Updated: 2019/07/24 17:45:17 by mchocho          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 #include <pwd.h>
 #include <unistd.h>
 #include <dirent.h>
-//#include "libft/libft.h"
+#include "libft/libft.h"
 
 
 static int ft_detectfiletype(mode_t mode);
