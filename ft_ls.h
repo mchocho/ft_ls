@@ -6,7 +6,7 @@
 /*   By: mchocho <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/23 15:38:06 by mchocho           #+#    #+#             */
-/*   Updated: 2019/07/24 17:45:17 by mchocho          ###   ########.fr       */
+/*   Updated: 2019/07/25 10:58:52 by mchocho          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,11 @@
 #include "libft/libft.h"
 
 
+int ft_ispathdir(char *path);
 static int ft_detectfiletype(mode_t mode);
 static void ft_printpermissions(char *path);
 static void ft_printfileusername(char *path);
 static void ft_printfilegroupname(char *path);
-
-
 void ft_listdir(char *path, int all);
 
 #endif
