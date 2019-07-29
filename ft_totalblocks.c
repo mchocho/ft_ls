@@ -6,7 +6,7 @@
 /*   By: mchocho <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/24 16:17:07 by mchocho           #+#    #+#             */
-/*   Updated: 2019/07/24 16:44:17 by mchocho          ###   ########.fr       */
+/*   Updated: 2019/07/29 14:54:35 by mchocho          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,5 +44,6 @@ int ft_totalblocks(char *path)
 			result += fstat->st_blocks;
 		}
 	}
+	closedir(directory);
 	return ((int)result);
 }
