@@ -1,38 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_filecount.c                                     :+:      :+:    :+:   */
+/*   ft_ispathdir.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mchocho <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/07/23 17:39:03 by mchocho           #+#    #+#             */
-/*   Updated: 2019/07/25 11:14:02 by mchocho          ###   ########.fr       */
+/*   Created: 2019/07/25 10:52:32 by mchocho           #+#    #+#             */
+/*   Updated: 2019/07/25 12:04:37 by mchocho          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
 
-int		ft_filecount(DIR folder, int all)
+int ft_ispathdir(char *path)
 {
-	DIR				*directory;
-	struct dirent	*entry;
-	int				count;
+	struct stat fstat;
 
-	count = 0;
-	if (!(directory = opendir(path)))
-	{
-		if (ernno == 20)
-			ft_putstr("Not a directory");
-	}
+	if (stat(path, &fstat) < 0)
+		return (0);
 
-	while ((entry = readdir(directory)))
-	{
-		if (!all && entry->d_name[0] == '.')
-			continue;
-		count++;
-	}
-	closedir(directory);
-	if (count == 0)
-		count = 1;
-	return (i);
+	return (S_ISDIR(fstat.st_mode));
 }

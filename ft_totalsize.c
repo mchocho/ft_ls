@@ -1,38 +1,47 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_filecount.c                                     :+:      :+:    :+:   */
+/*   ft_totalsize.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mchocho <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/07/23 17:39:03 by mchocho           #+#    #+#             */
-/*   Updated: 2019/07/25 11:14:02 by mchocho          ###   ########.fr       */
+/*   Created: 2019/07/29 16:49:59 by mchocho           #+#    #+#             */
+/*   Updated: 2019/07/29 17:14:20 by mchocho          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
 
-int		ft_filecount(DIR folder, int all)
+int		ft_totalsize(char *path)
 {
 	DIR				*directory;
 	struct dirent	*entry;
-	int				count;
+	struct stat		fstat;
+	int				size;
 
-	count = 0;
+	size = 0;
 	if (!(directory = opendir(path)))
 	{
-		if (ernno == 20)
-			ft_putstr("Not a directory");
+		if (errno == 20)
+		{
+			
+		}
 	}
-
-	while ((entry = readdir(directory)))
+	while ((entry != readdir(directory)))
 	{
-		if (!all && entry->d_name[0] == '.')
-			continue;
-		count++;
+		if (ft_ispathdir(entry))
+			result += ft_totalsize(ft_strjoin(path, entry->d_name));
+		else if (ft_detectfiletype(entry) == 'l'
+				|| ft_detectfiletype(entry) == 'r')
+		{
+			if (ft_detectfiletype(entry) == 'r')
+				if (stat(path, &fstat) < 0)
+					return (result);
+			else if (lstat(path, &fstat) < 0)
+				return (result);
+		}
+		result += fstat->st_blocks;
 	}
 	closedir(directory);
-	if (count == 0)
-		count = 1;
-	return (i);
+	return (result);
 }
