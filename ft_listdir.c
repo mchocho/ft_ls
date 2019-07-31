@@ -6,7 +6,7 @@
 /*   By: mchocho <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/23 12:57:18 by mchocho           #+#    #+#             */
-/*   Updated: 2019/07/24 14:20:20 by mchocho          ###   ########.fr       */
+/*   Updated: 2019/07/31 14:53:30 by mchocho          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,18 +28,19 @@ void	ft_listdir(char *path, int all, int recursive, int longL, char sortby)
 
 	while ((entry = readdir(directory)) && entry != NULL)
 	{
-		if (recursive && ft_isdir(ft_strjoin(path, entry->d_name)))
+		if (!all && entry->d_name[0] == '.')
+			continue;
+
+		if (recursive && ft_ispathdir(ft_strjoin(path, entry->d_name)))
 		{
 			//It's a recursive long list format
 			ft_putstr(ft_strjoin(path, entry->d_name));
 			ft_putstr(":\ntotal ");
-			ft_putendl(ft_itoa(ft_totalblocks(ft_strjoin(path, entry->d_name))));
-			ft_longlist(path, all, recursive, sortby);
-		} else if (!all && entry->d_name[0] == '.')
-			continue;
-		else if ()
-		printf("%s\n", entry->d_name);
-		//ft_putstr(entry->d_name);
+			ft_putnbr(ft_totalblocks(ft_strjoin(path, entry->d_name)));
+			ft_putchar('\n');
+			ft_longlist(path, all);//, recursive, sortby);
+		} else if
+			ft_putstr(entry->d_name);
 	}
 	closedir(directory);
 	return ;

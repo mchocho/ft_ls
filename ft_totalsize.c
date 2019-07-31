@@ -6,7 +6,7 @@
 /*   By: mchocho <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/29 16:49:59 by mchocho           #+#    #+#             */
-/*   Updated: 2019/07/29 17:14:20 by mchocho          ###   ########.fr       */
+/*   Updated: 2019/07/31 14:43:21 by mchocho          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,12 @@ int		ft_totalsize(char *path)
 	{
 		if (errno == 20)
 		{
-			
+			ft_putchar("Error in ft_totalsize() --> Not a directory.");
 		}
 	}
 	while ((entry != readdir(directory)))
 	{
-		if (ft_ispathdir(entry))
+		if (ft_detectfiletype(entry) == 'd')
 			result += ft_totalsize(ft_strjoin(path, entry->d_name));
 		else if (ft_detectfiletype(entry) == 'l'
 				|| ft_detectfiletype(entry) == 'r')
