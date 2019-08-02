@@ -6,14 +6,14 @@
 /*   By: mchocho <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/23 12:57:18 by mchocho           #+#    #+#             */
-/*   Updated: 2019/07/31 14:53:30 by mchocho          ###   ########.fr       */
+/*   Updated: 2019/08/02 16:20:47 by mchocho          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
 #include <stdio.h>
 
-void	ft_listdir(char *path, int all, int recursive, int longL, char sortby)
+void	ft_listdir(char *path, int all, int recursive, int longL)//, char sortby)
 {
 	DIR				*directory;
 	struct dirent	*entry;
@@ -39,7 +39,7 @@ void	ft_listdir(char *path, int all, int recursive, int longL, char sortby)
 			ft_putnbr(ft_totalblocks(ft_strjoin(path, entry->d_name)));
 			ft_putchar('\n');
 			ft_longlist(path, all);//, recursive, sortby);
-		} else if
+		} else
 			ft_putstr(entry->d_name);
 	}
 	closedir(directory);
@@ -50,10 +50,11 @@ void	ft_listdir(char *path, int all, int recursive, int longL, char sortby)
 
 int main(int argc, char** argv)
 {
-	printf(" Testing ft_listdir.c\n--------------------------\n");
+	if (argc == 1)
+		ft_listdir("./", FALSE, FALSE, FALSE);//, FALSE);
+	else if (argc == 2)
+		ft_listdir(argv[1], FALSE, FALSE, FALSE);
 
-	if (argc == 2)
-		ft_listdir(argv[1], 1);
 
 	return 0;
 
