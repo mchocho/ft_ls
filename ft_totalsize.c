@@ -6,7 +6,7 @@
 /*   By: mchocho <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/29 16:49:59 by mchocho           #+#    #+#             */
-/*   Updated: 2019/07/31 14:43:21 by mchocho          ###   ########.fr       */
+/*   Updated: 2019/08/03 16:44:25 by mchocho          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,9 +36,9 @@ int		ft_totalsize(char *path)
 		{
 			if (ft_detectfiletype(entry) == 'r')
 				if (stat(path, &fstat) < 0)
-					return (result);
+					continue;
 			else if (lstat(path, &fstat) < 0)
-				return (result);
+				continue;
 		}
 		result += fstat->st_blocks;
 	}
