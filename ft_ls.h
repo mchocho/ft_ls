@@ -6,7 +6,7 @@
 /*   By: mchocho <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/23 15:38:06 by mchocho           #+#    #+#             */
-/*   Updated: 2019/08/02 16:51:01 by mchocho          ###   ########.fr       */
+/*   Updated: 2019/08/03 15:03:27 by mchocho          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,12 +28,12 @@ int ft_ispathdir(char *path);
 int ft_totalsize(char *path);
 int ft_totalblocks(char *path);
 int ft_filecount(char *path);
-static int ft_detectfiletype(mode_t mode);
-static int ft_detectfiletypepath(char *path);
-static void ft_printpermissions(char *path);
-static void ft_printusername(char *path);
-static void ft_printgroupname(char *path);
-static void ft_printdatetime(char *path);
+int ft_detectfiletype(mode_t mode);
+int ft_detectfiletypepath(char *path);
+void ft_printpermissions(char *path);
+void ft_printusername(char *path);
+void ft_printgroupname(char *path);
+void ft_printdatetime(char *path);
 void ft_longlist(char *path);
 void ft_listdir(char *path, int all, int recursive, int longL);//, char sortby);
 

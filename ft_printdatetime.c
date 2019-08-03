@@ -6,25 +6,38 @@
 /*   By: mchocho <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/31 18:08:06 by mchocho           #+#    #+#             */
-/*   Updated: 2019/07/31 18:20:50 by mchocho          ###   ########.fr       */
+/*   Updated: 2019/08/03 15:40:07 by mchocho          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
 
-struct stat 	fstat;
-char			**timearr;
-char			*lastmodified;
+void ft_printdatetime(char *path)
+{
+	struct stat 	fstat;
+	char			**timearr;
+	char			*lastmodified;
 
-if (ft_detectfileptype(path) == 'r')
-{
-	if (stat(path, &fstat) < 0)
+	if (ft_detectfileptype(path) == 'r')
+	{
+		if (stat(path, &fstat) < 0)
+			return ;
+	} else if (ft_detectfileptype(path) == 'l')	//ft_detectfilepathtype: THIS IS STILL NOT DEFINED OR CREATED
+	{
+		if (lstat(path, &fstat) < 0)
+			return ;
+	} else
 		return ;
-} else if (ft_detectfileptype(path) == 'l')	//ft_detectfilepathtype
-{
-	if (lstat(path, &fstat) < 0)
+
+	if (!(lastmodified = ctime(fstat.st_mtime)))
 		return ;
-} else
+	timearr = ft_strsplit(lastmodified, ' ');
+	ft_putstr(timearr[1]);
+	ft_putchar(' ');
+	ft_putstr(timearr[2]);
+	ft_putchar(' ');
+	ft_putstr(ft_strsplit(timearr[3], ':')[0]);
+	ft_putchar(':');
+	ft_putstr(ft_strsplit(timearr[3], ':')[1]);
 	return ;
-
-if (!(lastmodified = ))
+}
