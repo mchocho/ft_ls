@@ -29,5 +29,5 @@ static void ft_printpermissions(char *path);
 static void ft_printfileusername(char *path);
 static void ft_printfilegroupname(char *path);
 void ft_listdir(char *path, int all);
-
+void ft_longlist();
 #endif

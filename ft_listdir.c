@@ -37,7 +37,7 @@ void	ft_listdir(char *path, int all, int recursive, int longL, char sortby)
 			ft_longlist(path, all, recursive, sortby);
 		} else if (!all && entry->d_name[0] == '.')
 			continue;
-		else if ()
+		//else if ()
 		printf("%s\n", entry->d_name);
 		//ft_putstr(entry->d_name);
 	}
