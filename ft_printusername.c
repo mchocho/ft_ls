@@ -6,7 +6,7 @@
 /*   By: mchocho <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/23 09:48:46 by mchocho           #+#    #+#             */
-/*   Updated: 2019/07/23 09:51:06 by mchocho          ###   ########.fr       */
+/*   Updated: 2019/08/06 16:17:49 by mchocho          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,12 @@ void	ft_printusername(char *path)
 {
 	struct stat		fstat;
 	struct passwd	*pw;
+	
+	if (ft_detectfiletype == 'r')
+		if (stat(path, &fstat) < 0)
+			return ;
 
-	if (stat(path, &stat) < 0)
-		return ;
-
-	if (pw = getpwuid(stat.st_uid))
-		ft_putstr(pw.pw_name);
+	if ((pw = getpwuid(fstat.st_uid)))
+		ft_putstr(pw->pw_name);
 	return ;
 }

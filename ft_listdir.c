@@ -6,7 +6,7 @@
 /*   By: mchocho <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/23 12:57:18 by mchocho           #+#    #+#             */
-/*   Updated: 2019/08/02 16:20:47 by mchocho          ###   ########.fr       */
+/*   Updated: 2019/08/06 15:45:53 by mchocho          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,10 @@ void	ft_listdir(char *path, int all, int recursive, int longL)//, char sortby)
 			ft_putstr(":\ntotal ");
 			ft_putnbr(ft_totalblocks(ft_strjoin(path, entry->d_name)));
 			ft_putchar('\n');
-			ft_longlist(path, all);//, recursive, sortby);
-		} else
+			ft_listdir(ft_strjoin(path, entrt->d_name), all, recursive, longL);// sortby);
+		} else if (longL)
+			ft_longlist(ft_strjoin(path, entry->d_name));
+		else
 			ft_putstr(entry->d_name);
 	}
 	closedir(directory);
