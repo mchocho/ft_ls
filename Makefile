@@ -6,7 +6,7 @@
 #    By: mchocho <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/07/23 09:51:23 by mchocho           #+#    #+#              #
-#    Updated: 2019/08/03 15:30:52 by mchocho          ###   ########.fr        #
+#    Updated: 2019/08/09 13:29:13 by mchocho          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ HEADERS: ft_ls.h
 
 FLAGS: -Wall -Werror -Wextra -o
 
-SRC: 	./ft_listdir.c\
+SRC:	./ft_listdir.c\
 		./ft_longlist.c\
 		./ft_filecount.c\
 		./detectfiletype.c\
@@ -26,7 +26,9 @@ SRC: 	./ft_listdir.c\
 		./ft_printgroupname.c\
 		./ft_printusername.c\
 		./totalblocks.c\
-		./ft_totalsize.c
+		./ft_totalsize.c\
+		./libft/ft_putchar.c\
+		./libft/ft_putstr.c
 
 OBJECTS: $(SRC:.c=.o)
 
@@ -35,12 +37,12 @@ $(NAME):
 	ar rc $(NAME) $(OBJECTS)
 	ranlib $(NAME)
 
-all: $(NAME)
+all:	$(NAME)
 
 clean:
 	rm -f $(OBJECTS)
 
-fclean: clean
+fclean:	clean
 		rm -f $(NAME)
 
 re: fclean all

@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_detectfiletype.c                                :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mchocho <marvin@42.fr>                     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/08/09 15:28:03 by mchocho           #+#    #+#             */
+/*   Updated: 2019/08/09 15:28:06 by mchocho          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "./ft_ls.h"
 
-static int ft_detectfiletype(mode_t mode)
+int ft_detectfiletype(mode_t mode)
 {
 	if (S_ISDIR(mode))
 		return ('d');		//Diretory

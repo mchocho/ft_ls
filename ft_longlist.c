@@ -6,20 +6,20 @@
 /*   By: mchocho <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/25 12:05:23 by mchocho           #+#    #+#             */
-/*   Updated: 2019/08/03 15:00:23 by mchocho          ###   ########.fr       */
+/*   Updated: 2019/08/09 16:10:55 by mchocho          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
 
-void	ft_longlist(char *path)
+void	ft_longlist(char *path, int all)
 {
 	//Print file permissions
 	ft_printpermissions(path);
 	ft_putchar('\t');
 	//Print # of files
 	if (ft_ispathdir(path))
-		ft_putstr(ft_itoa(ft_filecount(path)));
+		ft_putnbr(ft_filecount(path, all));
 	else
 		ft_putchar('1');
 	ft_putchar('\t');

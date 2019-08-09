@@ -6,7 +6,7 @@
 /*   By: mchocho <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/31 18:08:06 by mchocho           #+#    #+#             */
-/*   Updated: 2019/08/03 15:40:07 by mchocho          ###   ########.fr       */
+/*   Updated: 2019/08/09 16:08:47 by mchocho          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,18 +18,17 @@ void ft_printdatetime(char *path)
 	char			**timearr;
 	char			*lastmodified;
 
-	if (ft_detectfileptype(path) == 'r')
+	if (ft_detectfilepathtype(path) == 'r')
 	{
 		if (stat(path, &fstat) < 0)
 			return ;
-	} else if (ft_detectfileptype(path) == 'l')	//ft_detectfilepathtype: THIS IS STILL NOT DEFINED OR CREATED
+	} else if (ft_detectfilepathtype(path) == 'l')	//ft_detectfilepathtype: THIS IS STILL NOT DEFINED OR CREATED
 	{
 		if (lstat(path, &fstat) < 0)
 			return ;
-	} else
-		return ;
+	} else return ;
 
-	if (!(lastmodified = ctime(fstat.st_mtime)))
+	if (!(lastmodified = ctime(&fstat.st_mtime)))
 		return ;
 	timearr = ft_strsplit(lastmodified, ' ');
 	ft_putstr(timearr[1]);

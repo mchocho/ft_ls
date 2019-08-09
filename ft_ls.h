@@ -6,7 +6,7 @@
 /*   By: mchocho <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/23 15:38:06 by mchocho           #+#    #+#             */
-/*   Updated: 2019/08/06 13:42:06 by mchocho          ###   ########.fr       */
+/*   Updated: 2019/08/09 16:11:16 by mchocho          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 #include <dirent.h>
 #include <grp.h>
 #include <uuid/uuid.h>
+#include <time.h>
 #include "libft/libft.h"
 #define TRUE 1
 #define FALSE 0
@@ -29,14 +30,14 @@
 int ft_ispathdir(char *path);
 int ft_totalsize(char *path);
 int ft_totalblocks(char *path);
-int ft_filecount(char *path);
+int ft_filecount(char *path, int all);
 int ft_detectfiletype(mode_t mode);
-int ft_detectfiletypepath(char *path);
+int ft_detectfilepathtype(char *path);
 void ft_printpermissions(char *path);
 void ft_printusername(char *path);
 void ft_printgroupname(char *path);
 void ft_printdatetime(char *path);
-void ft_longlist(char *path);
+void ft_longlist(char *path, int all);
 void ft_listdir(char *path, int all, int recursive, int longL);//, char sortby);
 
 
