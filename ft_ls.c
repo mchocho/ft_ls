@@ -49,6 +49,7 @@ void	ft_ls(char *path, int all, int recursive, int longL, int sortby)
 			ft_putnbr(ft_totalblocks(ft_strjoin(path, entry->d_name)));
 			ft_putchar('\n');
 			ft_longlist(ft_strjoin(path, entry->d_name));
+		}
 		else
 			ft_putstr(entry->d_name);
 	}

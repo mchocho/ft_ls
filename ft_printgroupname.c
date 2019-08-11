@@ -15,11 +15,19 @@
 void	ft_printgroupname(char *path)
 {
 	struct stat		fstat;
-	struct group	*gr;
+	struct group		*gr;
 
-	if (stat(path, &fstat) < 0)
-		return ;
+	if (ft_detectfilepathtype(path) == 'l')
+	{	if (lstat(path, &fstat) < 0)
+			return ;
+	}
+	if (ft_detectfilepathtype(path) == 'r')
+	{
+		if (stat(path, &fstat) < 0)
+			return ;
+
+	}
 	if ((gr = getgrgid(fstat.st_gid)))
-		ft_putstr(gr->gr_name);
+		ft_putstr(gr->gr_name);}
 	return ;
 }

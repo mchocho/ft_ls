@@ -27,7 +27,6 @@
 #define TRUE 1
 #define FALSE 0
 
-<<<<<<< HEAD
 int	ft_ispathdir(char *path);
 int	ft_totalsize(char *path);
 int	ft_totalblocks(char *path);
@@ -42,5 +41,32 @@ void	ft_longlist(char *path);
 void	ft_ls(char *path, int all, int recursive, int longL, char sortby);
 void	ft_printfiles_t(DIR directory, int all, int recursive, int longL);
 void	ft_printfiles_r(DIR directory, int all, int recursive, int longL);
+void	ft_initlist(LinkedList *list);
+void	ft_addhead(LinkedList *list, char *filename, ctimeobject lm);
+void	ft_addtail(LinkedList *list, char *filename, ctimeobject lm);
+
+typedef struct s_file {
+	char *filename;
+	struct ctimeobject lasmodified;
+	struct s_file *next;
+	struct s_file *prev;
+}		t_file;
+
+typedef struct _ctimeobject {
+	char day[4];
+	char month[4];
+	char date[3];
+	char minute[3];
+	char seconds[3];
+	char year[5];
+	char *ctime;
+	time_t epoch;
+}		ctimeobject;
+
+typedef struct _linkedlist {
+	s_file *head;
+	s_file *tail;
+	s_file *current;
+}		LinkedList
 
 #endif
