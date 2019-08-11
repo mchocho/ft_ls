@@ -6,7 +6,7 @@
 /*   By: mchocho <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/23 15:38:06 by mchocho           #+#    #+#             */
-/*   Updated: 2019/08/06 13:42:06 by mchocho          ###   ########.fr       */
+/*   Updated: 2019/08/09 16:11:16 by mchocho          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,12 @@
 #include <dirent.h>
 #include <grp.h>
 #include <uuid/uuid.h>
+#include <time.h>
 #include "libft/libft.h"
 #define TRUE 1
 #define FALSE 0
 
+<<<<<<< HEAD
 int	ft_ispathdir(char *path);
 int	ft_totalsize(char *path);
 int	ft_totalblocks(char *path);

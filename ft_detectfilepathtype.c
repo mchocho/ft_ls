@@ -1,38 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_filecount.c                                     :+:      :+:    :+:   */
+/*   ft_detectfilepathtype.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mchocho <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/07/23 17:39:03 by mchocho           #+#    #+#             */
-/*   Updated: 2019/08/09 15:11:40 by mchocho          ###   ########.fr       */
+/*   Created: 2019/08/09 15:12:36 by mchocho           #+#    #+#             */
+/*   Updated: 2019/08/09 15:46:13 by mchocho          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
 
-int		ft_filecount(char *path, int all)
+int	ft_detectfilepathtype(char *path)
 {
-	DIR				*directory;
-	struct dirent	*entry;
-	int				count;
+	struct stat fstat;
 
-	count = 0;
-	if (!(directory = opendir(path)))
-	{
-		if (errno == 20)
-			ft_putstr("Not a directory");
-	}
+	if (lstat(path, &fstat) < 0)
+		return (0);
 
-	while ((entry = readdir(directory)))
-	{
-		if (!all && entry->d_name[0] == '.')
-			continue;
-		count++;
-	}
-	closedir(directory);
-	if (count == 0)
-		count = 1;
-	return (count);
+	return (ft_detectfiletype(fstat.st_mode));
 }
