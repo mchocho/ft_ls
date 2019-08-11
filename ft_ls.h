@@ -37,7 +37,7 @@ void	ft_printusername(char *path);
 void	ft_printgroupname(char *path);
 void	ft_printdatetime(char *path);
 void	ft_longlist(char *path);
-void	ft_listdir(char *path, int all, int recursive, int longL, char sortby);
+void	ft_ls(char *path, int all, int recursive, int longL, char sortby);
 void	ft_printfiles_t(DIR directory, int all, int recursive, int longL);
 void	ft_printfiles_r(DIR directory, int all, int recursive, int longL);
 

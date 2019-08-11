@@ -17,7 +17,7 @@ void	ft_printusername(char *path)
 	struct stat		fstat;
 	struct passwd	*pw;
 	
-	if (ft_detectfiletype == 'r')
+	if (ft_detectfilepathtype == 'r')
 		if (stat(path, &fstat) < 0)
 			return ;
 
