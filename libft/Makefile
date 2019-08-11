@@ -6,7 +6,7 @@
 #    By: mchocho <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/06/03 14:43:27 by mchocho           #+#    #+#              #
-#    Updated: 2019/07/15 16:44:17 by mchocho          ###   ########.fr        #
+#    Updated: 2019/08/02 16:23:00 by mchocho          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME = libft.a
 
 HEADERS = libft.h
 
-FLAGS = -Wall -Werror -Wextra -c
+FLAGS = -Wall -Werror -Wextra
 
 SRC = ./ft_memset.c\
 	./ft_bzero.c\
@@ -75,7 +75,7 @@ all: $(NAME)
 
 $(NAME):
 	gcc $(FLAGS) $(SRC) $(HEADERS)
-	ar rc $(NAME) $(OBJECTS)
+	ar rv $(NAME) $(OBJECTS)
 	ranlib $(NAME)
 	rm libft.h.gch
 
@@ -86,7 +86,7 @@ clean:
 fclean: clean
 	rm -f $(NAME)
 
-re:	fclean all
+re: fclean all
 
 norm:
 	norminette $(FN)
