@@ -1,4 +1,5 @@
 *.out
 *.exe
 *.swp
+*.gch
 .DS_Store
