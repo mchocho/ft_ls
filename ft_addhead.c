@@ -1,8 +1,8 @@
 void ft_addhead(LinkedList *list, char* filename, ctimeobject lm)
 {
-	t_file *entry;
+	s_file *entry;
 
-	entry = (t_file*)malloc(sizeof(t_file));
+	entry = (s_file*)malloc(sizeof(s_file));
 	entry->filename = filename;
 	entry->lastmodified = lm;
 

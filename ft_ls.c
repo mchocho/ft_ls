@@ -6,7 +6,7 @@
 /*   By: mchocho <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/23 12:57:18 by mchocho           #+#    #+#             */
-/*   Updated: 2019/08/06 15:45:53 by mchocho          ###   ########.fr       */
+/*   Updated: 2019/08/12 18:06:37 by mchocho          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,12 +29,12 @@ void	ft_ls(char *path, int all, int recursive, int longL, int sortby)
 	{
 		if (ft_chrcmp('t', sortby))
 		{
-			ft_printfiles_t(directory, all, recursive, longL);
+			ft_printfiles_t(path, all, recursive, longL);
 			break;
 		}
-		else if (ft_chrcmp('r', sortyby))
+		else if (ft_chrcmp('r', sortby))
 		{
-			ft_printfiles_r(directory, all, recursive, longL);
+			ft_printfiles_r(path, all, recursive, longL);
 			break;
 		}
 		else if (!all && entry->d_name[0] == '.')
@@ -42,7 +42,7 @@ void	ft_ls(char *path, int all, int recursive, int longL, int sortby)
 		else if (recursive && ft_ispathdir(ft_strjoin(path, entry->d_name)))
 		{
 			 ft_putstr(ft_strjoin(path, entry->d_name));
-			 ft_ls(ft_strjoin(path, entrt->d_name), all, TRUE, longL);// sortby);
+			 ft_ls(ft_strjoin(path, entry->d_name), all, true, longL, sortby);
 		}
 		else if (longL) {
 			ft_putstr("total:\n");
@@ -62,10 +62,9 @@ void	ft_ls(char *path, int all, int recursive, int longL, int sortby)
 int main(int argc, char** argv)
 {
 	if (argc == 1)
-		ft_ls("./", FALSE, FALSE, FALSE, FALSE);
+		ft_ls("./", false, false, false, false,);
 	else if (argc == 2)
-		ft_ls(argv[1], FALSE, FALSE, FALSE, FALSE);
-
+		ft_ls(argv[1], false, false, false, false);
 
 	return 0;
 
