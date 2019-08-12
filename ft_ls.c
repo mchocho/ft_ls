@@ -42,9 +42,11 @@ void	ft_ls(char *path, int all, int recursive, int longL, int sortby)
 		else if (recursive && ft_ispathdir(ft_strjoin(path, entry->d_name)))
 		{
 			 ft_putstr(ft_strjoin(path, entry->d_name));
+			 ft_putstr(":\n");
 			 ft_ls(ft_strjoin(path, entry->d_name), all, true, longL, sortby);
 		}
-		else if (longL) {
+		else if (longL)
+		{
 			ft_putstr("total:\n");
 			ft_putnbr(ft_totalblocks(ft_strjoin(path, entry->d_name)));
 			ft_putchar('\n');

@@ -35,6 +35,7 @@ void	ft_printfiles_r(char *path, int all, int recursive, int longL)
 		else if (recursive && ft_ispathdir(ft_strjoin(path, entry->d_name)))
 		{
 			ft_putstr(ft_strjoin(path, entry->d_name));
+			ft_putstr(":\n");
 			ft_printfiles_r(ft_strjoin(path, entrt->d_name), all, true, longL);
 		}
 		else if (ft_detectfiletype(entry) == 'l' || ft_detectfiletype(entry) == 'r')
@@ -44,9 +45,18 @@ void	ft_printfiles_r(char *path, int all, int recursive, int longL)
 		} else continue;
 		ft_addhead(
 				list,
-				ft_strcat(path, -> d_name),
+				ft_strcat(path, entry->d_name),
 				ft_constructctimeobj(ft_stat->st_mtime)
 		);		//Unshift linked list
 	}
 	closedir(directory);
+	current = list->head;
+	while (current != NULL)
+	{
+		if (longL == true)
+			ft_longlist(current->filename, all);
+		else
+			ft_putstr(ft_splicesubstr(current->filename, path));
+		current = current->next;
+	}
 }
