@@ -6,7 +6,7 @@
 /*   By: mchocho <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/23 12:57:18 by mchocho           #+#    #+#             */
-/*   Updated: 2019/08/12 18:06:37 by mchocho          ###   ########.fr       */
+/*   Updated: 2019/08/13 16:04:20 by mchocho          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ void	ft_ls(char *path, int all, int recursive, int longL, int sortby)
 int main(int argc, char** argv)
 {
 	if (argc == 1)
-		ft_ls("./", false, false, false, false,);
+		ft_ls("./", false, false, false, false);
 	else if (argc == 2)
 		ft_ls(argv[1], false, false, false, false);
 

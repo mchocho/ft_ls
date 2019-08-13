@@ -6,7 +6,7 @@
 /*   By: mchocho <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/12 12:57:32 by mchocho           #+#    #+#             */
-/*   Updated: 2019/08/12 18:06:41 by mchocho          ###   ########.fr       */
+/*   Updated: 2019/08/13 12:59:07 by mchocho          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,11 @@
 
 void	ft_printfiles_r(char *path, int all, int recursive, int longL)
 {
-	DIR directory;
-	*LinkedList *list;
-	struct dirent *entry;
-	struct stat fstat;
+	DIR				directory;
+	*LinkedList		*list;
+	struct dirent	*entry;
+	struct stat		fstat;
+	struct t_file	current;
 
 	if (!(directory = opendir(path)))
 	{
@@ -38,7 +39,8 @@ void	ft_printfiles_r(char *path, int all, int recursive, int longL)
 			ft_putstr(":\n");
 			ft_printfiles_r(ft_strjoin(path, entrt->d_name), all, true, longL);
 		}
-		else if (ft_detectfiletype(entry) == 'l' || ft_detectfiletype(entry) == 'r')
+		else if (ft_detectfiletype(entry) == 'l'
+				|| ft_detectfiletype(entry) == 'r')
 		{
 			if (lstat(path, &fstat) < 0)
 				continue;
