@@ -27,7 +27,7 @@
 #define true 1
 #define false 0
 
-typedef struct _ctimeobject {
+typedef struct c_timeobject {
 	char day[4];
 	char month[4];
 	char date[3];
@@ -51,27 +51,27 @@ typedef struct _linkedlist {
 	struct s_file *head;
 	struct s_file *tail;
 	struct s_file *current;
-}		LinkedList
+}		LinkedList;
 
 
-int		ft_ispathdir(char *path);
-int		ft_totalsize(char *path);
-int		ft_totalblocks(char *path);
-int		ft_filecount(char *path);
-int		ft_detectfiletype(mode_t mode);
-int		ft_detectfilepathtype(char *path);
-void	ft_printpermissions(char *path);
-void	ft_printusername(char *path);
-void	ft_printgroupname(char *path);
-void	ft_printdatetime(char *path);
-void	ft_longlist(char *path);
-void	ft_ls(char *path, int all, int recursive, int longL, char sortby);
-void	ft_printfiles_t(char *path, int all, int recursive, int longL);
-void	ft_printfiles_r(char *path, int all, int recursive, int longL);
-void	ft_constructctimeobj(const time_t value);
-void	ft_initlist(LinkedList *list);
-void	ft_addhead(LinkedList *list, char *filename, struct ctimeobject lm);
-void	ft_addtail(LinkedList *list, char *filename, struct ctimeobject lm);
+int			ft_ispathdir(char *path);
+int			ft_totalsize(char *path);
+int			ft_totalblocks(char *path);
+int			ft_filecount(char *path);
+int			ft_detectfiletype(mode_t mode);
+int			ft_detectfilepathtype(char *path);
+void			ft_printpermissions(char *path);
+void			ft_printusername(char *path);
+void			ft_printgroupname(char *path);
+void			ft_printdatetime(char *path);
+void			ft_longlist(char *path);
+void			ft_ls(char *path, int all, int recursive, int longL, char sortby);
+void			ft_printfiles_t(char *path, int all, int recursive, int longL);
+void			ft_printfiles_r(char *path, int all, int recursive, int longL);
+struct ctimeobject		*ft_constructctimeobj(time_t *value);
+void			ft_initlist(LinkedList *list);
+void			ft_addhead(LinkedList *list, char *filename, struct ctimeobject lm);
+void			ft_addtail(LinkedList *list, char *filename, struct ctimeobject lm);
 
 
 #endif
