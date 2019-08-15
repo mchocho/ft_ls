@@ -6,7 +6,7 @@
 #    By: mchocho <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/07/23 09:51:23 by mchocho           #+#    #+#              #
-#    Updated: 2019/08/09 13:29:13 by mchocho          ###   ########.fr        #
+#    Updated: 2019/08/15 17:54:00 by mchocho          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,6 +27,7 @@ SRC:	./ft_listdir.c\
 		./ft_printusername.c\
 		./totalblocks.c\
 		./ft_totalsize.c\
+		./ft_splicepath.c\
 		./libft/ft_putchar.c\
 		./libft/ft_putstr.c
 

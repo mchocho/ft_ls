@@ -1,33 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printgroupname.c                                :+:      :+:    :+:   */
+/*   ft_splicepath.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mchocho <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/07/23 11:09:55 by mchocho           #+#    #+#             */
-/*   Updated: 2019/08/15 11:58:37 by mchocho          ###   ########.fr       */
+/*   Created: 2019/08/15 17:49:45 by mchocho           #+#    #+#             */
+/*   Updated: 2019/08/15 17:55:29 by mchocho          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
 
-void	ft_printgroupname(char *path)
+char *ft_splicepath(char *path)
 {
-	struct stat		fstat;
-	struct group		*gr;
-
-	if (ft_detectfilepathtype(path) == 'l')
-	{	if (lstat(path, &fstat) < 0)
-			return ;
-	}
-	if (ft_detectfilepathtype(path) == 'r')
-	{
-		if (stat(path, &fstat) < 0)
-			return ;
-
-	}
-	if ((gr = getgrgid(fstat.st_gid)))
-		ft_putstr(gr->gr_name);
-	return ;
+	if (ft_strrchr(path, '/'))					//Mac, Linux
+		return ((ft_strrchr(path, '/') + 1));
+	else if (ft_strrchr(path, '\\'))				//Windows
+		return ((ft_strrchr(path, '\\') + 1));
+	else
+		return (path);
 }

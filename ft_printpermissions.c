@@ -6,7 +6,7 @@
 /*   By: mchocho <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/24 18:04:22 by mchocho           #+#    #+#             */
-/*   Updated: 2019/08/06 16:44:48 by mchocho          ###   ########.fr       */
+/*   Updated: 2019/08/15 18:01:16 by mchocho          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void ft_printpermissions(char *path)
 	struct stat fstat;
 	mode_t protected;
 
-	if (stat(path, &fstat) < 0)
+	if (lstat(path, &fstat) < 0)
 		return ;
 
 	protected = fstat.st_mode;
