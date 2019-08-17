@@ -6,7 +6,7 @@
 /*   By: mchocho <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/25 12:05:23 by mchocho           #+#    #+#             */
-/*   Updated: 2019/08/15 17:57:53 by mchocho          ###   ########.fr       */
+/*   Updated: 2019/08/17 00:53:32 by mchocho          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@ void	ft_longlist(char *path, int all)
 	//Print file permissions
 	ft_printpermissions(path);
 	ft_putchar(' ');
-	//Print # of files
+	//Print # of hardlinks
 	if (ft_ispathdir(path))
-		ft_putnbr(ft_filecount(path, all));
+		ft_putnbr(ft_hardlinkcount(path, all));//ft_filecount(path, all));
 	else
 		ft_putchar('1');
 	ft_putchar(' ');

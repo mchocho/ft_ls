@@ -6,7 +6,7 @@
 /*   By: mchocho <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/23 15:38:06 by mchocho           #+#    #+#             */
-/*   Updated: 2019/08/15 17:57:06 by mchocho          ###   ########.fr       */
+/*   Updated: 2019/08/17 09:42:20 by mchocho          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,5 +73,6 @@ void			ft_initlist(LinkedList *list);
 void			ft_addhead(LinkedList *list, char *filename, struct ctimeobject lm);
 void			ft_addtail(LinkedList *list, char *filename, struct ctimeobject lm);
 char			*ft_splicepath(char *path);
+int				ft_hardlinkcount(char *path, int all, int recursive);
 
 #endif

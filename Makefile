@@ -6,26 +6,27 @@
 #    By: mchocho <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/07/23 09:51:23 by mchocho           #+#    #+#              #
-#    Updated: 2019/08/15 17:54:00 by mchocho          ###   ########.fr        #
+#    Updated: 2019/08/16 21:58:10 by mchocho          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME: ft_ls.a
+NAME=	ft_ls.a
 
-HEADERS: ft_ls.h
+HEADERS=	ft_ls.h
 
-FLAGS: -Wall -Werror -Wextra -o
+FLAGS=	-Wall -Werror -Wextra
 
-SRC:	./ft_listdir.c\
+SRC=	./ft_ls.c\
 		./ft_longlist.c\
 		./ft_filecount.c\
-		./detectfiletype.c\
-		./ispathdir.c\
+		./ft_detectfiletype.c\
+		./ft_detectfilepathtype.c\
+		./ft_ispathdir.c\
 		./ft_printdatetime.c\
 		./ft_printpermissions.c\
 		./ft_printgroupname.c\
 		./ft_printusername.c\
-		./totalblocks.c\
+		./ft_totalblocks.c\
 		./ft_totalsize.c\
 		./ft_splicepath.c\
 		./libft/ft_putchar.c\
@@ -38,11 +39,11 @@ $(NAME):
 	ar rc $(NAME) $(OBJECTS)
 	ranlib $(NAME)
 	rm libft.h.gch
-	
-clean:	rm -f $(OBJECTS)
-	rm libft.h.gch
 
 all:	$(NAME)
+	
+clean:	rm -f $(OBJECTS)
+		rm libft.h.gch
 
 clean:
 	rm -f $(OBJECTS)

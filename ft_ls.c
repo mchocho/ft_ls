@@ -6,7 +6,7 @@
 /*   By: mchocho <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/23 12:57:18 by mchocho           #+#    #+#             */
-/*   Updated: 2019/08/13 16:04:20 by mchocho          ###   ########.fr       */
+/*   Updated: 2019/08/16 20:49:34 by mchocho          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,8 +58,6 @@ void	ft_ls(char *path, int all, int recursive, int longL, int sortby)
 	closedir(directory);
 	return ;
 }
-
-#include <stdio.h>
 
 int main(int argc, char** argv)
 {
