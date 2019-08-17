@@ -6,7 +6,7 @@
 /*   By: mchocho <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/29 16:49:59 by mchocho           #+#    #+#             */
-/*   Updated: 2019/08/15 13:49:58 by mchocho          ###   ########.fr       */
+/*   Updated: 2019/08/17 10:32:50 by mchocho          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,12 +32,12 @@ int		ft_totalsize(char *path, int all)
 	{
 		if (!all && entry->d_name[0] == '.')
 			continue;
-		else if (ft_detectfilepathtype(ft_strcat(path, entry->d_name)) == 'd')
-			size += ft_totalsize(ft_strcat(path, entry->d_name), all);
-		else if (ft_detectfilepathtype(ft_strcat(path, entry->d_name)) == 'l'
-				|| ft_detectfilepathtype(ft_strcat(path, entry->d_name)) == 'r')
+		else if (ft_detectfilepathtype(/*ft_strcat(path,*/ entry->d_name)/*)*/ == 'd')
+			size += ft_totalsize(/*ft_strcat(path,*/ entry->d_name/*)*/, all);
+		else if (ft_detectfilepathtype(/*ft_strcat(path, */entry->d_name)/*)*/ == 'l'
+				|| ft_detectfilepathtype(/*ft_strcat(path, */entry->d_name)/*)*/ == 'r')
 		{
-			if (ft_detectfilepathtype(ft_strcat(path, entry->d_name)) == 'r')
+			if (ft_detectfilepathtype(/*ft_strcat(path, */entry->d_name)/*)*/ == 'r')
 			{
 				if (stat(path, &fstat) < 0)
 					continue;
@@ -48,4 +48,11 @@ int		ft_totalsize(char *path, int all)
 	}
 	closedir(directory);
 	return (size);
+}
+
+#include <stdio.h>
+
+int main()
+{
+	printf(" Testing ft_totalsize.c\n---------------------------------\n");
 }
