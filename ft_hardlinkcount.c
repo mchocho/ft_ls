@@ -6,7 +6,7 @@
 /*   By: mchocho <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/16 23:40:16 by mchocho           #+#    #+#             */
-/*   Updated: 2019/08/17 09:59:43 by mchocho          ###   ########.fr       */
+/*   Updated: 2019/08/19 15:22:20 by mchocho          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,7 @@ int ft_hardlinkcount(char *path, int all, int recursive)
 			return (1);
 		while ((entry = readdir(directory)))
 		{
-			//if (!all && entry->d_name[0] == '.')
-			//	continue;
-			//hardlink_c += ft_hardlinkcount(ft_strcat(ft_strcat(path, "/"), entry->d_name), all);
-			hardlink_c += ft_hardlinkcount(/*ft_strcat(path, */entry->d_name/*)*/, all, false);
+			hardlink_c += ft_hardlinkcount(entry->d_name, all, false);
 			if (recursive == false)
 				break;
 		}

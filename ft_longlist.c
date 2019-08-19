@@ -6,7 +6,7 @@
 /*   By: mchocho <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/25 12:05:23 by mchocho           #+#    #+#             */
-/*   Updated: 2019/08/17 00:53:32 by mchocho          ###   ########.fr       */
+/*   Updated: 2019/08/19 17:38:38 by mchocho          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	ft_longlist(char *path, int all)
 	ft_putchar(' ');
 	//Print # of hardlinks
 	if (ft_ispathdir(path))
-		ft_putnbr(ft_hardlinkcount(path, all));//ft_filecount(path, all));
+		ft_putnbr(ft_hardlinkcount(path, all, true));//ft_filecount(path, all));
 	else
 		ft_putchar('1');
 	ft_putchar(' ');
@@ -30,7 +30,7 @@ void	ft_longlist(char *path, int all)
 	ft_printgroupname(path);
 	ft_putchar(' ');
 	//Print total file/directory size
-	ft_putnbr(ft_totalsize(path, all));
+	ft_putnbr((int)ft_totalsize(path, all));
 	ft_putchar(' ');
 	//Print date and time
 	ft_printdatetime(path);

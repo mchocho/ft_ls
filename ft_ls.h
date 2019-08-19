@@ -6,7 +6,7 @@
 /*   By: mchocho <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/23 15:38:06 by mchocho           #+#    #+#             */
-/*   Updated: 2019/08/17 09:42:20 by mchocho          ###   ########.fr       */
+/*   Updated: 2019/08/19 17:34:08 by mchocho          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,10 +54,10 @@ typedef struct _linkedlist {
 }		LinkedList;
 
 
-int			ft_ispathdir(char *path);
-int			ft_totalsize(char *path, int all);
-int			ft_totalblocks(char *path, int all);
-int			ft_filecount(char *path, int all);
+int				ft_ispathdir(char *path);
+off_t			ft_totalsize(char *path, int all);
+//int			ft_totalblocks(char *path, int all);
+//int			ft_filecount(char *path, int all);
 int			ft_detectfiletype(mode_t mode);
 int			ft_detectfilepathtype(char *path);
 void			ft_printpermissions(char *path);
