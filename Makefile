@@ -16,20 +16,27 @@ HEADERS: ft_ls.h
 
 FLAGS: -Wall -Werror -Wextra -o
 
-SRC:	./ft_listdir.c\
-		./ft_longlist.c\
-		./ft_filecount.c\
-		./detectfiletype.c\
-		./ispathdir.c\
-		./ft_printdatetime.c\
-		./ft_printpermissions.c\
-		./ft_printgroupname.c\
-		./ft_printusername.c\
-		./totalblocks.c\
-		./ft_totalsize.c\
-		./ft_splicepath.c\
-		./libft/ft_putchar.c\
-		./libft/ft_putstr.c
+SRC:	./ft_addhead.c\
+	./ft_addtail.c\
+	./ft_constructctimeobj.c\
+	./ft_detectfiletype.c\
+	./ft_detectfilepathtype.c\
+	./ft_filecount.c\
+	./ft_ispathdir.c\
+	./ft_inithead.c\
+	./ft_longlist.c\
+	./ft_ls.c\
+	./ft_printdatetime.c\
+	./ft_printfiles_r.c\
+	./ft_printfile_t.c\
+	./ft_printgroupname.c\
+	./ft_printpermissions.c\
+	./ft_printusername.c\
+	./ft_splicepath.c\
+	./ft_totalblocks.c\
+	./ft_totalsize.c\
+	./libft/ft_putchar.c\
+	./libft/ft_putstr.c
 
 OBJECTS: $(SRC:.c=.o)
 
@@ -48,7 +55,7 @@ clean:
 	rm -f $(OBJECTS)
 
 fclean:	clean
-		rm -f $(NAME)
+	rm -f $(NAME)
 
 norm:
 	norminette $(FN)

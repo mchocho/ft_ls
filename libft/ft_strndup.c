@@ -1,39 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_filecount.c                                     :+:      :+:    :+:   */
+/*   ft_strndup.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mchocho <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/07/23 17:39:03 by mchocho           #+#    #+#             */
-/*   Updated: 2019/08/09 15:11:40 by mchocho          ###   ########.fr       */
+/*   Created: 2019/08/15 18:33:17 by mchocho           #+#    #+#             */
+/*   Updated: 2019/08/15 18:41:35 by mchocho          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_ls.h"
+#include "libft.h"
 
-int		ft_filecount(char *path, int all)
+char	*ft_strndup(const char *s1, size_t n)
 {
-	DIR				*directory;
-	struct dirent	*entry;
-	int				count;
+	char	*val;
+	size_t	i;
 
-	count = 0;
-	if (!(directory = opendir(path)))
-	{
-		return (1);
-		//if (errno == 20)
-		//	ft_putstr("Not a directory");
-	}
+	i = 0;
+	while (s1[i] && i != n)
+		i++;
 
-	while ((entry = readdir(directory)))
+	if (!(val = (char *)malloc(sizeof(char) * (i + 1))))
+		return (NULL);
+	i = 0;
+	while (s1[i] && i != n)
 	{
-		if (!all && entry->d_name[0] == '.')
-			continue;
-		count++;
+		val[i] = s1[i];
+		i++;
 	}
-	closedir(directory);
-	if (count == 0)
-		count = 1;
-	return (count);
+	val[i] = '\0';
+	return (val);
 }

@@ -1,39 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_filecount.c                                     :+:      :+:    :+:   */
+/*   ft_stristrfromindex.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mchocho <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/07/23 17:39:03 by mchocho           #+#    #+#             */
-/*   Updated: 2019/08/09 15:11:40 by mchocho          ###   ########.fr       */
+/*   Created: 2019/08/13 13:28:45 by mchocho           #+#    #+#             */
+/*   Updated: 2019/08/13 15:09:46 by mchocho          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_ls.h"
+#include "libft.h"
 
-int		ft_filecount(char *path, int all)
+int		ft_stristrfromindex(const char *s1, const char *s2, int i)
 {
-	DIR				*directory;
-	struct dirent	*entry;
-	int				count;
+	int j;
+	int k;
 
-	count = 0;
-	if (!(directory = opendir(path)))
+	j = 0;
+	while (s1[i])
 	{
-		return (1);
-		//if (errno == 20)
-		//	ft_putstr("Not a directory");
+		if (s1[i] == s2[0])
+		{
+			j = 0;
+			k = i;
+			while (s1[k] == s2[j])
+			{
+				if (s2[(j + 1)] == '\0')
+					return (i);
+				j++;
+				k++;
+			}
+		}
+		i++;
 	}
-
-	while ((entry = readdir(directory)))
-	{
-		if (!all && entry->d_name[0] == '.')
-			continue;
-		count++;
-	}
-	closedir(directory);
-	if (count == 0)
-		count = 1;
-	return (count);
+	return (-1);
 }

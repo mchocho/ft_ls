@@ -46,7 +46,7 @@ int main()
 
 	ft_putstr("");
 
-	ft_longlist("./ft_printpermissions.c", true);
+	ft_longlist("../ft_ls", true);
 
 	return 0;
 }

@@ -6,7 +6,7 @@
 /*   By: mchocho <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/17 12:14:44 by mchocho           #+#    #+#             */
-/*   Updated: 2019/07/17 12:14:46 by mchocho          ###   ########.fr       */
+/*   Updated: 2019/08/15 18:42:24 by mchocho          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,4 +75,24 @@ void				ft_putchar_fd(char c, int fd);
 void				ft_putstr_fd(char const *s, int fd);
 void				ft_putendl_fd(char const *s, int fd);
 void				ft_putnbr_fd(int n, int fd);
+t_list				*ft_lstnew(void const *content, size_t content_size);
+void				ft_lstadd(t_list **alst, t_list *new);
+void				ft_lstdel(t_list **alst, void (*del)(void *, size_t));
+void				ft_lstdelone(t_list **alst, void (*del)(void *, size_t));
+void				ft_lstiter(t_list *lst, void (*f)(t_list *elem));
+char				*ft_boolstr(int val);
+char				*ft_boolstrS(int val);
+char				*ft_boolstrU(int val);
+int					ft_isuppercase(char c);
+int					ft_islowercase(char c);
+int					ft_charindex(char c);
+int					ft_strichr(const char *s, int c);
+int					ft_strichrfromindex(const char *s, int c, unsigned int n);
+int					ft_stristr(const char s1, const char *s2);
+int					ft_stristrfromindex(const char *s1, const char *s2, int i);
+char				*ft_strnewstr(const char *str);
+char				*ft_splicesubstr(char *str, char *splice);
+char				*ft_strndup(const char *s1, size_t n);
+
+
 #endif

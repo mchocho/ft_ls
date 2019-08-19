@@ -6,7 +6,7 @@
 #    By: mchocho <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/06/03 14:43:27 by mchocho           #+#    #+#              #
-#    Updated: 2019/08/02 16:23:00 by mchocho          ###   ########.fr        #
+#    Updated: 2019/08/15 18:42:48 by mchocho          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME = libft.a
 
 HEADERS = libft.h
 
-FLAGS = -Wall -Werror -Wextra
+FLAGS = -Wall -Werror -Wextra -c
 
 SRC = ./ft_memset.c\
 	./ft_bzero.c\
@@ -67,7 +67,18 @@ SRC = ./ft_memset.c\
 	./ft_putchar_fd.c\
 	./ft_putstr_fd.c\
 	./ft_putendl_fd.c\
-	./ft_putnbr_fd.c
+	./ft_putnbr_fd.c\
+	./ft_lstnew.c\
+	./ft_lstadd.c\
+	./ft_lstdel.c\
+	./ft_lstdelone.c\
+	./ft_lstiter.c\
+	./ft_isuppercase.c\
+	./ft_islowercase.c\
+	./ft_charindex.c\
+	./ft_stristr.c\
+	./ft_strnewstr.c\
+	./ft_strndup.c
 
 OBJECTS = $(SRC:.c=.o)
 
@@ -86,7 +97,7 @@ clean:
 fclean: clean
 	rm -f $(NAME)
 
-re: fclean all
+re:	fclean all
 
 norm:
 	norminette $(FN)
