@@ -5,47 +5,53 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: mchocho <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/07/29 16:49:59 by mchocho           #+#    #+#             */
-/*   Updated: 2019/08/15 13:49:58 by mchocho          ###   ########.fr       */
+/*   Created: 2019/08/19 17:32:16 by mchocho           #+#    #+#             */
+/*   Updated: 2019/08/19 17:34:57 by mchocho          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
 
-int		ft_totalsize(char *path, int all)
+off_t	ft_totalsize(char *path, int all)
 {
 	DIR				*directory;
 	struct dirent	*entry;
 	struct stat		fstat;
-	int				size;
+	off_t		result;
 
-	size = 0;
-	if (!(directory = opendir(path)))
+	result = 0;
+	if (ft_detectfilepathtype(path) == 'l'
+			|| ft_detectfilepathtype(path) == 'r')
 	{
-		if (errno == 20)
-		{
-			//ft_putstr("Not a directory.");
-			return (size);
-		}
+			if (lstat(path, &fstat) < 0)
+					return (0);
+			return (fstat.st_size);
 	}
-	while ((entry = readdir(directory)))
+	else if (ft_ispathdir(path))
 	{
-		if (!all && entry->d_name[0] == '.')
-			continue;
-		else if (ft_detectfilepathtype(ft_strcat(path, entry->d_name)) == 'd')
-			size += ft_totalsize(ft_strcat(path, entry->d_name), all);
-		else if (ft_detectfilepathtype(ft_strcat(path, entry->d_name)) == 'l'
-				|| ft_detectfilepathtype(ft_strcat(path, entry->d_name)) == 'r')
+		if (!(directory = opendir(path)))
+			return (0);	
+		while ((entry = readdir(directory)))
 		{
-			if (ft_detectfilepathtype(ft_strcat(path, entry->d_name)) == 'r')
-			{
-				if (stat(path, &fstat) < 0)
-					continue;
-			} else if (lstat(path, &fstat) < 0)
+			if (!all && entry->d_name[0] == '.')
 				continue;
+			else
+				result += ft_totalsize(entry->d_name, all);
 		}
-		size += fstat.st_blocks;
+		closedir(directory);
 	}
-	closedir(directory);
-	return (size);
+	return (result);
 }
+/*
+#include <stdio.h>
+
+int main()
+{
+	printf(" Testing ft_totalsize.c\n--------------------------------\n");
+
+	char *foo = "./ft_addtail.c";
+
+	printf("Block size of file \"%s\": %lld", foo, ft_totalsize(foo, true));
+
+	return (0);
+}*/

@@ -6,7 +6,7 @@
 /*   By: mchocho <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/23 15:38:06 by mchocho           #+#    #+#             */
-/*   Updated: 2019/08/15 17:57:06 by mchocho          ###   ########.fr       */
+/*   Updated: 2019/08/19 17:34:08 by mchocho          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,25 +53,39 @@ typedef struct _linkedlist {
 	struct s_file *current;
 }		LinkedList;
 
+typedef struct f_object {
+	int	a_flag;
+	int	l_flag;
+	int	r_flag;
+	int	R_flag;
+	int	t_flag;
+	int	fod_exclusively;
+	int	fod_fromindex;
+	int	isvalid;
+	int	terminate_ls;
+	char	error_message[256];
+}		flagobject;
 
-int ft_ispathdir(char *path);
-int ft_totalsize(char *path, int all);
-int ft_totalblocks(char *path, int all);
-int ft_filecount(char *path, int all);
-int ft_detectfiletype(mode_t mode);
-int ft_detectfilepathtype(char *path);
-void ft_printpermissions(char *path);
-void ft_printusername(char *path);
-void ft_printgroupname(char *path);
-void ft_printdatetime(char *path);
-void ft_longlist(char *path, int all);
-void ft_ls(char *path, int all, int recursive, int longL, char sortby);
-void ft_printfiles_t(char *path, int all, int recursive, int longL);
-void ft_printfiles_r(char *path, int all, int recursive, int longL);
-struct ctimeobject *ft_constructctimeobj(time_t *value);
-void ft_initlist(LinkedList *list);
-void ft_addhead(LinkedList *list, char *filename, struct ctimeobject lm);
-void ft_addtail(LinkedList *list, char *filename, struct ctimeobject lm);
-char *ft_splicepath(char *path);
+
+int				ft_ispathdir(char *path);
+off_t			ft_totalsize(char *path, int all);
+//int			ft_totalblocks(char *path, int all);
+//int			ft_filecount(char *path, int all);
+int			ft_detectfiletype(mode_t mode);
+int			ft_detectfilepathtype(char *path);
+void			ft_printpermissions(char *path);
+void			ft_printusername(char *path);
+void			ft_printgroupname(char *path);
+void			ft_printdatetime(char *path);
+void			ft_longlist(char *path, int all);
+void			ft_ls(char *path, int all, int recursive, int longL, char sortby);
+void			ft_printfiles_t(char *path, int all, int recursive, int longL);
+void			ft_printfiles_r(char *path, int all, int recursive, int longL);
+struct ctimeobject		*ft_constructctimeobj(time_t *value);
+void			ft_initlist(LinkedList *list);
+void			ft_addhead(LinkedList *list, char *filename, struct ctimeobject lm);
+void			ft_addtail(LinkedList *list, char *filename, struct ctimeobject lm);
+char			*ft_splicepath(char *path);
+int				ft_hardlinkcount(char *path, int all, int recursive);
 
 #endif

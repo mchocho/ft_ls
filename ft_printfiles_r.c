@@ -35,9 +35,9 @@ void	ft_printfiles_r(char *path, int all, int recursive, int longL)
 			coninue;
 		else if (recursive && ft_ispathdir(ft_strjoin(path, entry->d_name)))
 		{
-			ft_putstr(ft_strjoin(path, entry->d_name));
+			ft_putstr(entry->d_name);
 			ft_putstr(":\n");
-			ft_printfiles_r(ft_strjoin(path, entrt->d_name), all, true, longL);
+			ft_printfiles_r(entry->d_name, all, true, longL);
 		}
 		else if (ft_detectfiletype(entry) == 'l'
 				|| ft_detectfiletype(entry) == 'r')
