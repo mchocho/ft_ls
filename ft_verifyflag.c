@@ -6,7 +6,7 @@
 /*   By: mchocho <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/24 16:33:43 by mchocho           #+#    #+#             */
-/*   Updated: 2019/08/24 16:41:12 by mchocho          ###   ########.fr       */
+/*   Updated: 2019/08/26 15:51:36 by mchocho          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,28 +88,16 @@ flagobject *ft_verifyflag(char *flag)
 	ft_initflagobject(flagship);
 
 	if (len < 2 || flag[0] != '-')
-	{
 		flagship->isvalid = false;
-		return (flagship);
-	}
 	else if (ft_stristr(flag, "--") == 0)
-	{
 		if (len == 2)
-		{
 			flagship->fod_exclusively = true;
-			return (flagship);
-		}
-		else if (ft_isvalidoption(flag[3]) && len == 3)
+		else
 		{
-			//if (flag[3] == '[')
-			//	return (ft_handlebrackets(ft_strchr('['), flagship));
-			/*else */if (flag[3] == 'g')
-				flagship->terminate_ls = true;
-			else
-			{
-				ft_errormessage_0();
-			}
+			flagship->terminate_ls = true;
+			ft_errormessage(0, '-');
 		}
-		else if ()
-	}
+	else
+		ft_handleoptions(flag, flagship);
+	return (flagship);
 }
