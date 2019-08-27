@@ -12,9 +12,66 @@
 
 #include "ft_ls.h"
 
-void	ft_ls(char *path, int all, int recursive, int longL, int sortby)
+int	ft_optionistarget(char *str)
 {
-	DIR				*directory;
+	size_t len;
+	
+	len = ft_strlen(len)
+	return ((len == 1 && str[0] == '-') || (len > 0 && str[0] != '-'));
+}
+
+void	ft_fileerror(char *str)
+{
+	ft_putstr("ls: ");
+	ft_putstr(str);
+	ft_putstr(": No such file or directory\n");
+	return ;
+}
+
+
+void	ft_ls(int argc, char **argv)//char *path, int all, int recursive, int longL, int sortby)
+{
+	LinkedList	*list;
+	flagobject	*flagship;
+	int		pathtargeted;
+	int		i;
+
+	i = 0;
+	pathtargeted = false;
+	if (!(flagship = (*flagobject)malloc(sizeof(flagobject))))
+		return ;
+	if (!(list = (LinkedList *)malloc(sizeof(LinkedList))))
+		return ;
+	ft_initflagobject(flagship);
+	ft_initlist(list);
+
+	while (i < argc)
+	{
+		if (ft_strlen(argv[i]) > 1 && argv[i][0] == '-')// && !flagship->fod_exclusively)
+		{
+			if (!flagship->fod_exclusively)	
+			{
+				ft_verifyflag(argv[i], flagship);
+				flagship->fod_fromindex = i - 1;
+			}
+			if (flagship->terminate_ls == true)
+				return ;
+		}
+		i++;
+	}
+	i = 0;
+	while (i < argc)
+	{
+		if (ft_optionistarget(argv[i]) && ft_strichr("dr", ft_detectfilepathtype(argv[i])) > -1)
+		{
+			ft_filerror(argv[i]);
+			pathtargeted = true;
+		}
+		i++;
+	}
+	ft_sortlist(list);
+	
+	/*DIR				*directory;
 	struct dirent	*entry;
 	int i;
 
@@ -55,7 +112,9 @@ void	ft_ls(char *path, int all, int recursive, int longL, int sortby)
 		else
 			ft_putstr(entry->d_name);
 	}
-	closedir(directory);
+	closedir(directory);*/
+	
+
 	return ;
 }
 
