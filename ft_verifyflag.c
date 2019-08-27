@@ -73,15 +73,15 @@ static int ft_handleoptions(char *flag, flagobject *flagship)
 }
 
 
-flagobject *ft_verifyflag(char *flag)
+flagobject *ft_verifyflag(char *flag, flagobject *flagship)
 {
-	flagobject	*flagship;
+	//flagobject	*flagship;
 	int		len;
 	//int		dashcount;
 	//int		i;
 
-	if(!(flagship = (flagobject *)malloc(sizeof(flagobject))))
-		return (NULL);
+	//if(!(flagship = (flagobject *)malloc(sizeof(flagobject))))
+	//	return (NULL);
 	len = ft_strlen(flag);
 	//dashcount = 0;
 	//i = 0;
@@ -99,17 +99,22 @@ flagobject *ft_verifyflag(char *flag)
 			flagship->fod_exclusively = true;
 			return (flagship);
 		}
-		else if (ft_isvalidoption(flag[3]) && len == 3)
+		else {
+			flagship->terminate_ls = true;
+			ft_errormessage(0, '-');
+			return (flagship);
+		}
+		/*else if (ft_isvalidoption(flag[3]) && len == 3)
 		{
 			//if (flag[3] == '[')
 			//	return (ft_handlebrackets(ft_strchr('['), flagship));
-			/*else */if (flag[3] == 'g')
+			else if (flag[3] == 'g')
 				flagship->terminate_ls = true;
 			else
 			{
-				ft_errormessage_0();
+				ft_errormessage(0, );
 			}
 		}
-		else if ()
+		else if ()*/
 	}
 }
