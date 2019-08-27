@@ -2,7 +2,7 @@
 
 /*
 ** The strichr() function is similar to strchr(), except that it
-** locates the index of first occurrence of c (converted to a char)
+** locates the first occurrence of c's index (converted to a char)
 ** in the string pointed to by s. If c is not found we return -1
 */
 
