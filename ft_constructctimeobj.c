@@ -1,11 +1,11 @@
 #include "ft_ls.h"
 
-struct ctimeobject *ft_constructctimeobj(time_t *value)
+ctimeobject *ft_constructctimeobj(time_t value)
 {
 	char			*tv;
 	char			**split;
 	char			**time;
-	ctimeobject	*ctimeobj;
+	ctimeobject		*ctimeobj;
 	
 	tv = ctime(value);
 	split = ft_strsplit(tv, ' ');
