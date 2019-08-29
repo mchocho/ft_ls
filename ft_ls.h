@@ -6,7 +6,7 @@
 /*   By: mchocho <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/23 15:38:06 by mchocho           #+#    #+#             */
-/*   Updated: 2019/08/19 17:34:08 by mchocho          ###   ########.fr       */
+/*   Updated: 2019/08/29 17:58:28 by mchocho          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,10 +81,10 @@ void			ft_longlist(char *path, int all);
 void			ft_ls(char *path, int all, int recursive, int longL, char sortby);
 void			ft_printfiles_t(char *path, int all, int recursive, int longL);
 void			ft_printfiles_r(char *path, int all, int recursive, int longL);
-struct ctimeobject		*ft_constructctimeobj(time_t *value);
+ctimeobject		*ft_constructctimeobj(time_t value);
 void			ft_initlist(LinkedList *list);
-void			ft_addhead(LinkedList *list, char *filename, struct ctimeobject lm);
-void			ft_addtail(LinkedList *list, char *filename, struct ctimeobject lm);
+void			ft_addhead(LinkedList *list, char *filename, ctimeobject *lm);
+void			ft_addtail(LinkedList *list, char *filename, ctimeobject *lm);
 char			*ft_splicepath(char *path);
 int				ft_hardlinkcount(char *path, int all, int recursive);
 void			ft_initflagobject(flagobject *flagship);
