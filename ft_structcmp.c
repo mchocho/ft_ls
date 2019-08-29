@@ -1,27 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printgroupname.c                                :+:      :+:    :+:   */
+/*   ft_structcmp.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mchocho <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/07/23 11:09:55 by mchocho           #+#    #+#             */
-/*   Updated: 2019/08/15 11:58:37 by mchocho          ###   ########.fr       */
+/*   Created: 2019/08/26 18:10:42 by mchocho           #+#    #+#             */
+/*   Updated: 2019/08/26 18:12:38 by mchocho          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
 
-void	ft_printgroupname(char *path)
+int	ft_structcmp(t_file *file1, t_file *file2)
 {
-	struct stat		fstat;
-	struct group		*gr;
-
-	if (ft_strchr("lrd", ft_detectfilepathtype(path)))
-	{	if (lstat(path, &fstat) < 0)
-			return ;
-	}
-	if ((gr = getgrgid(fstat.st_gid)))
-		ft_putstr(gr->gr_name);
-	return ;
+	if (ft_strcmp(file1->filename, file2->filename))
+		return (file1->epoch == file2->epoch);
+	return (false);
 }

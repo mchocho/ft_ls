@@ -87,5 +87,7 @@ void			ft_addhead(LinkedList *list, char *filename, struct ctimeobject lm);
 void			ft_addtail(LinkedList *list, char *filename, struct ctimeobject lm);
 char			*ft_splicepath(char *path);
 int				ft_hardlinkcount(char *path, int all, int recursive);
+void			ft_initflagobject(flagobject *flagship);
+void			ft_reverselist(LinkedList *list);
 
 #endif
