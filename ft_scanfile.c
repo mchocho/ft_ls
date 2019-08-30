@@ -25,7 +25,7 @@ void ft_scanfile(char *path, flagobject *flagship)
 	struct stat		fstat;
 	int				dirdetected;
 
-	if (!ft_isdrl(path) || (!(list = (LinkedList *)malloc(sizeof(list)))))
+	if (!ft_isdrl(path) || (!(list = (LinkedList *)malloc(sizeof(LinkedList)))))
 		return;
 	ft_initlist(list);
 	dirdetected = false;
@@ -37,7 +37,7 @@ void ft_scanfile(char *path, flagobject *flagship)
 		{
 			if (ft_ispathdir(entry->d_name))
 				dirdetected = true;
-			if (lstat(path, &fstat) < 0)
+			if (lstat(path, &fstat) < 0 || (!flagship->a_flag && path[0] == '.'))
 				continue;
 			ft_addhead(list, entry->d_name, ft_constructctimeobj(fstat.st_mtime));
 		}
@@ -45,7 +45,7 @@ void ft_scanfile(char *path, flagobject *flagship)
 	}
 	else
 	{
-		if (lstat(path, &fstat) < 0)
+		if (lstat(path, &fstat) < 0) || (!flagship->a_flag && path[0] == '.')
 			return ;
 		ft_addhead(list, path, ft_constructctimeobj(fstat.st_mtime));
 	}

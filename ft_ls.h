@@ -78,7 +78,7 @@ void			ft_printusername(char *path);
 void			ft_printgroupname(char *path);
 void			ft_printdatetime(char *path);
 void			ft_longlist(char *path, int all);
-void			ft_ls(char *path, int all, int recursive, int longL, char sortby);
+void			ft_ls(char **argv, int argc);
 void			ft_printfiles_t(char *path, int all, int recursive, int longL);
 void			ft_printfiles_r(char *path, int all, int recursive, int longL);
 ctimeobject		*ft_constructctimeobj(time_t value);
@@ -89,5 +89,9 @@ char			*ft_splicepath(char *path);
 int				ft_hardlinkcount(char *path, int all, int recursive);
 void			ft_initflagobject(flagobject *flagship);
 void			ft_reverselist(LinkedList *list);
+void			ft_scanfile(char *path, flagobject *flagship);
+void			ft_sortlist(LinkedList *list, flagobject *flagship);
+void			ft_printlist(LinkedList *list, flagobject *flagship);
+
 
 #endif

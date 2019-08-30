@@ -42,14 +42,3 @@ void	ft_longlist(char *path, int all, int dirref)
 		ft_putstr(path);
 	ft_putchar('\n');
 }
-
-int main()
-{
-	ft_putstr(" Testing longlist dir\n---------------------------------------\n");
-
-	ft_putstr("");
-
-	ft_longlist("../ft_ls", true);
-
-	return 0;
-}

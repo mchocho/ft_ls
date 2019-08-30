@@ -40,8 +40,8 @@ void	ft_ls(int argc, char **argv)//char *path, int all, int recursive, int longL
 	pathtargeted = false;
 	if (!(flagship = (*flagobject)malloc(sizeof(flagobject))))
 		return ;
-	if (!(list = (LinkedList *)malloc(sizeof(LinkedList))))
-		return ;
+	//if (!(list = (LinkedList *)malloc(sizeof(LinkedList))))
+	//	return ;
 	ft_initflagobject(flagship);
 	ft_initlist(list);
 
@@ -60,14 +60,19 @@ void	ft_ls(int argc, char **argv)//char *path, int all, int recursive, int longL
 	i = 0;
 	while (i < argc)
 	{
-		if (ft_optionistarget(argv[i]) && ft_strichr("dr", ft_detectfilepathtype(argv[i])) > -1)
+		if ((i >= flagship->fod_fromindex || ft_optionistarget(argv[i])) && ft_strichr("dr", ft_detectfilepathtype(argv[i])) > -1)
 		{
 			ft_filerror(argv[i]);
 			pathtargeted = true;
 		}
 		i++;
 	}
-	ft_scanfile(list);
+	i = 0;
+	while (i < argc)
+	{
+		if (ft_strichr("dr", ft_detectfilepathtype(argv[i])) > -1)
+			ft_scandir
+	}
 
 
 
