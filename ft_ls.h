@@ -6,7 +6,7 @@
 /*   By: mchocho <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/23 15:38:06 by mchocho           #+#    #+#             */
-/*   Updated: 2019/08/29 17:58:28 by mchocho          ###   ########.fr       */
+/*   Updated: 2019/08/30 17:25:23 by mchocho          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ typedef struct c_timeobject {
 typedef struct s_file {
 	char *filename;
 	struct ctimeobject *lastmodified;
+	struct ctimeobject *accesstime;
 	struct s_file *next;
 	struct s_file *prev;
 }		t_file;
@@ -59,6 +60,10 @@ typedef struct f_object {
 	int	r_flag;
 	int	R_flag;
 	int	t_flag;
+	int u_flag;
+	int f_flag;
+	int g_flag;
+	int d_flag;
 	int	fod_exclusively;
 	int	fod_fromindex;
 	int	isvalid;
@@ -83,14 +88,16 @@ void			ft_printfiles_t(char *path, int all, int recursive, int longL);
 void			ft_printfiles_r(char *path, int all, int recursive, int longL);
 ctimeobject		*ft_constructctimeobj(time_t value);
 void			ft_initlist(LinkedList *list);
-void			ft_addhead(LinkedList *list, char *filename, ctimeobject *lm);
-void			ft_addtail(LinkedList *list, char *filename, ctimeobject *lm);
+void			ft_addhead(LinkedList *list, char *filename, ctimeobject *lm, ctimeobject *acc);
+void			ft_addtail(LinkedList *list, char *filename, ctimeobject *lm, ctimeobject *acc);
 char			*ft_splicepath(char *path);
 int				ft_hardlinkcount(char *path, int all, int recursive);
 void			ft_initflagobject(flagobject *flagship);
 void			ft_reverselist(LinkedList *list);
 void			ft_scanfile(char *path, flagobject *flagship);
 void			ft_sortlist(LinkedList *list, flagobject *flagship);
+void			ft_sortbytime(LinkedList *list);
+void			ft_sortybyascii(LinkedList *list);
 void			ft_printlist(LinkedList *list, flagobject *flagship);
 
 
