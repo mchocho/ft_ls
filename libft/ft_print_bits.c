@@ -1,29 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_addtail.c                                       :+:      :+:    :+:   */
+/*   ft_print_bits.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mchocho <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/09/02 11:09:39 by mchocho           #+#    #+#             */
-/*   Updated: 2019/09/02 11:16:12 by mchocho          ###   ########.fr       */
+/*   Created: 2019/08/16 21:00:19 by mchocho           #+#    #+#             */
+/*   Updated: 2019/08/16 21:01:35 by mchocho          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_ls.h"
+#include "libft.h"
 
-void	ft_addtail(LinkedList *list, char *filename, time_t lm, time_t acc)
+void    print_bits(int octet)
 {
-	t_file *entry;
-	
-	entry = (t_file*)malloc(sizeof(t_file));
-	entry->filename = filename;
-	entry->lastmodified = ft_constructctimeobj(lm);
-	entry->accesstime = ft_constructctimeobj(acc);
-	entry->next = NULL;
-	if (list->head == NULL)
-		list->head = entry;
-	else
-		list->tail->next = entry;
-	list->tail = entry;
+    int z;
+	int oct;
+
+	z = 1;
+	oct = (int)octet;
+
+	z <<= 16;
+    while (z > 0)
+    {
+        if (oct & z)
+            write(1, "1", 1);
+        else
+            write(1, "0", 1);
+        z >>= 1;
+    }
 }
