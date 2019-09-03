@@ -1,29 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_addtail.c                                       :+:      :+:    :+:   */
+/*   ft_lstdel.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mchocho <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/09/02 11:09:39 by mchocho           #+#    #+#             */
-/*   Updated: 2019/09/02 11:16:12 by mchocho          ###   ########.fr       */
+/*   Created: 2019/07/10 15:45:49 by mchocho           #+#    #+#             */
+/*   Updated: 2019/09/02 15:08:52 by mchocho          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_ls.h"
+#include "libft.h"
 
-void	ft_addtail(LinkedList *list, char *filename, time_t lm, time_t acc)
+void	ft_lstdel(t_list **alst, void (*del)(void *, size_t))
 {
-	t_file *entry;
-	
-	entry = (t_file*)malloc(sizeof(t_file));
-	entry->filename = filename;
-	entry->lastmodified = ft_constructctimeobj(lm);
-	entry->accesstime = ft_constructctimeobj(acc);
-	entry->next = NULL;
-	if (list->head == NULL)
-		list->head = entry;
-	else
-		list->tail->next = entry;
-	list->tail = entry;
+	t_list *list;
+	t_list *nlist;
+
+	list = *alst;
+	while (list)
+	{
+		nlist = list->next;
+		del(list->content, list->content_size);
+		free(list);
+		list = nlist;
+	}
+	*alst = NULL;
 }

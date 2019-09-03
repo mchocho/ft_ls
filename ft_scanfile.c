@@ -6,7 +6,7 @@
 /*   By: mchocho <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/29 16:54:06 by mchocho           #+#    #+#             */
-/*   Updated: 2019/08/30 17:31:37 by mchocho          ###   ########.fr       */
+/*   Updated: 2019/09/02 12:04:53 by mchocho          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,15 +44,15 @@ void ft_scanfile(char *path, flagobject *flagship)
 				dirdetected = true;
 			if (lstat(path, &fstat) < 0 || ft_skiphiddenfiles(path, flagship))
 				continue;
-			ft_addhead(list, entry->d_name, ft_constructctimeobj(fstat.st_mtime), ft_constuctctimeobj(fstat.st_atime));
+			ft_addhead(list, entry->d_name, fstat.st_mtime, fstat.st_atime);
 		}
 		closedir(directory);
 	}
 	else
 	{
-		if (lstat(path, &fstat) < 0) || (!flagship->a_flag && path[0] == '.')
+		if (lstat(path, &fstat) < 0 || (!flagship->a_flag && path[0] == '.'))
 			return ;
-		ft_addhead(list, path, ft_constructctimeobj(fstat.st_mtime), ft_constructctimeobj(fstat.st_atime));
+		ft_addhead(list, path, fstat.st_mtime, fstat.st_atime);
 	}
 	ft_sortlist(list, flagship);
 	ft_printlist(list, flagship);
@@ -61,7 +61,7 @@ void ft_scanfile(char *path, flagobject *flagship)
 		if (!(directory = opendir(path)))
 			return;
 		while ((entry = readdir(directory)) && entry != NULL)
-			if (ft_ispathdir(entry->d_name) && !ft_skiphiddenfiles(entry-d_name, flagship))
+			if (ft_ispathdir(entry->d_name) && !ft_skiphiddenfiles(entry->d_name, flagship))
 			{
 				ft_putstr("\n\n");
 				ft_scanfile(entry->d_name, flagship);

@@ -6,7 +6,7 @@
 /*   By: mchocho <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/24 16:35:46 by mchocho           #+#    #+#             */
-/*   Updated: 2019/08/24 16:36:54 by mchocho          ###   ########.fr       */
+/*   Updated: 2019/09/02 14:29:38 by mchocho          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,6 @@ int	ft_isvalidoption(char c)
 {
 	char	*options;
 
-	options = "[-ABCFGHLOPRSTUWabcdefghiklmnopqrstuwx1]\n";
+	options = "[-ABCFGHLOPRSTUWabcdefghiklmnopqrstuwx1]";
 	return (ft_strchr(options, c) ? true : false);
 }

@@ -6,14 +6,17 @@
 /*   By: mchocho <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/25 12:05:23 by mchocho           #+#    #+#             */
-/*   Updated: 2019/08/19 17:38:38 by mchocho          ###   ########.fr       */
+/*   Updated: 2019/09/02 11:56:38 by mchocho          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
 
-void	ft_longlist(char *path, int all, int dirref)
+void	ft_longlist(char *path, flagobject *flagship, int dirref)
 {
+	int all;
+	
+	all = flagship->a_flag;
 	//Print file permissions
 	ft_printpermissions(path);
 	ft_putchar(' ');

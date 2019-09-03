@@ -2,7 +2,7 @@
 
 void	ft_reverselist(LinkedList *list)
 {
-	t_flile *current, *next, *prev;
+	t_file *current, *next, *prev;
 	
 	current = list->head;
 	next = NULL;

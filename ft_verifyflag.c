@@ -6,7 +6,7 @@
 /*   By: mchocho <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/24 16:33:43 by mchocho           #+#    #+#             */
-/*   Updated: 2019/08/26 15:51:36 by mchocho          ###   ########.fr       */
+/*   Updated: 2019/09/02 14:24:16 by mchocho          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static void ft_errormessage(int err, char c)
 }
 
 
-static void ft_initflagobject(flagobject *flagship)
+/*static void ft_initflagobject(flagobject *flagship)
 {
 	flagship->l_flag = false;
 	flagship->r_flag = false;
@@ -35,7 +35,7 @@ static void ft_initflagobject(flagobject *flagship)
 	flagship->fod_exclusively = false;
 	flagship->isvalid = true;
 	flagship->terminate_ls = false;
-}
+}*/
 
 static int ft_handleoptions(char *flag, flagobject *flagship)
 {
@@ -73,7 +73,7 @@ static int ft_handleoptions(char *flag, flagobject *flagship)
 }
 
 
-flagobject *ft_verifyflag(char *flag, flagobject *flagship)
+void	ft_verifyflag(char *flag, flagobject *flagship)
 {
 	//flagobject	*flagship;
 	int		len;
@@ -85,42 +85,24 @@ flagobject *ft_verifyflag(char *flag, flagobject *flagship)
 	len = ft_strlen(flag);
 	//dashcount = 0;
 	//i = 0;
-	ft_initflagobject(flagship);
+	//ft_initflagobject(flagship);
 
 	if (len < 2 || flag[0] != '-')
 		flagship->isvalid = false;
 	else if (ft_stristr(flag, "--") == 0)
+	{
 		if (len == 2)
+		{
 			flagship->fod_exclusively = true;
-<<<<<<< HEAD
-			return (flagship);
+			//return (flagship);
 		}
 		else {
 			flagship->terminate_ls = true;
 			ft_errormessage(0, '-');
-			return (flagship);
+			//return (flagship);
 		}
-		/*else if (ft_isvalidoption(flag[3]) && len == 3)
-		{
-			//if (flag[3] == '[')
-			//	return (ft_handlebrackets(ft_strchr('['), flagship));
-			else if (flag[3] == 'g')
-				flagship->terminate_ls = true;
-			else
-			{
-				ft_errormessage(0, );
-			}
-		}
-		else if ()*/
 	}
-=======
-		else
-		{
-			flagship->terminate_ls = true;
-			ft_errormessage(0, '-');
-		}
 	else
 		ft_handleoptions(flag, flagship);
-	return (flagship);
->>>>>>> 2d3c73c6369652907978c5502bbd6962989f4289
+	return ;//(flagship);
 }

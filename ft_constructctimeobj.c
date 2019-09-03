@@ -7,7 +7,7 @@ ctimeobject *ft_constructctimeobj(time_t value)
 	char			**time;
 	ctimeobject		*ctimeobj;
 	
-	tv = ctime(value);
+	tv = ctime(&value);
 	split = ft_strsplit(tv, ' ');
 	time = ft_strsplit(split[3], ':');
 	ctimeobj = (ctimeobject *)malloc(sizeof(ctimeobject));
