@@ -10,14 +10,16 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-void ft_addhead(LinkedList *list, char* filename, ctimeobject *lm, ctimeobject *acc)
+#include "ft_ls.h"
+
+void ft_addhead(LinkedList *list, char* filename, time_t *lm, time_t *acc)
 {
 	s_file *entry;
 
 	entry = (s_file*)malloc(sizeof(s_file));
 	entry->filename = filename;
-	entry->lastmodified = lm;
-	entry->accesstime = acc;
+	entry->lastmodified = ft_constructctimeobj(lm);
+	entry->accesstime = ft_constructctimeobj(acc);
 
 	if (list->head == NULL)
 	{

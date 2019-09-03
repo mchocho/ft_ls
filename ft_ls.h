@@ -88,8 +88,8 @@ void			ft_printfiles_t(char *path, int all, int recursive, int longL);
 void			ft_printfiles_r(char *path, int all, int recursive, int longL);
 ctimeobject		*ft_constructctimeobj(time_t value);
 void			ft_initlist(LinkedList *list);
-void			ft_addhead(LinkedList *list, char *filename, ctimeobject *lm, ctimeobject *acc);
-void			ft_addtail(LinkedList *list, char *filename, ctimeobject *lm, ctimeobject *acc);
+void			ft_addhead(LinkedList *list, char *filename, time_t lm, time_t acc);//ctimeobject *lm, ctimeobject *acc);
+void			ft_addtail(LinkedList *list, char *filename, time_t lm, time_t acc);//ctimeobject *lm, ctimeobject *acc);
 char			*ft_splicepath(char *path);
 int				ft_hardlinkcount(char *path, int all, int recursive);
 void			ft_initflagobject(flagobject *flagship);
@@ -97,8 +97,9 @@ void			ft_reverselist(LinkedList *list);
 void			ft_scanfile(char *path, flagobject *flagship);
 void			ft_sortlist(LinkedList *list, flagobject *flagship);
 void			ft_sortbytime(LinkedList *list);
-void			ft_sortybyascii(LinkedList *list);
+void			ft_sortbyascii(LinkedList *list);
+void			ft_sortbynamethenaccess(LinkedList *list);
 void			ft_printlist(LinkedList *list, flagobject *flagship);
-
+int			ft_structcmp(t_file *file1, t_file file2);
 
 #endif

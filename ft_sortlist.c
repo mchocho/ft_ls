@@ -20,7 +20,7 @@ void	ft_sortlist(LinkedList *list, flagobject *flagship)
 	if (flagship->t_flag)
 		ft_sortbytime(list);
 	else if (flagship->u_flag)
-		ft_sortbynameandaccess_t(list);
+		ft_sortbynamethenaccess_t(list);
 	else
 		ft_sortbyascii(list);
 
