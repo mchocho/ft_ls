@@ -6,13 +6,13 @@
 /*   By: mchocho <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/30 15:35:29 by mchocho           #+#    #+#             */
-/*   Updated: 2019/09/02 12:05:38 by mchocho          ###   ########.fr       */
+/*   Updated: 2019/09/03 12:55:29 by mchocho          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
 
-void    ft_sortbytime(LinkedList *list)
+void    ft_sortbyascii(LinkedList *list)
 {
         t_file *current;
         t_file *next;

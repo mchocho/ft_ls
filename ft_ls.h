@@ -6,7 +6,7 @@
 /*   By: mchocho <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/23 15:38:06 by mchocho           #+#    #+#             */
-/*   Updated: 2019/09/02 14:30:58 by mchocho          ###   ########.fr       */
+/*   Updated: 2019/09/03 12:53:03 by mchocho          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,7 @@ void			ft_scanfile(char *path, flagobject *flagship);
 void			ft_sortlist(LinkedList *list, flagobject *flagship);
 void			ft_sortbytime(LinkedList *list);
 void			ft_sortbyascii(LinkedList *list);
-void			ft_sortbynameandaccess(LinkedList *list);
+void			ft_sortbynamethenaccess(LinkedList *list);
 int			ft_structcmp(t_file *file1, t_file *file2);
 void			ft_printlist(LinkedList *list, flagobject *flagship);
 void			ft_verifyflag(char *flag, flagobject *flagship);

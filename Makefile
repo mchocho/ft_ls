@@ -6,7 +6,7 @@
 #    By: mchocho <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/07/23 09:51:23 by mchocho           #+#    #+#              #
-#    Updated: 2019/09/02 15:55:00 by mchocho          ###   ########.fr        #
+#    Updated: 2019/09/03 12:52:21 by mchocho          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME:=	ft_ls.a
 
 HEADERS:=	ft_ls.h
 
-FLAGS:=	-Wall -Werror -Wextra
+FLAGS:=	-Wall -Werror -Wextra -c
 
 SRC:=	ft_addhead.c\
 	ft_addtail.c\
@@ -40,6 +40,7 @@ SRC:=	ft_addhead.c\
 	ft_scanfile.c\
 	ft_sortbyascii.c\
 	ft_sortbytime.c\
+	ft_sortbynamethenaccess.c\
 	ft_sortlist.c\
 	ft_splicepath.c\
 	ft_structcmp.c\
@@ -52,16 +53,16 @@ $(NAME):
 	gcc $(FLAGS) $(SRC) $(HEADERS)
 	ar rc $(NAME) $(OBJECTS)
 	ranlib $(NAME)
-	rm libft.h.gch
+	rm -f *.gch
 
 all:	$(NAME)
 	
 clean:
 	rm -f $(OBJECTS)
-	rm -f libft.h.gch
+	rm -f *.gch
 
 fclean:	clean
-	rm -f $(NAME)
+		rm -f $(NAME)
 
 re:	fclean all
 
