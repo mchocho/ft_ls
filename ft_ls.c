@@ -6,7 +6,7 @@
 /*   By: mchocho <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/01 14:20:09 by mchocho           #+#    #+#             */
-/*   Updated: 2019/09/02 10:59:16 by mchocho          ###   ########.fr       */
+/*   Updated: 2019/09/05 15:38:21 by mchocho          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,15 +17,22 @@ static int	ft_optionistarget(char *str)
 	size_t len;
 	
 	len = ft_strlen(str);
-	return ((len == 1 && str[0] == '-') || (len > 0 && str[0] != '-'));
+	return ((len == 1 && str[0] == '-') /*|| (len > 0 && str[0] != '-')*/);
 }
 
-static void	ft_fileerror(char *str)
+/*static void	ft_fileerror(char *str)
 {
 	ft_putstr("ls: ");
 	ft_putstr(str);
 	ft_putstr(": No such file or directory\n");
 	return ;
+}*/
+
+char *ft_absolutepath(char *path)
+{
+	if (path[ft_strlen(path) - 1] != '/')
+		ft_strcat(path, "/");
+	return (path);
 }
 
 
@@ -51,7 +58,7 @@ void	ft_ls(int argc, char **argv)//char *path, int all, int recursive, int longL
 		{
 			if (!flagship->fod_exclusively)	
 				ft_verifyflag(argv[i], flagship);
-			else if (flagship->fod_fromindex && flagship->fod_fromindex == -1)
+			else if (flagship->fod_exclusively && flagship->fod_fromindex == -1)
 				flagship->fod_fromindex = i - 1;
 			if (flagship->terminate_ls == true)
 				return ;
@@ -61,9 +68,9 @@ void	ft_ls(int argc, char **argv)//char *path, int all, int recursive, int longL
 	i = 0;
 	while (i < argc)
 	{
-		if ((i >= flagship->fod_fromindex || ft_optionistarget(argv[i])) && ft_strichr("dr", ft_detectfilepathtype(argv[i])) > -1)
+		if ((i >= flagship->fod_fromindex || !ft_optionistarget(argv[i])) && ft_strichr("dr", ft_detectfilepathtype(argv[i])) > -1)
 		{
-			ft_fileerror(argv[i]);
+			//ft_fileerror(argv[i]);
 			pathtargeted = true;
 		}
 		i++;
@@ -86,7 +93,7 @@ int main(int argc, char** argv)
 
 	if (argc > 2)
 		ft_ls(argc - 1, argv + 1);
-	else if (argc == 1)
+	else
 	{
 		argv[1] = ".";
 		ft_ls(1, (argv + 1));

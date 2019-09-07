@@ -6,7 +6,7 @@
 /*   By: mchocho <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/02 11:09:39 by mchocho           #+#    #+#             */
-/*   Updated: 2019/09/02 11:16:12 by mchocho          ###   ########.fr       */
+/*   Updated: 2019/09/05 14:05:59 by mchocho          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	ft_addtail(LinkedList *list, char *filename, time_t lm, time_t acc)
 	t_file *entry;
 	
 	entry = (t_file*)malloc(sizeof(t_file));
-	entry->filename = filename;
+	ft_strcpy(entry->filename, filename);
 	entry->lastmodified = ft_constructctimeobj(lm);
 	entry->accesstime = ft_constructctimeobj(acc);
 	entry->next = NULL;

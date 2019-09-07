@@ -6,7 +6,7 @@
 /*   By: mchocho <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/23 15:38:06 by mchocho           #+#    #+#             */
-/*   Updated: 2019/09/03 12:53:03 by mchocho          ###   ########.fr       */
+/*   Updated: 2019/09/05 17:22:12 by mchocho          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 #include <grp.h>
 #include <uuid/uuid.h>
 #include <time.h>
+#include <stdio.h>
 #include "libft/libft.h"
 #define true 1
 #define false 0
