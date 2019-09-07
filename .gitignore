@@ -2,4 +2,6 @@
 *.exe
 *.swp
 *.gch
+*.dSYM
+*.a
 .DS_Store
