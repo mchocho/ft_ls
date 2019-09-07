@@ -77,7 +77,7 @@ void	ft_ls(int argc, char **argv)//char *path, int all, int recursive, int longL
 			i++;
 		}
 	else
-		ft_scanfile(".", flagship);
+		ft_scanfile("./", flagship);
 	return ;
 }
 

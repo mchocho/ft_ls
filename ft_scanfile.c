@@ -70,3 +70,15 @@ void ft_scanfile(char *path, flagobject *flagship)
 	}
 	return ;
 }
+
+int main(int argc, char **argv)
+{
+	if(argc > 1)
+	{
+		flagobject *flagship = (flagobject *)malloc(sizeof(flagobject));
+		ft_initflagobject(flagship);
+	
+		ft_scanfile(argv[1], flagship);
+	}
+	ft_putchar('\n');
+}
