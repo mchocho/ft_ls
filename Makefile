@@ -59,7 +59,7 @@ all:	$(NAME)
 	
 clean:
 	rm -f $(OBJECTS)
-	rm -f *.gch
+	rm -f *.gch *.stackdump *.exe *.swp *.DS_Store *.dSYM
 
 fclean:	clean
 		rm -f $(NAME)
