@@ -6,7 +6,7 @@ ctimeobject *ft_constructctimeobj(time_t value)
 	char			**split;
 	char			**time;
 	ctimeobject		*ctimeobj;
-	
+
 	tv = ctime(&value);
 	split = ft_strsplit(tv, ' ');
 	time = ft_strsplit(split[3], ':');
@@ -18,7 +18,7 @@ ctimeobject *ft_constructctimeobj(time_t value)
 	ctimeobj->hours = time[0];
 	ctimeobj->minutes = time[1];
 	ctimeobj->seconds = time[2];
-	ft_strncpy(ctimeobj->year, split[4], 4);
+	ctimeobj->year = ft_strndup(split[4], 4);
 	ctimeobj->ctime = tv;
 	ctimeobj->epoch = value;
 

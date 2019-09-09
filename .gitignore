@@ -3,4 +3,7 @@
 *.swp
 *.gch
 *.stackump
+*.dSYM
+*.a
+*.o
 .DS_Store

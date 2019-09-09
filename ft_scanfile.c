@@ -6,7 +6,7 @@
 /*   By: mchocho <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/29 16:54:06 by mchocho           #+#    #+#             */
-/*   Updated: 2019/09/02 12:04:53 by mchocho          ###   ########.fr       */
+/*   Updated: 2019/09/07 13:21:17 by mchocho          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,21 @@ int ft_isdrl(char *str)
 
 int ft_skiphiddenfiles(char *path, flagobject *flagship)
 {
-	return (!flagship->a_flag && !flagship->f_flag && (*path && path[0] == '.'));
+	return (!flagship->f_flag && !flagship->a_flag && *path == '.');
+}
+
+int ft_skipnondirectories(char *path, flagobject *flagship)
+{
+	return (!ft_ispathdir(path) && flagship->d_flag);
+}
+
+int ft_iscurrentorpreviousdir(char *str)
+{
+	if (ft_stristr(str, "..") == 0 && ft_strlen(str) == 2)
+		return true;
+	else if (ft_strichr(str, '.') == 0 && ft_strlen(str) == 1)
+		return true;
+	return false;
 }
 
 void ft_scanfile(char *path, flagobject *flagship)
@@ -42,8 +56,9 @@ void ft_scanfile(char *path, flagobject *flagship)
 		{
 			if (ft_ispathdir(entry->d_name))
 				dirdetected = true;
-			if (lstat(path, &fstat) < 0 || ft_skiphiddenfiles(path, flagship))
+			if (stat(entry->d_name, &fstat) < 0 || ft_skiphiddenfiles(path, flagship) )//|| (!(ft_ispathdir(entry->d_name) && flagship->d_flag)))
 				continue;
+			//^
 			ft_addhead(list, entry->d_name, fstat.st_mtime, fstat.st_atime);
 		}
 		closedir(directory);
@@ -54,18 +69,24 @@ void ft_scanfile(char *path, flagobject *flagship)
 			return ;
 		ft_addhead(list, path, fstat.st_mtime, fstat.st_atime);
 	}
+	ft_putstr("Hello ft_sortlist()\n");
 	ft_sortlist(list, flagship);
+	ft_putstr("Goodbye ft_sortlist()\n");
 	ft_printlist(list, flagship);
 	if (dirdetected && ft_ispathdir(path) && flagship->R_flag)
 	{
 		if (!(directory = opendir(path)))
 			return;
 		while ((entry = readdir(directory)) && entry != NULL)
+		{
+			if (ft_iscurrentorpreviousdir(entry->d_name))
+			{}//continue;
 			if (ft_ispathdir(entry->d_name) && !ft_skiphiddenfiles(entry->d_name, flagship))
 			{
 				ft_putstr("\n\n");
 				ft_scanfile(entry->d_name, flagship);
 			}
+		}
 		closedir(directory);
 	}
 	return ;
@@ -73,6 +94,7 @@ void ft_scanfile(char *path, flagobject *flagship)
 
 int main(int argc, char **argv)
 {
+/*<<<<<<< HEAD
 	if(argc > 1)
 	{
 		flagobject *flagship = (flagobject *)malloc(sizeof(flagobject));
@@ -81,4 +103,30 @@ int main(int argc, char **argv)
 		ft_scanfile(argv[1], flagship);
 	}
 	ft_putchar('\n');
+=======*/
+	ft_putstr(" Testing ft_scanfile.c\n----------------------------------\n");
+
+	char *foo;
+	flagobject *flagship = (flagobject *)malloc(sizeof(flagobject));
+
+	ft_initflagobject(flagship);
+
+
+	flagship->l_flag = true;
+	flagship->a_flag = true;
+	flagship->f_flag = false;
+	flagship->R_flag = false;
+	flagship->d_flag = false;
+	if (argc > 1)
+		foo = argv[1];
+	else foo = "./";
+
+	ft_putstr("Scanning file: ");
+	ft_putstr(foo);
+	ft_putstr("\n\n");
+
+	ft_scanfile(foo, flagship);
+
+	return 0;
+
 }
