@@ -6,7 +6,7 @@
 /*   By: mchocho <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/29 16:54:06 by mchocho           #+#    #+#             */
-/*   Updated: 2019/09/07 13:21:17 by mchocho          ###   ########.fr       */
+/*   Updated: 2019/09/10 15:25:25 by mchocho          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,12 @@ int ft_isdrl(char *str)
 
 int ft_skiphiddenfiles(char *path, flagobject *flagship)
 {
-	return (!flagship->f_flag && !flagship->a_flag && path[0] == '.');
+	if (!flagship->f_flag && !flagship->a_flag && ft_splicepath(path)[0] == '.')
+	{
+		ft_putstr("This is a hidden directory\n");
+		return true;
+	}
+	return false;
 }
 
 int ft_skipnondirectories(char *path, flagobject *flagship)
@@ -114,7 +119,7 @@ int main(int argc, char **argv)
 
 	flagship->l_flag = true;
 	flagship->a_flag = false;
-	flagship->f_flag = false;
+	flagship->f_flag = true;
 	flagship->R_flag = true;
 	flagship->d_flag = false;
 	if (argc > 1)

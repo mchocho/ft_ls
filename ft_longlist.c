@@ -6,7 +6,7 @@
 /*   By: mchocho <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/25 12:05:23 by mchocho           #+#    #+#             */
-/*   Updated: 2019/09/07 11:44:47 by mchocho          ###   ########.fr       */
+/*   Updated: 2019/09/10 15:51:51 by mchocho          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	ft_longlist(char *path, flagobject *flagship, int dirref)
 	if (ft_ispathdir(path))
 		ft_putnbr(ft_hardlinkcount(path, all, true));//ft_filecount(path, all));
 	else
-		ft_putchar('1');
+		ft_putpaddedstr("1", 10);
 	ft_putchar(' ');
 	//Print username
 	ft_printusername(path);
