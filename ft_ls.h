@@ -6,7 +6,7 @@
 /*   By: mchocho <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/23 15:38:06 by mchocho           #+#    #+#             */
-/*   Updated: 2019/09/05 17:22:12 by mchocho          ###   ########.fr       */
+/*   Updated: 2019/09/10 16:50:47 by mchocho          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,32 +28,33 @@
 #define true 1
 #define false 0
 
-typedef struct c_timeobject {
-	char *day;//[4];
-	char *month;//[4];
-	char *date;//[3];
-	char *hours;//[3];
-	char *minutes;//[3];
-	char *seconds;//[3];
-	char *year;//[5];
+/*typedef struct c_timeobject {
+	char *day;
+	char *month;
+	char *date;
+	char *hours;
+	char *minutes;
+	char *seconds;
+	char *year;
 	char *ctime;
 	time_t epoch;
-}		ctimeobject;
+}		ctimeobject*/
 
 typedef struct s_file {
 	char *filename;
-	struct c_timeobject *lastmodified;
-	struct c_timeobject *accesstime;
+	//struct c_timeobject *lastmodified;
+	time_t lastmodified;
+	//struct c_timeobject *accesstime;
+	time_t accesstime;
 	struct s_file *next;
 	struct s_file *prev;
 }		t_file;
 
 
-typedef struct _linkedlist {
-	struct s_file *head;
-	struct s_file *tail;
-	struct s_file *current;
-}		LinkedList;
+//typedef struct _linkedlist {
+//	struct s_file *head;
+//	struct s_file *tail;
+//}		LinkedList;
 
 typedef struct f_object {
 	int	a_flag;
@@ -69,7 +70,6 @@ typedef struct f_object {
 	int	fod_fromindex;
 	int	isvalid;
 	int	terminate_ls;
-	char	error_message[256];
 }		flagobject;
 
 

@@ -6,7 +6,7 @@
 /*   By: mchocho <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/29 16:54:06 by mchocho           #+#    #+#             */
-/*   Updated: 2019/09/10 15:25:25 by mchocho          ###   ########.fr       */
+/*   Updated: 2019/09/10 16:11:58 by mchocho          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,6 +121,7 @@ int main(int argc, char **argv)
 	flagship->a_flag = false;
 	flagship->f_flag = true;
 	flagship->R_flag = true;
+	flagship->t_flag = true;
 	flagship->d_flag = false;
 	if (argc > 1)
 		foo = argv[1];
