@@ -6,7 +6,7 @@
 #    By: mchocho <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/07/23 09:51:23 by mchocho           #+#    #+#              #
-#    Updated: 2019/09/03 12:52:21 by mchocho          ###   ########.fr        #
+#    Updated: 2019/09/10 15:16:16 by mchocho          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -49,7 +49,10 @@ SRC:=	ft_addhead.c\
 
 OBJECTS:= $(SRC:.c=.o)
 
+LIBFT:=	./libft/
+
 $(NAME):
+	$(MAKE) -C $(LIBFT)
 	gcc $(FLAGS) $(SRC) $(HEADERS)
 	ar rc $(NAME) $(OBJECTS)
 	ranlib $(NAME)
