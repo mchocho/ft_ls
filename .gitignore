@@ -2,7 +2,7 @@
 *.exe
 *.swp
 *.gch
-*.stackump
+*.stackdump
 *.dSYM
 *.a
 *.o

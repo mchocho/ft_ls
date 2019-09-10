@@ -8,7 +8,7 @@ void	ft_sortbynamethenaccess(LinkedList *list)
 	ft_sortbyascii(list);
 	current = list->head;
 
-	while (current != NULL)
+	while (current != NULL && current->next != NULL)
 	{
 		next = current->next;
 		if (ft_strcmp(current->filename, next->filename) == 0)

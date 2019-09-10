@@ -19,7 +19,7 @@ int ft_isdrl(char *str)
 
 int ft_skiphiddenfiles(char *path, flagobject *flagship)
 {
-	return (!flagship->f_flag && !flagship->a_flag && *path == '.');
+	return (!flagship->f_flag && !flagship->a_flag && path[0] == '.');
 }
 
 int ft_skipnondirectories(char *path, flagobject *flagship)
@@ -113,9 +113,9 @@ int main(int argc, char **argv)
 
 
 	flagship->l_flag = true;
-	flagship->a_flag = true;
+	flagship->a_flag = false;
 	flagship->f_flag = false;
-	flagship->R_flag = false;
+	flagship->R_flag = true;
 	flagship->d_flag = false;
 	if (argc > 1)
 		foo = argv[1];
