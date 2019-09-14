@@ -19,7 +19,7 @@ int ft_isdrl(char *str)
 
 int ft_skiphiddenfiles(char *path, flagobject *flagship)
 {
-	return (!flagship->f_flag && !flagship->a_flag && path[0] == '.');
+	return ((/*!flagship->f_flag &&*/ !flagship->a_flag) && path[0] == '.');
 }
 
 int ft_skipnondirectories(char *path, flagobject *flagship)
@@ -29,36 +29,38 @@ int ft_skipnondirectories(char *path, flagobject *flagship)
 
 int ft_iscurrentorpreviousdir(char *str)
 {
-	if (ft_stristr(str, "..") == 0 && ft_strlen(str) == 2)
+	size_t len;
+
+	len = ft_strlen(str);
+	if (ft_stristr(str, "..") == 0 && len == 2)
 		return true;
-	else if (ft_strichr(str, '.') == 0 && ft_strlen(str) == 1)
+	else if (ft_strichr(str, '.') == 0 && len == 1)
 		return true;
 	return false;
 }
 
 void ft_scanfile(char *path, flagobject *flagship)
 {
-	DIR				*directory;
+	DIR			*directory;
 	LinkedList		*list;
-	struct dirent	*entry;
+	struct dirent		*entry;
 	struct stat		fstat;
-	int				dirdetected;
+//	int			dirdetected;
 
 	if (!ft_isdrl(path) || (!(list = (LinkedList *)malloc(sizeof(LinkedList)))))
 		return;
 	ft_initlist(list);
-	dirdetected = false;
+//	dirdetected = false;
 	if (ft_ispathdir(path))
 	{
 		if (!(directory = opendir(path)))
 			return;
 		while((entry = readdir(directory)) && entry != NULL)
 		{
-			if (ft_ispathdir(entry->d_name))
-				dirdetected = true;
-			if (stat(entry->d_name, &fstat) < 0 || ft_skiphiddenfiles(path, flagship) )//|| (!(ft_ispathdir(entry->d_name) && flagship->d_flag)))
+		//	if (ft_ispathdir(entry->d_name) && entry->d_name[0] == '.') 
+		//		dirdetected = true;
+			if (lstat(entry->d_name, &fstat) < 0 || ft_skiphiddenfiles(entry->d_name, flagship))
 				continue;
-			//^
 			ft_addhead(list, entry->d_name, fstat.st_mtime, fstat.st_atime);
 		}
 		closedir(directory);
@@ -73,14 +75,14 @@ void ft_scanfile(char *path, flagobject *flagship)
 	ft_sortlist(list, flagship);
 	ft_putstr("Goodbye ft_sortlist()\n");
 	ft_printlist(list, flagship);
-	if (dirdetected && ft_ispathdir(path) && flagship->R_flag)
+	if (/*dirdetected &&*/ ft_ispathdir(path) && flagship->R_flag)
 	{
 		if (!(directory = opendir(path)))
 			return;
 		while ((entry = readdir(directory)) && entry != NULL)
 		{
-			if (ft_iscurrentorpreviousdir(entry->d_name))
-			{}//continue;
+			/*if (ft_iscurrentorpreviousdir(entry->d_name))
+				continue;*/
 			if (ft_ispathdir(entry->d_name) && !ft_skiphiddenfiles(entry->d_name, flagship))
 			{
 				ft_putstr("\n\n");
@@ -114,8 +116,9 @@ int main(int argc, char **argv)
 
 	flagship->l_flag = true;
 	flagship->a_flag = false;
-	flagship->f_flag = false;
+	flagship->f_flag = true;
 	flagship->R_flag = true;
+	flagship->r_flag = false;
 	flagship->d_flag = false;
 	if (argc > 1)
 		foo = argv[1];
