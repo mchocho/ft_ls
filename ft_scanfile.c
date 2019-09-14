@@ -6,7 +6,7 @@
 /*   By: mchocho <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/29 16:54:06 by mchocho           #+#    #+#             */
-/*   Updated: 2019/09/07 13:21:17 by mchocho          ###   ########.fr       */
+/*   Updated: 2019/09/10 16:11:58 by mchocho          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,7 @@ void ft_scanfile(char *path, flagobject *flagship)
 
 int main(int argc, char **argv)
 {
-/*<<<<<<< HEAD
+	/*
 	if(argc > 1)
 	{
 		flagobject *flagship = (flagobject *)malloc(sizeof(flagobject));
@@ -105,7 +105,7 @@ int main(int argc, char **argv)
 		ft_scanfile(argv[1], flagship);
 	}
 	ft_putchar('\n');
-=======*/
+	*/
 	ft_putstr(" Testing ft_scanfile.c\n----------------------------------\n");
 
 	char *foo;
@@ -119,6 +119,7 @@ int main(int argc, char **argv)
 	flagship->f_flag = true;
 	flagship->R_flag = true;
 	flagship->r_flag = false;
+	flagship->t_flag = true;
 	flagship->d_flag = false;
 	if (argc > 1)
 		foo = argv[1];
