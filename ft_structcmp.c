@@ -15,6 +15,6 @@
 int	ft_structcmp(t_file *file1, t_file *file2)
 {
 	if (ft_strcmp(file1->filename, file2->filename) == 0)
-		return (file1->lastmodified->epoch == file2->lastmodified->epoch);
+		return (file1->lastmodified == file2->lastmodified);
 	return (false);
 }

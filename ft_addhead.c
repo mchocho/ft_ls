@@ -17,10 +17,9 @@ void ft_addhead(LinkedList *list, char* filename, time_t lm, time_t acc)
 	t_file *entry;
 
 	entry = (t_file*)malloc(sizeof(t_file));
-//	ft_strcpy(entry->filename, filename);
 	entry->filename = ft_strdup(filename);
-	entry->lastmodified = ft_constructctimeobj(lm);
-	entry->accesstime = ft_constructctimeobj(acc);
+	entry->lastmodified = lm;
+	entry->accesstime = acc;
 
 	if (list->head == NULL)
 	{

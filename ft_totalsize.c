@@ -49,9 +49,9 @@ int main()
 {
 	printf(" Testing ft_totalsize.c\n--------------------------------\n");
 
-	char *foo = "./ft_addtail.c";
+	char *foo = "./libft";
 
-	printf("Block size of file \"%s\": %lld", foo, ft_totalsize(foo, true));
+	printf("Block size of file \"%s\": %ld", foo, ft_totalsize(foo, true));
 
 	return (0);
 }*/

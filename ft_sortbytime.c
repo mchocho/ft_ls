@@ -16,22 +16,28 @@ void	ft_sortbytime(LinkedList *list)
 {
 	t_file *current;
 	t_file *next;
+	t_file *previous;
 
 	current = list->head;
+	previous = NULL;
 	while (current != NULL && current->next != NULL)
 	{
 		next = current->next;
-		if (current->lastmodified->epoch < next->lastmodified->epoch)
+		if (current->lastmodified < next->lastmodified)
 		{
-			current->next = next->next;
-			next->next = current;
+			current->next = next->next;	//Current is taking next's position
+			next->next = current;		//Next is pointing to (in front of) current
+			if (previous != NULL)
+				previous->next = next;	//Current's previous node (if it is a node) is now in front of next
 			if (ft_structcmp(next, list->head))
 				list->head = current;
 			if (ft_structcmp(current, list->tail))
 				list->tail = next;
 			current = list->head;
+			previous = NULL;
 			continue;
 		}
+		previous = current;
 		current = next;
 	}
 	return ;

@@ -16,22 +16,28 @@ void    ft_sortbyascii(LinkedList *list)
 {
         t_file *current;
         t_file *next;
+	t_file *previous;
 
         current = list->head;
+	previous = NULL;
         while (current != NULL && current->next != NULL)
         {
                 next = current->next;
-                if (ft_strcmp(current->filename, next->filename) < 0)
+                if (ft_strcmp(current->filename, next->filename) > 0)
                 {
                         current->next = next->next;
                         next->next = current;
+			if (previous != NULL)
+				previous->next = next;
                         if (ft_structcmp(next, list->head))
                                 list->head = current;
                         if (ft_structcmp(current, list->tail))
                                 list->tail = next;
+			previous = NULL;
                         current = list->head;
                         continue;
                 }
+		previous = current;
                 current = next;
         }
         return ;

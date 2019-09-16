@@ -14,7 +14,6 @@
 
 void	ft_printlist(LinkedList *list, flagobject *flagship)
 {
-	ft_putstr("Hello printlist()\n");
 	t_file *current;
 	int		i;
 
@@ -25,19 +24,18 @@ void	ft_printlist(LinkedList *list, flagobject *flagship)
 	while (current != NULL)
 	{
 		if (flagship->l_flag || flagship->g_flag)
-			ft_longlist(current->filename, flagship, true);
+			ft_longlist(current->filename, flagship, false);
 		else
 		{
 			if (i != 0)
-				ft_putchar('\t');
-			ft_putstr(/*ft_splicepath(*/current->filename/*)*/);
+				ft_putchar('\n');
+			ft_putstr(ft_splicepath(current->filename));
 		}
 		current = current->next;
 		i++;
 	}
 	if (!flagship->l_flag && !flagship->g_flag)
 		ft_putchar('\n');
-	ft_putstr("goodbye ft_printlist.c\n");
 	return ;
 }
 

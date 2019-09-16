@@ -2,24 +2,25 @@
 
 ctimeobject *ft_constructctimeobj(time_t value)
 {
-	char			*tv;
-	char			**split;
+	char			*ts;
+	char			**seg;
 	char			**time;
 	ctimeobject		*ctimeobj;
 
-	tv = ctime(&value);
-	split = ft_strsplit(tv, ' ');
-	time = ft_strsplit(split[3], ':');
-	ctimeobj = (ctimeobject *)malloc(sizeof(ctimeobject));
+	ts = ctime(&value);
+	seg = ft_strsplit(ts, ' ');
+	time = ft_strsplit(seg[3], ':');
+	if (!(ctimeobj = (ctimeobject *)malloc(sizeof(ctimeobject))))
+		return (NULL);
 
-	ctimeobj->day = split[0];
-	ctimeobj->month = split[1];
-	ctimeobj->date = split[2];
+	ctimeobj->day = seg[0];
+	ctimeobj->month = seg[1];
+	ctimeobj->date = seg[2];
 	ctimeobj->hours = time[0];
-	ctimeobj->minutes = time[1];
-	ctimeobj->seconds = time[2];
-	ctimeobj->year = ft_strndup(split[4], 4);
-	ctimeobj->ctime = tv;
+	ctimeobj->min = time[1];
+	ctimeobj->sec = time[2];
+	ctimeobj->year = ft_strndup(seg[4], 4);
+	ctimeobj->ctime = ts;
 	ctimeobj->epoch = value;
 
 	return (ctimeobj);

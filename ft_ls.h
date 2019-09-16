@@ -28,17 +28,17 @@
 #define true 1
 #define false 0
 
-/*typedef struct c_timeobject {
+typedef struct c_timeobject {
 	char *day;
 	char *month;
 	char *date;
 	char *hours;
-	char *minutes;
-	char *seconds;
+	char *min;
+	char *sec;
 	char *year;
 	char *ctime;
 	time_t epoch;
-}		ctimeobject*/
+}		ctimeobject;
 
 typedef struct s_file {
 	char *filename;
@@ -47,14 +47,21 @@ typedef struct s_file {
 	//struct c_timeobject *accesstime;
 	time_t accesstime;
 	struct s_file *next;
-	struct s_file *prev;
 }		t_file;
 
+typedef struct _linkedlist {
+//	char		*dirlist;
+	struct s_file *head;
+	struct s_file *tail;
+//	struct s_file *current;
+}		LinkedList;
 
-//typedef struct _linkedlist {
-//	struct s_file *head;
-//	struct s_file *tail;
-//}		LinkedList;
+/*typedef struct	_dirlist {
+	char		*dirname;
+	struct _dirlist *head;
+	struct _dirlist *next;
+}		dirlist;
+*/
 
 typedef struct f_object {
 	int	a_flag;
@@ -75,8 +82,8 @@ typedef struct f_object {
 
 int			ft_ispathdir(char *path);
 off_t			ft_totalsize(char *path, int all);
-//int			ft_totalblocks(char *path, int all);
-//int			ft_filecount(char *path, int all);
+int			ft_totalblocks(char *path, int all);
+int			ft_filecount(char *path, int all);
 int			ft_detectfiletype(mode_t mode);
 int			ft_detectfilepathtype(char *path);
 void			ft_printpermissions(char *path);
@@ -85,14 +92,13 @@ void			ft_printgroupname(char *path);
 void			ft_printdatetime(char *path);
 void			ft_longlist(char *path, flagobject *flagship, int dirref);
 void			ft_ls(int argc, char **argv);
-void			ft_printfiles_t(char *path, int all, int recursive, int longL);
-void			ft_printfiles_r(char *path, int all, int recursive, int longL);
 ctimeobject		*ft_constructctimeobj(time_t value);
 void			ft_initlist(LinkedList *list);
 int			ft_isvalidoption(char c);
 void			ft_addhead(LinkedList *list, char *filename, time_t lm, time_t acc);
 void			ft_addtail(LinkedList *list, char *filename, time_t lm, time_t acc);
 char			*ft_splicepath(char *path);
+void			ft_cleanlist(LinkedList **list);
 int			ft_hardlinkcount(char *path, int all, int recursive);
 void			ft_initflagobject(flagobject *flagship);
 void			ft_reverselist(LinkedList *list);
@@ -104,5 +110,7 @@ void			ft_sortbynamethenaccess(LinkedList *list);
 int			ft_structcmp(t_file *file1, t_file *file2);
 void			ft_printlist(LinkedList *list, flagobject *flagship);
 void			ft_verifyflag(char *flag, flagobject *flagship);
+int			ft_datecmp(time_t time1, time_t time2);
+void			ft_cleanctimeobject(ctimeobject **timeobject);
 
 #endif

@@ -19,6 +19,9 @@ FLAGS:=	-Wall -Werror -Wextra -c
 SRC:=	ft_addhead.c\
 	ft_addtail.c\
 	ft_constructctimeobj.c\
+	ft_cleanctimeobject.c\
+	ft_cleanlist.c\
+	ft_datecmp.c\
 	ft_detectfiletype.c\
 	ft_detectfilepathtype.c\
 	ft_filecount.c\
@@ -45,7 +48,7 @@ SRC:=	ft_addhead.c\
 	ft_splicepath.c\
 	ft_structcmp.c\
 	ft_totalsize.c\
-	ft_verifyflag.c
+	ft_verifyflag.c\
 
 OBJECTS:= $(SRC:.c=.o)
 

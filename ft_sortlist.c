@@ -15,10 +15,7 @@
 void	ft_sortlist(LinkedList *list, flagobject *flagship)
 {
 	if (!flagship->isvalid || flagship->terminate_ls || flagship->f_flag)
-	{
-		ft_putstr("Flagship is not valid or list should not be sorted\n");
 		return ;
-	}
 	
 	if (flagship->t_flag == true)
 		ft_sortbytime(list);
@@ -27,7 +24,7 @@ void	ft_sortlist(LinkedList *list, flagobject *flagship)
 	else
 		ft_sortbyascii(list);
 
-	if (flagship->r_flag == true)
+	if (flagship->r_flag)
 		ft_reverselist(list);
 	return ;
 }

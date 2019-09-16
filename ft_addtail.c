@@ -15,11 +15,11 @@
 void	ft_addtail(LinkedList *list, char *filename, time_t lm, time_t acc)
 {
 	t_file *entry;
-	
+
 	entry = (t_file*)malloc(sizeof(t_file));
-	ft_strcpy(entry->filename, filename);
-	entry->lastmodified = ft_constructctimeobj(lm);
-	entry->accesstime = ft_constructctimeobj(acc);
+	entry->filename = ft_strdup(filename);
+	entry->lastmodified = lm;
+	entry->accesstime = acc;
 	entry->next = NULL;
 	if (list->head == NULL)
 		list->head = entry;

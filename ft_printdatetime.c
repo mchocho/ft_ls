@@ -22,7 +22,7 @@ void ft_printdatetime(char *path)
 	{
 		if (stat(path, &fstat) < 0)
 			return ;
-	} else if (ft_detectfilepathtype(path) == 'l')	//ft_detectfilepathtype: THIS IS STILL NOT DEFINED OR CREATED
+	} else if (ft_detectfilepathtype(path) == 'l')
 	{
 		if (lstat(path, &fstat) < 0)
 			return ;
