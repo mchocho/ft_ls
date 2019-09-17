@@ -59,16 +59,16 @@ $(NAME):
 	gcc $(FLAGS) $(SRC) $(HEADERS)
 	ar rc $(NAME) $(OBJECTS)
 	ranlib $(NAME)
-	rm -rf *.gch
+	rm -rf ./*.gch
 
 all:	$(NAME)
 	
 clean:
 	rm -rf $(OBJECTS)
-	rm -rf *.gch *.swp *.DS_Store *.dSYM
+	rm -rf ./*.gch ./*.swp ./*.DS_Store ./*.dSYM
 
 fclean:	clean
-	rm -rf $(NAME) *.exe *.out *.stackdump
+	rm -rf $(NAME) ./*.exe ./*.out ./*.stackdump
 
 re:	fclean all
 

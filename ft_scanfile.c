@@ -19,7 +19,7 @@ int ft_isdrl(char *str)
 
 int ft_skiphiddenfiles(char *path, flagobject *flagship)
 {
-	return ((!flagship->f_flag && !flagship->a_flag) && path[0] == '.');
+	return ((!flagship->f_flag && !flagship->a_flag) && ft_splicepath(path)[0] == '.');
 }
 
 int ft_skipnondirectories(char *path, flagobject *flagship)
@@ -29,32 +29,41 @@ int ft_skipnondirectories(char *path, flagobject *flagship)
 
 int ft_iscorpdir(char *str)
 {
+	if (ft_strcmp(str, "./") == 0)
+		return (true);
 	return (ft_strcmp(ft_splicepath(str), ".") == 0 || ft_strcmp(ft_splicepath(str), "..") == 0);
 }
 
-void ft_scanfile(char *path, flagobject *flagship)
+void ft_scanfile(char *path, flagobject *flagship, int recursive)
 {
 	DIR			*directory;
 	LinkedList		*list;
 	struct dirent		*entry;
 	struct stat		fstat;
-	int			dirdetected;
+	//int			dirdetected;
 	t_file			*current;
 
 	if (!ft_isdrl(path) || (!(list = (LinkedList *)malloc(sizeof(LinkedList)))))
 		return;
 	ft_initlist(list);
-	dirdetected = false;
+	//dirdetected = false;
 	if (ft_ispathdir(path))
 	{
 		if (!(directory = opendir(path)))
 			return;
-		while ((entry = readdir(directory)) && entry != NULL)
+		while ((entry = readdir(directory)) != NULL)
 		{
-			if (ft_ispathdir(entry->d_name) && !ft_iscorpdir(entry->d_name)) 
-				dirdetected = true;
-			if (lstat(entry->d_name, &fstat) < 0 || ft_skiphiddenfiles(ft_splicepath(entry->d_name), flagship))
+			//if (ft_ispathdir(entry->d_name) && !ft_iscorpdir(entry->d_name))
+			//	ft_scanfile(entry->d_name, flagship);//dirdetected = true;
+			if (lstat(entry->d_name, &fstat) < 0 || ft_skiphiddenfiles(entry->d_name, flagship))
 				continue;
+			if (recursive)
+			{}
+				/*(flagship->l_flag || flagship->g_flag) ? ft_longlist(entry->d_name, flagship) :*/
+				ft_putstr(entry->d_name);
+				ft_putchar('\n');
+			//	continue;
+			//}
 			ft_addtail(list, entry->d_name, fstat.st_mtime, fstat.st_atime);
 		}
 		closedir(directory);
@@ -65,25 +74,29 @@ void ft_scanfile(char *path, flagobject *flagship)
 			return ;
 		ft_addtail(list, path, fstat.st_mtime, fstat.st_atime);
 	}
-	ft_sortlist(list, flagship);
+	//ft_sortlist(list, flagship);
 	ft_printlist(list, flagship);
-	if (dirdetected && ft_ispathdir(path) && flagship->R_flag)
+	if (/*dirdetected && */ft_ispathdir(path) && flagship->R_flag)
 	{
 		current = list->head;
 		while (current != NULL)
 		{
-			if (ft_ispathdir(current->filename)) {
+			if (ft_ispathdir(current->filename) && !ft_skiphiddenfiles(current->filename, flagship) && !ft_iscorpdir(current->filename)) {
 				ft_putstr("\n\n");
+				//(path[ft_strlen(path) - 1] != '/') ? ft_putstr(path) : ft_putstr(ft_strjoin(path, "/"));
 				ft_putstr(path);
 				ft_putstr(current->filename);
 				ft_putstr(":\n");
 				if (flagship->l_flag)
 				{
 					ft_putstr("Total: ");
-					ft_totalblocks(current->filename, true);
+					//ft_totalsize(current->filename, true);
 					ft_putchar('\n');
 				}
-				ft_scanfile(ft_strjoin(path, current->filename), flagship);
+			//	if (ft_stristr(current->filename, path) == 0)
+					ft_scanfile(/*ft_strjoin(path, ft_splicepath(*/current->filename/*))*/, flagship, true);
+			//	else
+					ft_scanfile(ft_strjoin(current->filename, "/"), flagship, true);
 			}
 			current = current->next;
 		}
@@ -112,14 +125,14 @@ int main(int argc, char **argv)
 	ft_initflagobject(flagship);
 
 
-	flagship->l_flag = true;
+	flagship->l_flag = false;
 	flagship->a_flag = false;
-	flagship->f_flag = false;
+	flagship->f_flag = true;
 	flagship->R_flag = true;
 	flagship->r_flag = false;
 	flagship->t_flag = false;
 	flagship->d_flag = false;
-	flagship->u_flag = true;
+	flagship->u_flag = false;
 	
 	if (argc > 1)
 		foo = argv[1];
@@ -129,7 +142,7 @@ int main(int argc, char **argv)
 	ft_putstr(foo);
 	ft_putstr("\n\n");
 
-	ft_scanfile(foo, flagship);
+	ft_scanfile(foo, flagship, false);
 
 	return 0;
 

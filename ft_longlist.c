@@ -12,7 +12,7 @@
 
 #include "ft_ls.h"
 
-void	ft_longlist(char *path, flagobject *flagship, int dirref)
+void	ft_longlist(char *path, flagobject *flagship)
 {
 	int all;
 	
@@ -39,9 +39,6 @@ void	ft_longlist(char *path, flagobject *flagship, int dirref)
 	ft_printdatetime(path);
 	ft_putchar(' ');
 	//Print file/directory name
-	if (dirref == true)		//We're printing a directory
-		ft_putstr(ft_splicepath(path));		//Remove path reference
-	else
-		ft_putstr(path);
+	ft_putstr(ft_splicepath(path));		//Remove path reference
 	ft_putchar('\n');
 }

@@ -24,12 +24,13 @@ void	ft_printlist(LinkedList *list, flagobject *flagship)
 	while (current != NULL)
 	{
 		if (flagship->l_flag || flagship->g_flag)
-			ft_longlist(current->filename, flagship, false);
+			ft_longlist(current->filename, flagship);
 		else
 		{
 			if (i != 0)
 				ft_putchar('\n');
 			ft_putstr(ft_splicepath(current->filename));
+			//ft_putstr(current->filename);
 		}
 		current = current->next;
 		i++;
