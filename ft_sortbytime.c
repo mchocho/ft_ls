@@ -6,7 +6,7 @@
 /*   By: mchocho <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/30 14:16:23 by mchocho           #+#    #+#             */
-/*   Updated: 2019/08/30 14:23:50 by mchocho          ###   ########.fr       */
+/*   Updated: 2019/09/17 18:10:50 by mchocho          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	ft_sortbytime(LinkedList *list)
 	while (current != NULL && current->next != NULL)
 	{
 		next = current->next;
-		if (current->lastmodified < next->lastmodified)
+		if (current->lastmodified > next->lastmodified)
 		{
 			current->next = next->next;	//Current is taking next's position
 			next->next = current;		//Next is pointing to (in front of) current

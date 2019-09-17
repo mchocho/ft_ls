@@ -6,7 +6,7 @@
 /*   By: mchocho <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/29 16:54:06 by mchocho           #+#    #+#             */
-/*   Updated: 2019/09/10 16:11:58 by mchocho          ###   ########.fr       */
+/*   Updated: 2019/09/17 16:47:13 by mchocho          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,8 +60,8 @@ void ft_scanfile(char *path, flagobject *flagship, int recursive)
 			if (recursive)
 			{}
 				/*(flagship->l_flag || flagship->g_flag) ? ft_longlist(entry->d_name, flagship) :*/
-				ft_putstr(entry->d_name);
-				ft_putchar('\n');
+				//ft_putstr(entry->d_name);
+				//ft_putchar('\n');
 			//	continue;
 			//}
 			ft_addtail(list, entry->d_name, fstat.st_mtime, fstat.st_atime);
@@ -74,7 +74,7 @@ void ft_scanfile(char *path, flagobject *flagship, int recursive)
 			return ;
 		ft_addtail(list, path, fstat.st_mtime, fstat.st_atime);
 	}
-	//ft_sortlist(list, flagship);
+	ft_sortlist(list, flagship);
 	ft_printlist(list, flagship);
 	if (/*dirdetected && */ft_ispathdir(path) && flagship->R_flag)
 	{
@@ -96,7 +96,7 @@ void ft_scanfile(char *path, flagobject *flagship, int recursive)
 			//	if (ft_stristr(current->filename, path) == 0)
 					ft_scanfile(/*ft_strjoin(path, ft_splicepath(*/current->filename/*))*/, flagship, true);
 			//	else
-					ft_scanfile(ft_strjoin(current->filename, "/"), flagship, true);
+					ft_putstr/*scanfile*/(ft_strjoin(current->filename, "/")/*, flagship, true*/);
 			}
 			current = current->next;
 		}
@@ -127,16 +127,16 @@ int main(int argc, char **argv)
 
 	flagship->l_flag = false;
 	flagship->a_flag = false;
-	flagship->f_flag = true;
-	flagship->R_flag = true;
-	flagship->r_flag = false;
-	flagship->t_flag = false;
+	flagship->f_flag = false;
+	flagship->R_flag = false;
+	flagship->r_flag = true;
+	flagship->t_flag = true;
 	flagship->d_flag = false;
 	flagship->u_flag = false;
 	
 	if (argc > 1)
 		foo = argv[1];
-	else foo = "./";
+	else foo = ".";
 
 	ft_putstr("Scanning file: ");
 	ft_putstr(foo);
