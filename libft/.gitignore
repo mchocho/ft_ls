@@ -1,8 +1,0 @@
-*.out
-*.exe
-*.o
-*.gch
-*.swp
-a.out.dSYM/*
-libft.a
-*.DS_Store

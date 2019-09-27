@@ -12,7 +12,15 @@
 
 #include "ft_ls.h"
 
-void	ft_sortbytime(LinkedList *list)
+
+static int	ft_timecmp(t_file *current, t_file *next)
+{
+	if (current->lastmodified == next->lastmodified)
+		return (ft_nsecondscmp(current->filename, next->filename, 1));
+	return (current->lastmodified < next->lastmodified);
+}
+
+void		ft_sortbytime(LinkedList *list)
 {
 	t_file *current;
 	t_file *next;
@@ -23,7 +31,7 @@ void	ft_sortbytime(LinkedList *list)
 	while (current != NULL && current->next != NULL)
 	{
 		next = current->next;
-		if (current->lastmodified < next->lastmodified)
+		if (ft_timecmp(current, next))//current->lastmodified < next->lastmodified)
 		{
 			current->next = next->next;	//Current is taking next's position
 			next->next = current;		//Next is pointing to (in front of) current
@@ -36,7 +44,7 @@ void	ft_sortbytime(LinkedList *list)
 			current = list->head;
 			previous = NULL;
 			continue;
-		}
+		} 
 		previous = current;
 		current = next;
 	}

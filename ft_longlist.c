@@ -23,8 +23,8 @@ void	ft_longlist(char *path, flagobject *flagship)
 	//Print # of hardlinks
 	if (ft_ispathdir(path))
 		ft_putnbr(ft_hardlinkcount(path, all, true));//ft_filecount(path, all));
-	else
-		ft_putpaddedstr("1", 10);
+	//else
+	//	ft_putpaddedstr("1", 10);
 	ft_putchar(' ');
 	//Print username
 	ft_printusername(path);

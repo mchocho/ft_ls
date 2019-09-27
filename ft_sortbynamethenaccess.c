@@ -1,5 +1,12 @@
 #include "ft_ls.h"
 
+static int	ft_timecmp(t_file *current, t_file *next)
+{
+	if (current->accesstime == next->accesstime)
+		return (ft_nsecondscmp(current->filename, next->filename, 0));
+	return (current->accesstime < next->accesstime);
+}
+
 void	ft_sortbynamethenaccess(LinkedList *list)
 {
 	t_file *current;
@@ -12,7 +19,7 @@ void	ft_sortbynamethenaccess(LinkedList *list)
 	while (current != NULL && current->next != NULL)
 	{
 		next = current->next;
-		if (current->accesstime < next->accesstime)
+		if (ft_timecmp(current, next))//current->accesstime < next->accesstime)
 		{
 			current->next = next->next;
 			next->next = current;

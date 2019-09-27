@@ -33,6 +33,8 @@ SRC:=	ft_addhead.c\
 	ft_isvalidoption.c\
 	ft_longlist.c\
 	ft_ls.c\
+	ft_nsecondscmp.c\
+	ft_parseurl.c\
 	ft_printdatetime.c\
 	ft_printgroupname.c\
 	ft_printlist.c\
@@ -65,7 +67,7 @@ all:	$(NAME)
 	
 clean:
 	rm -rf $(OBJECTS)
-	rm -rf ./*.gch ./*.swp ./*.DS_Store ./*.dSYM
+	rm -rf ./*.gch ./.*swp ./.*DS_Store ./.*dSYM
 
 fclean:	clean
 	rm -rf $(NAME) ./*.exe ./*.out ./*.stackdump

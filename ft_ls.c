@@ -80,11 +80,11 @@ void	ft_ls(int argc, char **argv)//char *path, int all, int recursive, int longL
 		while (i < argc)
 		{
 			if (ft_strichr("dr", ft_detectfilepathtype(argv[i])) > -1)
-				ft_scanfile(argv[i], flagship, false);
+				ft_scanfile(argv[i], flagship);
 			i++;
 		}
 	else
-		ft_scanfile("./", flagship, false);
+		ft_scanfile("./", flagship);
 	return ;
 }
 
