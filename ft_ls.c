@@ -88,7 +88,7 @@ void	ft_ls(int argc, char **argv)//char *path, int all, int recursive, int longL
 	return ;
 }
 
-int main(int argc, char** argv)
+/*int main(int argc, char** argv)
 {
 
 	if (argc > 2)
@@ -101,4 +101,4 @@ int main(int argc, char** argv)
 
 	return 0;
 
-}
+}*/
