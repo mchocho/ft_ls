@@ -9,7 +9,7 @@ void	ft_cleanlist(LinkedList **list)
 	while (current != NULL)
 	{
 		next = current->next;
-		ft_strclean(current->filename);
+		ft_strclean(&current->filename);
 		current->lastmodified = 0;
 		current->accesstime = 0;
 		current->next = NULL;
@@ -18,5 +18,6 @@ void	ft_cleanlist(LinkedList **list)
 	}
 	(*list)->head = NULL;
 	(*list)->tail = NULL;
+	(*list)->current = NULL;
 	free(*list);
 }

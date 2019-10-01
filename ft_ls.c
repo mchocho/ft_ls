@@ -17,7 +17,7 @@ static int	ft_optionistarget(char *str)
 	size_t len;
 	
 	len = ft_strlen(str);
-	return ((len == 1 && str[0] == '-') /*|| (len > 0 && str[0] != '-')*/);
+	return (/*(len == 1 && str[0] == '-') ||*/ (len > 0 && str[0] != '-' ));
 }
 
 /*static void	ft_fileerror(char *str)
@@ -28,13 +28,17 @@ static int	ft_optionistarget(char *str)
 	return ;
 }*/
 
-char *ft_absolutepath(char *path)
+/*char *ft_absolutepath(char *path)
 {
 	if (path[ft_strlen(path) - 1] != '/')
 		ft_strcat(path, "/");
 	return (path);
-}
+}*/
 
+static int	ft_isdrl(char *path)
+{
+	return (ft_strichr("drl", ft_detectfilepathtype(path)) > -1);
+}
 
 void	ft_ls(int argc, char **argv)//char *path, int all, int recursive, int longL, int sortby)
 {
@@ -47,11 +51,7 @@ void	ft_ls(int argc, char **argv)//char *path, int all, int recursive, int longL
 	pathtargeted = false;
 	if (!(flagship = (flagobject*)malloc(sizeof(flagobject))))
 		return ;
-	//if (!(list = (LinkedList *)malloc(sizeof(LinkedList))))
-	//	return ;
 	ft_initflagobject(flagship);
-	//ft_initlist(list);
-
 	while (i < argc)
 	{
 		if (ft_strlen(argv[i]) > 1 && argv[i][0] == '-')// && !flagship->fod_exclusively)
@@ -68,7 +68,7 @@ void	ft_ls(int argc, char **argv)//char *path, int all, int recursive, int longL
 	i = 0;
 	while (i < argc)
 	{
-		if ((i >= flagship->fod_fromindex || !ft_optionistarget(argv[i])) && ft_strichr("dr", ft_detectfilepathtype(argv[i])) > -1)
+		if ((i >= flagship->fod_fromindex || ft_optionistarget(argv[i])) && ft_isdrl(argv[i]))//ft_strichr("dr", ft_detectfilepathtype(argv[i])) > -1)
 		{
 			//ft_fileerror(argv[i]);
 			pathtargeted = true;

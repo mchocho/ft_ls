@@ -92,17 +92,13 @@ void	ft_verifyflag(char *flag, flagobject *flagship)
 	else if (ft_stristr(flag, "--") == 0)
 	{
 		if (len == 2)
-		{
 			flagship->fod_exclusively = true;
-			//return (flagship);
-		}
 		else {
 			flagship->terminate_ls = true;
 			ft_errormessage(0, '-');
-			//return (flagship);
 		}
 	}
 	else
 		ft_handleoptions(flag, flagship);
-	return ;//(flagship);
+	return ;
 }

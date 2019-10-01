@@ -9,7 +9,7 @@ static int	ft_monthcmp(ctimeobject *t1, ctimeobject *t2)
 	list = ft_strdup("Jan Feb Mar Apr May Jun Jul Aug Sep Oct Nov Dec");
 	test1 = ft_stristr(list, t1->month);
 	test2 = ft_stristr(list, t2->month);
-	ft_strclean(list);
+	ft_strclean(&list);
 
 	if (test1 == -1 || test2 == -1)
 		return (t1->epoch < t2->epoch);
@@ -25,7 +25,7 @@ static int	ft_daycmp(ctimeobject *t1, ctimeobject *t2)
 	list = ft_strdup("Mon Tue Wed Thu Fri Sat Sun");
 	test1 = ft_stristr(list, t1->day);
 	test2 = ft_stristr(list, t2->day);
-	ft_strclean(list);
+	ft_strclean(&list);
 
 	if (test1 == -1 || test2 == -1)
 		return (t1->epoch < t2->epoch);

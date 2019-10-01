@@ -42,18 +42,15 @@ typedef struct c_timeobject {
 
 typedef struct s_file {
 	char *filename;
-	//struct c_timeobject *lastmodified;
 	time_t lastmodified;
-	//struct c_timeobject *accesstime;
 	time_t accesstime;
 	struct s_file *next;
 }		t_file;
 
 typedef struct _linkedlist {
-//	char		*dirlist;
 	struct s_file *head;
 	struct s_file *tail;
-//	struct s_file *current;
+	struct s_file *current;
 }		LinkedList;
 
 /*typedef struct	_dirlist {

@@ -50,7 +50,7 @@ SRC:=	ft_addhead.c\
 	ft_splicepath.c\
 	ft_structcmp.c\
 	ft_totalsize.c\
-	ft_verifyflag.c\
+	ft_verifyflag.c
 
 OBJECTS:= $(SRC:.c=.o)
 
