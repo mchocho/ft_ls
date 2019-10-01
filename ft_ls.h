@@ -6,7 +6,7 @@
 /*   By: mchocho <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/23 15:38:06 by mchocho           #+#    #+#             */
-/*   Updated: 2019/09/10 16:50:47 by mchocho          ###   ########.fr       */
+/*   Updated: 2019/09/17 17:05:45 by mchocho          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,22 +29,22 @@
 #define false 0
 
 typedef struct c_timeobject {
-	char *day;
-	char *month;
-	char *date;
-	char *hours;
-	char *min;
-	char *sec;
-	char *year;
-	char *ctime;
-	time_t epoch;
+	char	*day;
+	char	*month;
+	char	*date;
+	char	*hours;
+	char	*min;
+	char	*sec;
+	char	*year;
+	char	*ctime;
+	time_t	epoch;
 }		ctimeobject;
 
 typedef struct s_file {
-	char *filename;
-	time_t lastmodified;
-	time_t accesstime;
-	struct s_file *next;
+	char	*filename;
+	time_t	lastmodified;
+	time_t	accesstime;
+	struct	s_file *next;
 }		t_file;
 
 typedef struct _linkedlist {
@@ -53,23 +53,16 @@ typedef struct _linkedlist {
 	struct s_file *current;
 }		LinkedList;
 
-/*typedef struct	_dirlist {
-	char		*dirname;
-	struct _dirlist *head;
-	struct _dirlist *next;
-}		dirlist;
-*/
-
 typedef struct f_object {
 	int	a_flag;
 	int	l_flag;
 	int	r_flag;
 	int	R_flag;
 	int	t_flag;
-	int u_flag;
-	int f_flag;
-	int g_flag;
-	int d_flag;
+	int	u_flag;
+	int	f_flag;
+	int	g_flag;
+	int	d_flag;
 	int	fod_exclusively;
 	int	fod_fromindex;
 	int	isvalid;
@@ -110,6 +103,6 @@ void			ft_printlist(LinkedList *list, flagobject *flagship);
 char			*ft_parseurl(char *path);
 void			ft_verifyflag(char *flag, flagobject *flagship);
 int			ft_datecmp(time_t time1, time_t time2);
-void			ft_cleanctimeobject(ctimeobject **timeobject);
+void			ft_cleanctimeobject(ctimeobject *timeobject);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: mchocho <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/29 16:54:06 by mchocho           #+#    #+#             */
-/*   Updated: 2019/09/10 16:11:58 by mchocho          ###   ########.fr       */
+/*   Updated: 2019/09/17 16:47:13 by mchocho          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,20 +26,6 @@ static int	ft_skipfile(char *path, flagobject *flagship)
 	fn = ft_splicepath(path);
 	return (!flagship->f_flag && !flagship->a_flag && fn[0] == '.');
 }
-
-/*
-static int	ft_skiphiddenfiles(char *path, flagobject *flagship)
-{
-	if (flagship->d_flag && )
-	
-	return ((!flagship->f_flag && !flagship->a_flag) && ft_splicepath(path)[0] == '.');
-}
-
-static int	ft_skipnondirs(char *path, flagobject *flagship)
-{
-	return (!ft_ispathdir(path) && flagship->d_flag);
-}
-*/
 
 static int	ft_iscorpdir(char *path)
 {
@@ -110,7 +96,6 @@ void ft_scanfile(char *path, flagobject *flagship)
 	return ;
 }
 
-/*
 int main(int argc, char **argv)
 {
 	ft_putstr(" Testing ft_scanfile.c\n----------------------------------\n");
@@ -131,7 +116,7 @@ int main(int argc, char **argv)
 	
 	if (argc > 1)
 		foo = argv[1];
-	else foo = "./";
+	else foo = ".";
 
 	ft_putstr("Scanning file: ");
 	ft_putstr(foo);
@@ -140,4 +125,4 @@ int main(int argc, char **argv)
 	ft_scanfile(foo, flagship);
 
 	return 0;
-}*/
+}

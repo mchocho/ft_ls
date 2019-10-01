@@ -1,6 +1,6 @@
 #include "ft_ls.h"
 
-void	ft_cleanctimeobject(ctimeobject **timeobject)
+void	ft_cleanctimeobject(ctimeobject *timeobject)
 {
 	ft_strclean(&(*timeobject)->day);
 	ft_strclean(&(*timeobject)->month);
