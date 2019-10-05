@@ -27,7 +27,8 @@ void	ft_printlist(LinkedList *list, flagobject *flagship)
 			ft_longlist(current->filename, flagship);
 		else
 		{
-			ft_putchar('\t');
+			if (i != 0)
+				ft_putchar('\t');
 			ft_putstr(ft_splicepath(current->filename));
 		}
 		current = current->next;

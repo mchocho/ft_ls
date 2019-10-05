@@ -46,6 +46,11 @@ void ft_scanfile(char *path, flagobject *flagship)
 	struct stat		fstat;
 	char			*absp;
 
+	//
+	//ft_putstr("Attempting to read from file or path: ");
+	//ft_putendl(path);
+
+
 	if (!ft_isdrl(path) || (!(list = (LinkedList *)malloc(sizeof(LinkedList)))))
 		return ;
 	ft_initlist(list);
@@ -56,6 +61,7 @@ void ft_scanfile(char *path, flagobject *flagship)
 		while ((entry = readdir(directory)) != NULL)
 		{
 			absp = ft_strjoin(ft_parseurl(path), ft_splicepath(entry->d_name));
+			ft_putendl(absp);
 			if (lstat(absp, &fstat) < 0 || ft_skipfile(absp, flagship))
 				continue;
 			ft_addtail(list, absp, fstat.st_mtime, fstat.st_atime);
@@ -76,6 +82,7 @@ void ft_scanfile(char *path, flagobject *flagship)
 		list->current = list->head;
 		while (list->current != NULL)
 		{
+			//absp = ft_strjoin(ft_parseurl(path), ft_splicepath(list->current->filename));
 			if (ft_ispathdir(list->current->filename) && !ft_skipfile(list->current->filename, flagship) && !ft_iscorpdir(list->current->filename)) {
 				absp = ft_strjoin(ft_parseurl(path), ft_splicepath(list->current->filename));
 				ft_putstr("\n\n");
@@ -84,7 +91,7 @@ void ft_scanfile(char *path, flagobject *flagship)
 				if (flagship->l_flag)
 				{
 					ft_putstr("Total: ");
-					ft_totalsize(absp, true);
+					//ft_totalsize(absp, true);
 					ft_putchar('\n');
 				}
 				ft_scanfile(absp, flagship);
@@ -105,7 +112,7 @@ int main(int argc, char **argv)
 
 	ft_initflagobject(flagship);
 
-	flagship->l_flag = true;
+	flagship->l_flag = false;
 	flagship->a_flag = false;
 	flagship->f_flag = false;
 	flagship->R_flag = true;
@@ -116,7 +123,7 @@ int main(int argc, char **argv)
 	
 	if (argc > 1)
 		foo = argv[1];
-	else foo = ".";
+	else foo = "./";
 
 	ft_putstr("Scanning file: ");
 	ft_putstr(foo);

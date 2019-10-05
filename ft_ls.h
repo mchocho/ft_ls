@@ -28,32 +28,20 @@
 #define true 1
 #define false 0
 
-typedef struct c_timeobject {
-	char	*day;
-	char	*month;
-	char	*date;
-	char	*hours;
-	char	*min;
-	char	*sec;
-	char	*year;
-	char	*ctime;
-	time_t	epoch;
-}		ctimeobject;
-
-typedef struct s_file {
+typedef struct		s_file {
 	char	*filename;
 	time_t	lastmodified;
 	time_t	accesstime;
 	struct	s_file *next;
 }		t_file;
 
-typedef struct _linkedlist {
+typedef struct		_linkedlist {
 	struct s_file *head;
 	struct s_file *tail;
 	struct s_file *current;
 }		LinkedList;
 
-typedef struct f_object {
+typedef struct		f_object {
 	int	a_flag;
 	int	l_flag;
 	int	r_flag;
@@ -82,7 +70,6 @@ void			ft_printgroupname(char *path);
 void			ft_printdatetime(char *path);
 void			ft_longlist(char *path, flagobject *flagship);
 void			ft_ls(int argc, char **argv);
-ctimeobject		*ft_constructctimeobj(time_t value);
 void			ft_initlist(LinkedList *list);
 int			ft_isvalidoption(char c);
 void			ft_addhead(LinkedList *list, char *filename, time_t lm, time_t acc);
@@ -102,7 +89,5 @@ int			ft_structcmp(t_file *file1, t_file *file2);
 void			ft_printlist(LinkedList *list, flagobject *flagship);
 char			*ft_parseurl(char *path);
 void			ft_verifyflag(char *flag, flagobject *flagship);
-int			ft_datecmp(time_t time1, time_t time2);
-void			ft_cleanctimeobject(ctimeobject *timeobject);
 
 #endif

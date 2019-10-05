@@ -23,8 +23,8 @@ void ft_initflagobject(flagobject *flagship)
         flagship->f_flag = false;
         flagship->g_flag = false;
         flagship->d_flag = false;
-        flagship->fod_exclusively = false;
-		flagship->fod_fromindex = -1;
+        //flagship->fod_exclusively = false;
+	//flagship->fod_fromindex = -1;
         flagship->isvalid = true;
         flagship->terminate_ls = false;
 		return ;
