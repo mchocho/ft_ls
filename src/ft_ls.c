@@ -41,6 +41,77 @@
 }*/
 
 
+
+static void ft_errormessage(int err, char c)
+{
+	ft_putstr("ls: ");
+	if (err == 0)
+		ft_putstr("unknown option ");
+	else
+		ft_putstr("illegal option ");	
+	ft_putstr("-- ");
+	ft_putchar(c);
+	ft_putchar('\n');
+}
+
+static int ft_handleoptions(char *flag, flagobject *flagship)
+{
+	int i;
+	
+	i = 0;
+	while(flag[i])
+	{
+		if (!ft_isvalidoption(flag[i]) || ft_strichr(flag, '-') > 1)
+		{
+			ft_errormessage(1, (ft_strichr(flag, '-') > 1) ? '-' : flag[i]);
+			flagship->terminate_ls = true;
+			return (false);
+		} else {
+			if (flag[i] == 'l')
+				flagship->l_flag = true;
+			else if (flag[i] == 'r')
+				flagship->r_flag = true;
+			else if (flag[i] == 'R')
+				flagship->R_flag = true;
+			else if (flag[i] == 't')
+				flagship->t_flag = true;
+			else if (flag[i] == 'u')
+				flagship->u_flag = true;
+			else if (flag[i] == 'f')
+				flagship->f_flag = true;
+			else if (flag[i] == 'g')
+				flagship->g_flag = true;
+			else if (flag[i] == 'd')
+				flagship->d_flag = true;
+			else if (flag[i] == 'i')
+				flagship->i_flag = true;
+		}
+		i++;
+	}
+	return (true);
+}
+
+static void	ft_verifyflag(char *flag, flagobject *flagship)
+{
+	int		len;
+
+	len = ft_strlen(flag);
+	if (len < 2 || flag[0] != '-')
+		flagship->isvalid = false;
+	else if (ft_stristr(flag, "--") == 0)
+	{
+		if (len == 2)
+			flagship->fod_exclusively = true;
+		else {
+			flagship->terminate_ls = true;
+			ft_errormessage(0, '-');
+		}
+	}
+	else
+		ft_handleoptions(flag, flagship);
+	return ;
+}
+
 static int      ft_isdrl(char *path)
 {
         struct stat fstat;
@@ -52,7 +123,6 @@ static int      ft_isdrl(char *path)
 
 void	ft_ls(int argc, char **argv)
 {
-	//LinkedList	*list;
 	flagobject	*flagship;
 	int		pathtargeted;
 	int		i;
@@ -64,7 +134,7 @@ void	ft_ls(int argc, char **argv)
 	ft_initflagobject(flagship);
 	while (i < argc)
 	{
-		if (ft_strlen(argv[i]) > 1 && argv[i][0] == '-')// && !flagship->fod_exclusively)
+		if (ft_strlen(argv[i]) > 1 && argv[i][0] == '-')
 		{
 			ft_verifyflag(argv[i], flagship);
 			if (flagship->terminate_ls == true)
@@ -88,12 +158,13 @@ void	ft_ls(int argc, char **argv)
 	if (pathtargeted && argc)
 		while (i < argc)
 		{
-			if (ft_strichr("dr", ft_detectfilepathtype(argv[i])) > -1)
+			if (ft_isdrl(argv[i]))
 				ft_scanfile(argv[i], flagship);
 			i++;
 		}
 	else
 		ft_scanfile("./", flagship);
+	ft_destroyflagship(flagship);
 	return ;
 }
 
