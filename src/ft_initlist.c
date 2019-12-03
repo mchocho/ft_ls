@@ -1,23 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_ispathdir.c                                     :+:      :+:    :+:   */
+/*   ft_initlist.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mchocho <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/07/25 10:52:32 by mchocho           #+#    #+#             */
-/*   Updated: 2019/07/25 12:04:37 by mchocho          ###   ########.fr       */
+/*   Created: 2019/08/12 12:59:09 by mchocho           #+#    #+#             */
+/*   Updated: 2019/08/12 12:59:16 by mchocho          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_ls.h"
+#include "../includes/ft_ls.h"
 
-int ft_ispathdir(char *path)
+void ft_initlist(LinkedList *list)
 {
-	struct stat fstat;
-
-	if (stat(path, &fstat) < 0)
-		return (0);
-
-	return (S_ISDIR(fstat.st_mode));
+	list->head = NULL;
+	list->tail = NULL;
 }

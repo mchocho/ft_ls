@@ -1,19 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_initlist.c                                      :+:      :+:    :+:   */
+/*   ft_addtail.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mchocho <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/08/12 12:59:09 by mchocho           #+#    #+#             */
-/*   Updated: 2019/08/12 12:59:16 by mchocho          ###   ########.fr       */
+/*   Created: 2019/09/02 11:09:39 by mchocho           #+#    #+#             */
+/*   Updated: 2019/09/05 14:05:59 by mchocho          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_ls.h"
+#include "../includes/ft_ls.h"
 
-void ft_initlist(LinkedList *list)
+void	ft_addtail(LinkedList *list, char *filename, struct stat *fstat)
 {
-	list->head = NULL;
-	list->tail = NULL;
+	t_file *child;
+
+	child = (t_file*)malloc(sizeof(t_file));
+	child->filename = ft_strdup(filename);
+	child->file_status = fstat;
+	child->next = NULL;
+	if (list->head == NULL)
+		list->head = child;
+	else
+		list->tail->next = child;
+	list->tail = child;
 }

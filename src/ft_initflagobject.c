@@ -10,22 +10,21 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_ls.h"
+#include "../includes/ft_ls.h"
 
 void ft_initflagobject(flagobject *flagship)
 {
         flagship->a_flag = false;
-        flagship->l_flag = false;
-        flagship->r_flag = false;
-        flagship->R_flag = false;
-        flagship->t_flag = false;
-        flagship->u_flag = false;
+        flagship->d_flag = false;
         flagship->f_flag = false;
         flagship->g_flag = false;
-        flagship->d_flag = false;
-        //flagship->fod_exclusively = false;
-	//flagship->fod_fromindex = -1;
+	flagship->i_flag = false;
+        flagship->l_flag = false;
+        flagship->t_flag = false;
+        flagship->u_flag = false;
+        flagship->R_flag = false;
+        flagship->r_flag = false;
         flagship->isvalid = true;
         flagship->terminate_ls = false;
-		return ;
+	return ;
 }

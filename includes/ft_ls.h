@@ -24,15 +24,14 @@
 #include <uuid/uuid.h>
 #include <time.h>
 #include <stdio.h>
-#include "libft/libft.h"
+#include "../libft/includes/libft.h"
 #define true 1
 #define false 0
 
 typedef struct		s_file {
-	char	*filename;
-	time_t	lastmodified;
-	time_t	accesstime;
-	struct	s_file *next;
+	char		*filename;
+	struct	stat	*file_status;
+	struct	s_file	*next;
 }		t_file;
 
 typedef struct		_linkedlist {
@@ -43,14 +42,16 @@ typedef struct		_linkedlist {
 
 typedef struct		f_object {
 	int	a_flag;
-	int	l_flag;
-	int	r_flag;
-	int	R_flag;
-	int	t_flag;
-	int	u_flag;
+	int	d_flag;
 	int	f_flag;
 	int	g_flag;
-	int	d_flag;
+	int	i_flag;
+	int	l_flag;
+	int	R_flag;
+	int	r_flag;
+	int	t_flag;
+	int	u_flag;
+	char	d_flag_value[255];
 	int	fod_exclusively;
 	int	fod_fromindex;
 	int	isvalid;
@@ -58,36 +59,25 @@ typedef struct		f_object {
 }		flagobject;
 
 
-int			ft_ispathdir(char *path);
-off_t			ft_totalsize(char *path, int all);
+int			ft_filetype(struct stat *fstat);
+void			ft_addtail(LinkedList *list, char *filename, struct stat *fstat);
+void			ft_cleanlist(LinkedList **list);
 int			ft_totalblocks(char *path, int all);
 int			ft_filecount(char *path, int all);
-int			ft_detectfiletype(mode_t mode);
-int			ft_detectfilepathtype(char *path);
-void			ft_printpermissions(char *path);
-void			ft_printusername(char *path);
-void			ft_printgroupname(char *path);
-void			ft_printdatetime(char *path);
-void			ft_longlist(char *path, flagobject *flagship);
+void			ft_longlist(t_file *file, flagobject *flagship);
 void			ft_ls(int argc, char **argv);
 void			ft_initlist(LinkedList *list);
 int			ft_isvalidoption(char c);
-void			ft_addhead(LinkedList *list, char *filename, time_t lm, time_t acc);
-void			ft_addtail(LinkedList *list, char *filename, time_t lm, time_t acc);
 char			*ft_splicepath(char *path);
-void			ft_cleanlist(LinkedList **list);
-int			ft_hardlinkcount(char *path, int all, int recursive);
 void			ft_initflagobject(flagobject *flagship);
 void			ft_reverselist(LinkedList *list);
 void			ft_scanfile(char *path, flagobject *flagship);
 void			ft_sortlist(LinkedList *list, flagobject *flagship);
-int			ft_nsecondscmp(char *fn1, char *fn2, int tv);
 void			ft_sortbytime(LinkedList *list);
 void			ft_sortbyascii(LinkedList *list);
 void			ft_sortbynamethenaccess(LinkedList *list);
 int			ft_structcmp(t_file *file1, t_file *file2);
 void			ft_printlist(LinkedList *list, flagobject *flagship);
 char			*ft_parseurl(char *path);
-void			ft_verifyflag(char *flag, flagobject *flagship);
 
 #endif

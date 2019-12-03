@@ -10,11 +10,24 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_ls.h"
+#include "../includes/ft_ls.h"
   
-static int	ft_isdrl(char *str)
+static int	ft_isdrl(char *path)
 {
-	return (ft_strichr("drl", ft_detectfilepathtype(str)) > -1);
+	struct stat fstat;
+
+	if (stat(path, &fstat) < 0)
+		return (0);
+	return (ft_strichr("drl", ft_filetype(&fstat)) > -1);
+}
+
+static int	ft_ispathdir(char *path)
+{
+	struct stat fstat;
+
+	if (stat(path, &fstat) < 0)
+		return (0);
+	return (S_ISDIR(fstat.st_mode));
 }
 
 static int	ft_skipfile(char *path, flagobject *flagship)
@@ -26,6 +39,20 @@ static int	ft_skipfile(char *path, flagobject *flagship)
 	fn = ft_splicepath(path);
 	return (!flagship->f_flag && !flagship->a_flag && fn[0] == '.');
 }
+
+/*static int	ft_iscorpdir(t_file *file)
+{
+	char *str;
+	if (ft_filetype(file->file_status) != 'd')
+		return (false);
+	ft_putendl("\nHello ft_iscorpdir()");
+	if (ft_strcmp(file->filename, "./") == 0)
+		return (true);
+	str = ft_splicepath(file->filename);
+	ft_putstr("ft_iscorpdir splicepath returned url: ");
+	ft_putendl(str);
+	return (ft_strcmp(str, ".") == 0 || ft_strcmp(str, "..") == 0);
+}*/
 
 static int	ft_iscorpdir(char *path)
 {
@@ -46,11 +73,6 @@ void ft_scanfile(char *path, flagobject *flagship)
 	struct stat		fstat;
 	char			*absp;
 
-	//
-	//ft_putstr("Attempting to read from file or path: ");
-	//ft_putendl(path);
-
-
 	if (!ft_isdrl(path) || (!(list = (LinkedList *)malloc(sizeof(LinkedList)))))
 		return ;
 	ft_initlist(list);
@@ -61,10 +83,10 @@ void ft_scanfile(char *path, flagobject *flagship)
 		while ((entry = readdir(directory)) != NULL)
 		{
 			absp = ft_strjoin(ft_parseurl(path), ft_splicepath(entry->d_name));
-			ft_putendl(absp);
+			//ft_putendl(absp);
 			if (lstat(absp, &fstat) < 0 || ft_skipfile(absp, flagship))
 				continue;
-			ft_addtail(list, absp, fstat.st_mtime, fstat.st_atime);
+			ft_addtail(list, absp, &fstat);
 			ft_strcleandel(&absp);
 		}
 		closedir(directory);
@@ -73,21 +95,21 @@ void ft_scanfile(char *path, flagobject *flagship)
 	{
 		if (lstat(path, &fstat) < 0)
 			return ;
-		ft_addtail(list, path, fstat.st_mtime, fstat.st_atime);
+		ft_addtail(list, path, &fstat);
 	}
-	ft_sortlist(list, flagship);
+	//ft_sortlist(list, flagship);
 	ft_printlist(list, flagship);
 	if (ft_ispathdir(path) && flagship->R_flag)
 	{
 		list->current = list->head;
 		while (list->current != NULL)
 		{
-			//absp = ft_strjoin(ft_parseurl(path), ft_splicepath(list->current->filename));
-			if (ft_ispathdir(list->current->filename) && !ft_skipfile(list->current->filename, flagship) && !ft_iscorpdir(list->current->filename)) {
+			absp = list->current->filename;//ft_strjoin(ft_parseurl(path), ft_splicepath(list->current->filename));
+			if (ft_ispathdir(absp) && !ft_skipfile(absp, flagship) && !ft_iscorpdir(list->current->filename)) {
 				absp = ft_strjoin(ft_parseurl(path), ft_splicepath(list->current->filename));
-				ft_putstr("\n\n");
-				ft_putstr(absp);
-				ft_putstr(":\n");
+				ft_putstr("\n\n'");
+				ft_putstr(/*ft_strippath(*/absp/*)*/);
+				ft_putstr("':\n");
 				if (flagship->l_flag)
 				{
 					ft_putstr("Total: ");
@@ -95,15 +117,18 @@ void ft_scanfile(char *path, flagobject *flagship)
 					ft_putchar('\n');
 				}
 				ft_scanfile(absp, flagship);
+				ft_strcleandel(&absp);
 			}
 			list->current = list->current->next;
 		}
 	}
+	//ft_putendl("Cleaning the linked list");
 	ft_cleanlist(&list);
+	//ft_putendl("And we're done cleaning the list!");
 	return ;
 }
 
-int main(int argc, char **argv)
+/*int main(int argc, char **argv)
 {
 	ft_putstr(" Testing ft_scanfile.c\n----------------------------------\n");
 
@@ -111,13 +136,13 @@ int main(int argc, char **argv)
 	flagobject *flagship = (flagobject *)malloc(sizeof(flagobject));
 
 	ft_initflagobject(flagship);
-
+	
 	flagship->l_flag = false;
-	flagship->a_flag = false;
+	flagship->a_flag = true;
 	flagship->f_flag = false;
 	flagship->R_flag = true;
-	flagship->r_flag = true;
-	flagship->t_flag = true;
+	flagship->r_flag = false;
+	flagship->t_flag = false;
 	flagship->d_flag = false;
 	flagship->u_flag = false;
 	
@@ -132,4 +157,4 @@ int main(int argc, char **argv)
 	ft_scanfile(foo, flagship);
 
 	return 0;
-}
+}*/

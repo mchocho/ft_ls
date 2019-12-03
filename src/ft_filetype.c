@@ -10,10 +10,13 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./ft_ls.h"
+#include "../includes/ft_ls.h"
 
-int ft_detectfiletype(mode_t mode)
+int ft_filetype(struct stat *fstat)
 {
+	mode_t mode;
+
+	mode = fstat->st_mode;
 	if (S_ISDIR(mode))
 		return ('d');		//Diretory
 	else if (S_ISREG(mode))

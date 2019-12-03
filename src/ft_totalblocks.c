@@ -1,4 +1,4 @@
-#include "ft_ls.h"
+#include "../includes/ft_ls.h"
 
 blkcnt_t	ft_totalblocks(char *path)
 {

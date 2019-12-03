@@ -1,4 +1,4 @@
-#include "ft_ls.h"
+#include "../includes/ft_ls.h"
 
 void	ft_cleanlist(LinkedList **list)
 {
@@ -9,9 +9,9 @@ void	ft_cleanlist(LinkedList **list)
 	while (current != NULL)
 	{
 		next = current->next;
-		ft_strclean(&current->filename);
-		current->lastmodified = 0;
-		current->accesstime = 0;
+		ft_strcleandel(&current->filename);
+		//free(current->file_status);
+		current->file_status = NULL;
 		current->next = NULL;
 		free(current);
 		current = next;

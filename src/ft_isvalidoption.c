@@ -1,23 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_detectfilepathtype.c                            :+:      :+:    :+:   */
+/*   ft_isvalidoption.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mchocho <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/08/09 15:12:36 by mchocho           #+#    #+#             */
-/*   Updated: 2019/08/09 15:46:13 by mchocho          ###   ########.fr       */
+/*   Created: 2019/08/24 16:35:46 by mchocho           #+#    #+#             */
+/*   Updated: 2019/09/02 14:29:38 by mchocho          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_ls.h"
+#include "../includes/ft_ls.h"
 
-int	ft_detectfilepathtype(char *path)
+int	ft_isvalidoption(char c)
 {
-	struct stat fstat;
+	char	*options;
 
-	if (lstat(path, &fstat) < 0)
-		return (0);
-
-	return (ft_detectfiletype(fstat.st_mode));
+	options = "[-ABCFGHLOPRSTUWabcdefghiklmnopqrstuwx1]";
+	return (ft_strchr(options, c) ? true : false);
 }
