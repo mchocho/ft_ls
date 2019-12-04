@@ -62,6 +62,7 @@ typedef struct		f_object {
 int			ft_filetype(struct stat *fstat);
 void			ft_addtail(LinkedList *list, char *filename, struct stat *fstat);
 void			ft_cleanlist(LinkedList **list);
+void			ft_destroyflagship(flagobject **flagship);
 int			ft_totalblocks(char *path, int all);
 int			ft_filecount(char *path, int all);
 void			ft_longlist(t_file *file, flagobject *flagship);

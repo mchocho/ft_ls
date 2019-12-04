@@ -42,11 +42,18 @@
 
 
 
-static void ft_errormessage(int err, char c)
+static void ft_errormessage(int err, char c, char *file)
 {
 	ft_putstr("ls: ");
 	if (err == 0)
 		ft_putstr("unknown option ");
+	else if (err == 404)
+	{
+		ft_putstr("ls: ");
+		ft_putstr(file);
+		ft_putstr(": No such file or directory\n");
+		return ;
+	}
 	else
 		ft_putstr("illegal option ");	
 	ft_putstr("-- ");
@@ -57,6 +64,9 @@ static void ft_errormessage(int err, char c)
 static int ft_handleoptions(char *flag, flagobject *flagship)
 {
 	int i;
+
+	if (flagship == NULL)
+		return false;
 	
 	i = 0;
 	while(flag[i])
@@ -104,7 +114,7 @@ static void	ft_verifyflag(char *flag, flagobject *flagship)
 			flagship->fod_exclusively = true;
 		else {
 			flagship->terminate_ls = true;
-			ft_errormessage(0, '-');
+			ft_errormessage(0, '-', "");
 		}
 	}
 	else
@@ -147,11 +157,7 @@ void	ft_ls(int argc, char **argv)
 	while (i < argc)
 	{
 		if (ft_strlen(argv[i]) > 1 && argv[i][0] == '-' && !ft_isdrl(argv[i]))
-		{
-			ft_putstr("ls: ");
-			ft_putstr(str);
-			ft_putstr(": No such file or directory\n");
-		}
+			ft_errormessage(404, 0, argv[i]);
 		i++;
 	}
 	i = 0;

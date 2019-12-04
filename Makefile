@@ -18,6 +18,7 @@ FLAGS:=	-Wall -Werror -Wextra -c
 
 SRC:=	./src/ft_addtail.c\
 	./src/ft_cleanlist.c\
+	./src/ft_destroyflagship.c\
 	./src/ft_filecount.c\
 	./src/ft_filetype.c\
 	./src/ft_initlist.c\
