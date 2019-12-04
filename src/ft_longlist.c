@@ -12,13 +12,14 @@
 
 #include "../includes/ft_ls.h"
 
-static void ft_printpermissions(struct stat *fstat)
+void ft_printpermissions(char *path)
 {
+	struct stat fstat;
 	mode_t protected;
-	
-	if (fstat == NULL)
+
+	if (lstat(path, &fstat) < 0)
 		return ;
-	protected = fstat->st_mode;
+	protected = fstat.st_mode;
 	ft_putchar((S_ISDIR(protected)) ? 'd' : '-');
 	ft_putchar((protected & S_IRUSR) ? 'r' : '-');
 	ft_putchar((protected & S_IWUSR) ? 'w' : '-');
@@ -80,7 +81,7 @@ void	ft_longlist(t_file *file, flagobject *flagship)
 	if (file == NULL || flagship == NULL)
 		return ;
 	//Print file permissions
-	ft_printpermissions(file->file_status);
+	ft_printpermissions(file->filename);
 	ft_putchar(' ');
 	//Print # of hardlinks
 	if (ft_filetype(file->file_status))

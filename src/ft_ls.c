@@ -12,36 +12,6 @@
 
 #include "../includes/ft_ls.h"
 
-/*static int	ft_optionistarget(char *str)
-{
-	size_t len;
-	
-	len = ft_strlen(str);
-	return ((len > 0 && str[0] != '-' ));
-}*/
-
-/*static void	ft_fileerror(char *str)
-{
-	ft_putstr("ls: ");
-	ft_putstr(str);
-	ft_putstr(": No such file or directory\n");
-	return ;
-}*/
-
-/*char *ft_absolutepath(char *path)
-{
-	if (path[ft_strlen(path) - 1] != '/')
-		ft_strcat(path, "/");
-	return (path);
-}*/
-
-/*static int	ft_isdrl(struct stat *fstat)
-{
-	return (ft_strichr("drl", ft_filetype(fstat)) > -1);
-}*/
-
-
-
 static void ft_errormessage(int err, char c, char *file)
 {
 	ft_putstr("ls: ");
@@ -49,9 +19,9 @@ static void ft_errormessage(int err, char c, char *file)
 		ft_putstr("unknown option ");
 	else if (err == 404)
 	{
-		ft_putstr("ls: ");
+		ft_putstr("Cannot access '");
 		ft_putstr(file);
-		ft_putstr(": No such file or directory\n");
+		ft_putstr("': No such file or directory\n");
 		return ;
 	}
 	else
@@ -67,7 +37,6 @@ static int ft_handleoptions(char *flag, flagobject *flagship)
 
 	if (flagship == NULL)
 		return false;
-	
 	i = 0;
 	while(flag[i])
 	{
@@ -103,19 +72,12 @@ static int ft_handleoptions(char *flag, flagobject *flagship)
 
 static void	ft_verifyflag(char *flag, flagobject *flagship)
 {
-	int		len;
-
-	len = ft_strlen(flag);
-	if (len < 2 || flag[0] != '-')
+	if (ft_strlen(flag) < 2 || flag[0] != '-')
 		flagship->isvalid = false;
 	else if (ft_stristr(flag, "--") == 0)
 	{
-		if (len == 2)
-			flagship->fod_exclusively = true;
-		else {
-			flagship->terminate_ls = true;
-			ft_errormessage(0, '-', "");
-		}
+		flagship->terminate_ls = true;
+		ft_errormessage(0, '-', "");
 	}
 	else
 		ft_handleoptions(flag, flagship);
@@ -156,8 +118,12 @@ void	ft_ls(int argc, char **argv)
 	i = 0;
 	while (i < argc)
 	{
-		if (ft_strlen(argv[i]) > 1 && argv[i][0] == '-' && !ft_isdrl(argv[i]))
+		if (!(ft_strlen(argv[i]) > 1 && argv[i][0] == '-') && !ft_isdrl(argv[i]))
+		{
 			ft_errormessage(404, 0, argv[i]);
+			if (pathtargeted != true)
+				return ;
+		}
 		i++;
 	}
 	i = 0;

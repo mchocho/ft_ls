@@ -98,6 +98,12 @@ void ft_scanfile(char *path, flagobject *flagship)
 		ft_addtail(list, path, &fstat);
 	}
 	//ft_sortlist(list, flagship);
+	if (flagship->l_flag || flagship->g_flag)
+	{
+		ft_putstr("total ");
+                //ft_putnbr((int)(file->file_status->st_blksize));
+                ft_putchar('\n');
+	}
 	ft_printlist(list, flagship);
 	if (ft_ispathdir(path) && flagship->R_flag)
 	{
@@ -110,12 +116,12 @@ void ft_scanfile(char *path, flagobject *flagship)
 				ft_putstr("\n\n'");
 				ft_putstr(/*ft_strippath(*/absp/*)*/);
 				ft_putstr("':\n");
-				if (flagship->l_flag)
+				/*if (flagship->l_flag)
 				{
 					ft_putstr("Total: ");
 					//ft_totalsize(absp, true);
 					ft_putchar('\n');
-				}
+				}*/
 				ft_scanfile(absp, flagship);
 				ft_strcleandel(&absp);
 			}
