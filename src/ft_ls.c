@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_ls.h"
+#include "../includes/ft_ls.h"
 
 /*static int	ft_optionistarget(char *str)
 {
@@ -73,7 +73,7 @@ static int ft_handleoptions(char *flag, flagobject *flagship)
 	{
 		if (!ft_isvalidoption(flag[i]) || ft_strichr(flag, '-') > 1)
 		{
-			ft_errormessage(1, (ft_strichr(flag, '-') > 1) ? '-' : flag[i]);
+			ft_errormessage(1, (ft_strichr(flag, '-') > 1) ? '-' : flag[i], "");
 			flagship->terminate_ls = true;
 			return (false);
 		} else {
@@ -170,7 +170,7 @@ void	ft_ls(int argc, char **argv)
 		}
 	else
 		ft_scanfile("./", flagship);
-	ft_destroyflagship(flagship);
+	ft_destroyflagship(&flagship);
 	return ;
 }
 

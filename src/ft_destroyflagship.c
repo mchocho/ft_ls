@@ -16,7 +16,7 @@ void	ft_destroyflagship(flagobject **flagship)
         (*flagship)->fod_fromindex = 0;
         (*flagship)->isvalid = 0;
         (*flagship)->terminate_ls = 0;
-        ft_bzero((*flagship)->d_flag_value[255], ft_strlen((*flagship)->d_flag_value));
+        ft_bzero((*flagship)->d_flag_value, ft_strlen((*flagship)->d_flag_value));
 	free(*flagship);
 	*flagship = NULL;
 }
