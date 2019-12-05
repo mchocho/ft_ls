@@ -37,7 +37,7 @@ static int	ft_skipfile(char *path, flagobject *flagship)
 	if (flagship->d_flag)
 		return (ft_ispathdir(path) ? false : true);
 	fn = ft_splicepath(path);
-	return (!flagship->f_flag && !flagship->a_flag && fn[0] == '.');
+	return (!flagship->f_flag && !flagship->a_flag && *fn == '.');
 }
 
 static int	ft_iscorpdir(char *path)
@@ -69,9 +69,8 @@ void ft_scanfile(char *path, flagobject *flagship)
 		while ((entry = readdir(directory)) != NULL)
 		{
 			absp = ft_strjoin(ft_parseurl(path), ft_splicepath(entry->d_name));
-			if (lstat(absp, &fstat) < 0 || ft_skipfile(absp, flagship))
-				continue;
-			ft_addtail(list, absp, &fstat);
+			if (!(lstat(absp, &fstat) < 0) && !(ft_skipfile(absp, flagship)))
+				ft_addtail(list, absp, &fstat);
 			ft_strcleandel(&absp);
 		}
 		closedir(directory);
@@ -82,11 +81,11 @@ void ft_scanfile(char *path, flagobject *flagship)
 			return ;
 		ft_addtail(list, path, &fstat);
 	}
-	//ft_sortlist(list, flagship);
+	ft_sortlist(list, flagship);
 	if (flagship->l_flag || flagship->g_flag)
 	{
 		ft_putstr("total ");
-                //ft_putnbr((int)(file->file_status->st_blksize));
+                //ft_putnbr((int)(list->current->file_status->st_blksize));
                 ft_putchar('\n');
 	}
 	ft_printlist(list, flagship);

@@ -10,7 +10,7 @@ void	ft_cleanlist(LinkedList **list)
 	{
 		next = current->next;
 		ft_strcleandel(&current->filename);
-		//free(current->file_status);
+		free(&current->file_status);
 		current->file_status = NULL;
 		current->next = NULL;
 		free(current);

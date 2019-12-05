@@ -22,7 +22,7 @@ static int	ft_timecmp(t_file *current, t_file *next)
 	//if (current->file_status->st_atime == next->file_status->st_atime)
 	if (current->file_status->st_mtime == next->file_status->st_mtime)
 		return (ft_nsecondscmp(current, next));
-	return (current->file_status->st_mtime < next->file_status->st_mtime);
+	return (current->file_status->st_mtime > next->file_status->st_mtime);
 }
 
 void		ft_sortbytime(LinkedList *list)
