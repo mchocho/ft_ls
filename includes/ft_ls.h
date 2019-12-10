@@ -30,7 +30,7 @@
 
 typedef struct		s_file {
 	char		*filename;
-	struct	stat	*file_status;
+	struct	stat	file_status;
 	struct	s_file	*next;
 }		t_file;
 
@@ -47,6 +47,7 @@ typedef struct		f_object {
 	int	g_flag;
 	int	i_flag;
 	int	l_flag;
+	int	o_flag;
 	int	R_flag;
 	int	r_flag;
 	int	t_flag;
@@ -74,9 +75,8 @@ void			ft_initflagobject(flagobject *flagship);
 void			ft_reverselist(LinkedList *list);
 void			ft_scanfile(char *path, flagobject *flagship);
 void			ft_sortlist(LinkedList *list, flagobject *flagship);
-void			ft_sortbytime(LinkedList *list);
+void			ft_sortbytime(LinkedList *list, int time);
 void			ft_sortbyascii(LinkedList *list);
-void			ft_sortbynamethenaccess(LinkedList *list);
 int			ft_structcmp(t_file *file1, t_file *file2);
 void			ft_printlist(LinkedList *list, flagobject *flagship);
 char			*ft_parseurl(char *path);

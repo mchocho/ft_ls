@@ -66,6 +66,8 @@ static int ft_handleoptions(char *flag, flagobject *flagship)
 				flagship->i_flag = true;
 			else if (flag[i] == 'a')
 				flagship->a_flag = true;
+			else if (flag[i] == 'o')
+				flagship->o_flag = true;
 		}
 		i++;
 	}

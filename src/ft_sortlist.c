@@ -18,13 +18,16 @@ void	ft_sortlist(LinkedList *list, flagobject *flagship)
 		return ;
 	
 	if (flagship->t_flag == true)
-		ft_sortbytime(list);
+		ft_sortbytime(list, 0);
 	else if (flagship->u_flag == true)
-		ft_sortbynamethenaccess(list);
+	{
+//		ft_sortbyascii(list);
+		ft_sortbytime(list, 1);
+	}
 	else
 		ft_sortbyascii(list);
 
-	if (flagship->r_flag)
+	if (flagship->r_flag == true)
 		ft_reverselist(list);
 	return ;
 }

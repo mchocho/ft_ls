@@ -20,10 +20,12 @@ void ft_initflagobject(flagobject *flagship)
         flagship->g_flag = false;
 	flagship->i_flag = false;
         flagship->l_flag = false;
+        flagship->o_flag = false;
         flagship->t_flag = false;
-        flagship->u_flag = false;
         flagship->R_flag = false;
         flagship->r_flag = false;
+        flagship->t_flag = false;
+        flagship->u_flag = false;
         flagship->isvalid = true;
         flagship->terminate_ls = false;
 	return ;

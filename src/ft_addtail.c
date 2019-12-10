@@ -18,7 +18,7 @@ void	ft_addtail(LinkedList *list, char *filename, struct stat *fstat)
 
 	child = (t_file*)malloc(sizeof(t_file));
 	child->filename = ft_strdup(filename);
-	child->file_status = fstat;
+	child->file_status = *fstat;
 	child->next = NULL;
 	if (list->head == NULL)
 		list->head = child;

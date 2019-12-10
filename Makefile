@@ -33,7 +33,6 @@ SRC:=	./src/ft_addtail.c\
 	./src/ft_scanfile.c\
 	./src/ft_sortbyascii.c\
 	./src/ft_sortbytime.c\
-	./src/ft_sortbynamethenaccess.c\
 	./src/ft_sortlist.c\
 	./src/ft_splicepath.c\
 	./src/ft_structcmp.c
@@ -48,7 +47,8 @@ $(NAME):
 	gcc $(FLAGS) $(SRC) $(HEADERS)
 	ar rv $(NAME) $(subst /includes/,/,$(OBJECTS))
 	ranlib $(NAME)
-	#mkdir ./output
+	rm -rf ./output
+	mkdir ./output
 	mv -f ./*.o ./output
 	rm -rf ./includes/*.gch
 

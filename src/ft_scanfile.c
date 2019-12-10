@@ -85,7 +85,7 @@ void ft_scanfile(char *path, flagobject *flagship)
 	if (flagship->l_flag || flagship->g_flag)
 	{
 		ft_putstr("total ");
-                //ft_putnbr((int)(list->current->file_status->st_blksize));
+                //ft_putnbr((int)(list->current->file_status.st_nlink));
                 ft_putchar('\n');
 	}
 	ft_printlist(list, flagship);

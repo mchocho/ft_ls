@@ -14,8 +14,13 @@
 
 int	ft_structcmp(t_file *file1, t_file *file2)
 {
+	struct timespec f1;
+	struct timespec f2;
+
+	f1 = file1->file_status.st_mtim;
+	f2 = file2->file_status.st_mtim;
 	if (ft_strcmp(file1->filename, file2->filename) == 0)
-		if (file1->file_status->st_mtime == file2->file_status->st_mtime)
-			return (file1->file_status->st_mtim.tv_nsec == file2->file_status->st_mtim.tv_nsec);
+		if (file1->file_status.st_mtime == file2->file_status.st_mtime)
+			return (f1.tv_nsec == f2.tv_nsec);
 	return (false);
 }

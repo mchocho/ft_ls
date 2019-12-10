@@ -51,7 +51,10 @@ static void	ft_printgroupname(struct stat *fstat)
 	if (fstat == NULL)
 		return ;
 	else if ((gr = getgrgid(fstat->st_gid)))
+	{
 		ft_putstr(gr->gr_name);
+		ft_putchar(' ');
+	}
 	return ;
 }
 
@@ -62,7 +65,7 @@ static void ft_printdatetime(struct stat *fstat)
 
 	if (fstat == NULL)
 		return ;
-	else if (!(lastmodified = ctime(&(fstat->st_mtime))))
+	else if (!(lastmodified = ft_strdup(ctime(&fstat->st_mtime))))
 		return ;
 	
 	timearr = ft_strsplit(lastmodified, ' ');
@@ -73,6 +76,7 @@ static void ft_printdatetime(struct stat *fstat)
 	ft_putstr(ft_strsplit(timearr[3], ':')[0]);
 	ft_putchar(':');
 	ft_putstr(ft_strsplit(timearr[3], ':')[1]);
+	ft_strcleandel(&lastmodified);
 	return ;
 }
 
@@ -80,28 +84,24 @@ void	ft_longlist(t_file *file, flagobject *flagship)
 {
 	if (file == NULL || flagship == NULL)
 		return ;
-	//Print file permissions
+	if (flagship->i_flag == true)
+	{
+		ft_putnbr((int)file->file_status.st_dev);
+		ft_putchar(' ');
+	}
 	ft_printpermissions(file->filename);
 	ft_putchar(' ');
-	//Print # of hardlinks
-	if (ft_filetype(file->file_status))
-		ft_putnbr((int)file->file_status->st_nlink);//ft_hardlinkcount(file->filename, all, true));//ft_filecount(path, all));
-	//else
-	//	ft_putpaddedstr("1", 10);
+	if (ft_filetype(&file->file_status))
+		ft_putnbr((int)file->file_status.st_nlink);//ft_hardlinkcount(file->filename, all, true));//ft_filecount(path, all));
 	ft_putchar(' ');
-	//Print username
-	ft_printusername(file->file_status);
+	ft_printusername(&file->file_status);
 	ft_putchar(' ');
-	//Print groupname
-	ft_printgroupname(file->file_status);
+	if (flagship->o_flag != true)
+		ft_printgroupname(&file->file_status);
+	ft_putnbr((int)file->file_status.st_size);//ft_totalsize(path, all));
 	ft_putchar(' ');
-	//Print total file/directory size
-	ft_putnbr((int)file->file_status->st_size);//ft_totalsize(path, all));
+	ft_printdatetime(&file->file_status);
 	ft_putchar(' ');
-	//Print date and time
-	ft_printdatetime(file->file_status);
-	ft_putchar(' ');
-	//Print file/directory name
-	ft_putstr(ft_splicepath(file->filename));		//Remove path reference
+	ft_putstr(ft_splicepath(file->filename));
 	ft_putchar('\n');
 }

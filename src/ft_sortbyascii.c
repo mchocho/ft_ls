@@ -12,7 +12,7 @@
 
 #include "../includes/ft_ls.h"
 
-void    ft_sortbyascii(LinkedList *list)
+void		ft_sortbyascii(LinkedList *list)
 {
         t_file *current;
         t_file *next;
@@ -23,7 +23,7 @@ void    ft_sortbyascii(LinkedList *list)
         while (current != NULL && current->next != NULL)
         {
                 next = current->next;
-                if (ft_strcmp(current->filename, next->filename) > 0)
+                if (ft_strcmpi(current->filename, next->filename))
                 {
                         current->next = next->next;
                         next->next = current;
