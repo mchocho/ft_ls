@@ -23,7 +23,7 @@ void		ft_sortbyascii(LinkedList *list)
         while (current != NULL && current->next != NULL)
         {
                 next = current->next;
-                if (ft_strcmpi(current->filename, next->filename))
+                if (ft_tolower(current->filename[0]) > ft_tolower(next->filename[0]))
                 {
                         current->next = next->next;
                         next->next = current;
