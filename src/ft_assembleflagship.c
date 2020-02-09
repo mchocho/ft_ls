@@ -6,7 +6,7 @@
 /*   By: mchocho <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/09 11:02:20 by mchocho           #+#    #+#             */
-/*   Updated: 2020/02/09 13:22:40 by mchocho          ###   ########.fr       */
+/*   Updated: 2020/02/09 16:29:57 by mchocho          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ static void		ft_handleoptions(flagobject *flagship, char option)
 		flagship->o_flag = true;
 }
 
-void				ft_assembleflagship(char *flag, flagobject *flagship)
+void			ft_assembleflagship(char *flag, flagobject *flagship)
 {
 	int i;
 

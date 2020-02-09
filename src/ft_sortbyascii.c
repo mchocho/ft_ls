@@ -17,7 +17,7 @@ static int		ft_filecmp(t_file *current, t_file *next)
 	return (ft_strcmp(current->filename, next->filename) > 0);
 }
 
-void			ft_sortbyascii(LinkedList *list)
+void			ft_sortbyascii(List *list)
 {
 	t_file *next;
 	t_file *previous;

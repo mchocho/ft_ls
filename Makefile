@@ -6,7 +6,7 @@
 #    By: mchocho <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/07/23 09:51:23 by mchocho           #+#    #+#              #
-#    Updated: 2020/02/09 14:14:24 by mchocho          ###   ########.fr        #
+#    Updated: 2020/02/09 16:06:21 by mchocho          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,12 +26,12 @@ SRC:=	./src/ft_addtail.c\
 	./src/ft_initlist.c\
 	./src/ft_initflagobject.c\
 	./src/ft_isdrl.c\
+	./src/ft_ispathdir.c\
 	./src/ft_isvalidoption.c\
 	./src/ft_longlist.c\
 	./src/ft_ls.c\
 	./src/ft_parseurl.c\
 	./src/ft_printlist.c\
-	./src/ft_printoptions.c\
 	./src/ft_reverselist.c\
 	./src/ft_scandetector.c\
 	./src/ft_scanfile.c\

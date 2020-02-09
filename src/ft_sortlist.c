@@ -6,13 +6,13 @@
 /*   By: mchocho <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/30 13:09:18 by mchocho           #+#    #+#             */
-/*   Updated: 2020/02/06 15:55:44 by mchocho          ###   ########.fr       */
+/*   Updated: 2020/02/09 16:10:22 by mchocho          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_ls.h"
 
-void	ft_sortlist(LinkedList *list, flagobject *flagship)
+void	ft_sortlist(List *list, flagobject *flagship)
 {
 	if (!flagship->isvalid || flagship->terminate_ls || flagship->f_flag)
 		return ;
@@ -24,5 +24,6 @@ void	ft_sortlist(LinkedList *list, flagobject *flagship)
 		ft_sortbyascii(list);
 	if (flagship->r_flag == true)
 		ft_reverselist(list);
+	list->current = list->head;
 	return ;
 }

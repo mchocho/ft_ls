@@ -12,7 +12,7 @@
 
 #include "../includes/ft_ls.h"
 
-void	ft_initlist(LinkedList *list)
+void	ft_initlist(List *list)
 {
 	list->head = NULL;
 	list->tail = NULL;

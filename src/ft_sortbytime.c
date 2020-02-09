@@ -27,7 +27,7 @@ static int		ft_timecmp(t_file *current, t_file *next, int time)
 		return (current_fs->st_ctime > next_fs->st_ctime);
 }
 
-void			ft_sortbytime(LinkedList *list, int time)
+void			ft_sortbytime(List *list, int time)
 {
 	t_file *next;
 	t_file *previous;

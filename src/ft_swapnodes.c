@@ -12,7 +12,7 @@
 
 #include "../includes/ft_ls.h"
 
-void	ft_swapnodes(LinkedList *list, t_file **next, t_file **previous)
+void	ft_swapnodes(List *list, t_file **next, t_file **previous)
 {
 	list->current->next = (*next)->next;
 	(*next)->next = list->current;

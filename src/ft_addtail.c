@@ -12,7 +12,7 @@
 
 #include "../includes/ft_ls.h"
 
-void	ft_addtail(LinkedList *list, char *filename, struct stat *fstat)
+void	ft_addtail(List *list, char *filename, struct stat *fstat)
 {
 	t_file *child;
 

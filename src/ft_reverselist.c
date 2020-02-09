@@ -12,7 +12,7 @@
 
 #include "../includes/ft_ls.h"
 
-void			ft_reverselist(LinkedList *list)
+void			ft_reverselist(List *list)
 {
 	t_file		*current;
 	t_file		*next;

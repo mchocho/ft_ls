@@ -12,7 +12,7 @@
 
 #include "../includes/ft_ls.h"
 
-void	ft_cleanlist(LinkedList **list)
+void	ft_cleanlist(List **list)
 {
 	t_file *current;
 	t_file *next;

@@ -6,7 +6,7 @@
 /*   By: anonymous <anonymous@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/30 13:23:05 by mchocho           #+#    #+#             */
-/*   Updated: 2020/02/06 16:14:37 by mchocho          ###   ########.fr       */
+/*   Updated: 2020/02/09 16:09:46 by mchocho          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static int				ft_isdir(char *path)
 	return (ft_strichr("d", ft_filetype(&fstat)) > -1);
 }
 
-void					ft_printlist(LinkedList *list, flagobject *flagship)
+void					ft_printlist(List *list, flagobject *flagship)
 {
 	int					i;
 
@@ -45,7 +45,7 @@ void					ft_printlist(LinkedList *list, flagobject *flagship)
 		list->current = list->current->next;
 		i++;
 	}
+	list->current = list->head;
 	if (!flagship->l_flag && !flagship->g_flag)
 		ft_putchar('\n');
-	return ;
 }

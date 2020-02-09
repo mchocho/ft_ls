@@ -6,7 +6,7 @@
 /*   By: mchocho <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/23 15:38:06 by mchocho           #+#    #+#             */
-/*   Updated: 2020/02/09 14:19:14 by mchocho          ###   ########.fr       */
+/*   Updated: 2020/02/09 16:06:40 by mchocho          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,11 +45,11 @@ typedef struct		s_file {
 	struct	s_file	*next;
 }		t_file;
 
-typedef struct		_linkedlist {
+typedef struct		_linkedList {
 	struct s_file *head;
 	struct s_file *tail;
 	struct s_file *current;
-}		LinkedList;
+}		List;
 
 typedef struct		f_object {
 	int	a_flag;
@@ -72,26 +72,27 @@ typedef struct		f_object {
 
 
 int				ft_filetype(struct stat *fstat);
-void			ft_addtail(LinkedList *list, char *filename, struct stat *fstat);
-void			ft_cleanlist(LinkedList **list);
+void			ft_addtail(List *list, char *filename, struct stat *fstat);
+void			ft_cleanlist(List **list);
 void			ft_destroyflagship(flagobject **flagship);
 int				ft_filecount(char *path, int all);
 void			ft_longlist(t_file *file, flagobject *flagship);
 void			ft_ls(int argc, char **argv);
-void			ft_initlist(LinkedList *list);
+void			ft_initlist(List *list);
 int				ft_isvalidoption(char c);
 char			*ft_splicepath(char *path);
-void			ft_swapnodes(LinkedList *list, t_file **next, t_file **previous);
+void			ft_swapnodes(List *list, t_file **next, t_file **previous);
 void			ft_initflagobject(flagobject *flagship);
-void			ft_reverselist(LinkedList *list);
+void			ft_reverselist(List *list);
 void			ft_scanfile(char *path, flagobject *flagship);
-void			ft_sortlist(LinkedList *list, flagobject *flagship);
-void			ft_sortbytime(LinkedList *list, int time);
-void			ft_sortbyascii(LinkedList *list);
+void			ft_sortlist(List *list, flagobject *flagship);
+void			ft_sortbytime(List *list, int time);
+void			ft_sortbyascii(List *list);
 int				ft_structcmp(t_file *file1, t_file *file2);
-void			ft_printlist(LinkedList *list, flagobject *flagship);
+void			ft_printlist(List *list, flagobject *flagship);
 char			*ft_parseurl(char *path);
 int				ft_isdrl(char *path);
+int				ft_ispathdir(char *path);
 void			ft_errormessage(int err, char c, char *file);
 void			ft_assembleflagship(char *flag, flagobject *flagship);
 void			ft_scandetector(flagobject *fs, int ac, char **av, int target);
