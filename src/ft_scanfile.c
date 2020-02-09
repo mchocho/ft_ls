@@ -6,20 +6,20 @@
 /*   By: mchocho <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/29 16:54:06 by mchocho           #+#    #+#             */
-/*   Updated: 2019/09/17 16:47:13 by mchocho          ###   ########.fr       */
+/*   Updated: 2020/02/09 11:35:15 by mchocho          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_ls.h"
   
-static int	ft_isdrl(char *path)
+/*static int	ft_isdrl(char *path)
 {
 	struct stat fstat;
 
 	if (stat(path, &fstat) < 0)
 		return (0);
 	return (ft_strichr("drl", ft_filetype(&fstat)) > -1);
-}
+}*/
 
 static int	ft_ispathdir(char *path)
 {
@@ -53,11 +53,11 @@ static int	ft_iscorpdir(char *path)
 
 void ft_scanfile(char *path, flagobject *flagship)
 {
-	DIR			*directory;
-	LinkedList		*list;
+	DIR					*directory;
+	LinkedList			*list;
 	struct dirent		*entry;
-	struct stat		fstat;
-	char			*absp;
+	struct stat			fstat;
+	char				*absp;
 
 	if (!ft_isdrl(path) || (!(list = (LinkedList *)malloc(sizeof(LinkedList)))))
 		return ;
@@ -82,12 +82,6 @@ void ft_scanfile(char *path, flagobject *flagship)
 		ft_addtail(list, path, &fstat);
 	}
 	ft_sortlist(list, flagship);
-	if (flagship->l_flag || flagship->g_flag)
-	{
-		ft_putstr("total ");
-                //ft_putnbr((int)(list->current->file_status.st_nlink));
-                ft_putchar('\n');
-	}
 	ft_printlist(list, flagship);
 	if (ft_ispathdir(path) && flagship->R_flag)
 	{
@@ -97,9 +91,11 @@ void ft_scanfile(char *path, flagobject *flagship)
 			absp = list->current->filename;
 			if (ft_ispathdir(absp) && !ft_skipfile(absp, flagship) && !ft_iscorpdir(list->current->filename)) {
 				absp = ft_strjoin(ft_parseurl(path), ft_splicepath(list->current->filename));
+				ft_putendl(CYAN);
 				ft_putstr("\n\n'");
 				ft_putstr(absp);
 				ft_putstr("':\n");
+				ft_putstr(NO_COL);
 				ft_scanfile(absp, flagship);
 				ft_strcleandel(&absp);
 			}

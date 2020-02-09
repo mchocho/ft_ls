@@ -6,13 +6,13 @@
 /*   By: mchocho <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/12 12:59:09 by mchocho           #+#    #+#             */
-/*   Updated: 2019/08/12 12:59:16 by mchocho          ###   ########.fr       */
+/*   Updated: 2020/02/09 10:48:43 by mchocho          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_ls.h"
 
-void ft_initlist(LinkedList *list)
+void	ft_initlist(LinkedList *list)
 {
 	list->head = NULL;
 	list->tail = NULL;

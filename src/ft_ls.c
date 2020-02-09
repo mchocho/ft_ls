@@ -6,14 +6,15 @@
 /*   By: mchocho <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/01 14:20:09 by mchocho           #+#    #+#             */
-/*   Updated: 2019/09/05 15:38:21 by mchocho          ###   ########.fr       */
+/*   Updated: 2020/02/09 12:52:31 by mchocho          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_ls.h"
 
-static void ft_errormessage(int err, char c, char *file)
+/*static void ft_errormessage(int err, char c, char *file)
 {
+	ft_putstr(RED);
 	ft_putstr("ls: ");
 	if (err == 0)
 		ft_putstr("unknown option ");
@@ -29,7 +30,8 @@ static void ft_errormessage(int err, char c, char *file)
 	ft_putstr("-- ");
 	ft_putchar(c);
 	ft_putchar('\n');
-}
+	ft_putstr(NO_COL);
+}*/
 
 static int ft_handleoptions(char *flag, flagobject *flagship)
 {
@@ -46,7 +48,8 @@ static int ft_handleoptions(char *flag, flagobject *flagship)
 			flagship->terminate_ls = true;
 			return (false);
 		} else {
-			if (flag[i] == 'l')
+			ft_assembleflagship(flagship, flag[i]);
+			/*if (flag[i] == 'l')
 				flagship->l_flag = true;
 			else if (flag[i] == 'r')
 				flagship->r_flag = true;
@@ -67,7 +70,7 @@ static int ft_handleoptions(char *flag, flagobject *flagship)
 			else if (flag[i] == 'a')
 				flagship->a_flag = true;
 			else if (flag[i] == 'o')
-				flagship->o_flag = true;
+				flagship->o_flag = true;*/
 		}
 		i++;
 	}
@@ -88,13 +91,22 @@ static void	ft_verifyflag(char *flag, flagobject *flagship)
 	return ;
 }
 
-static int      ft_isdrl(char *path)
+void	ft_validator(flagobject *fs, int ac, char **av, int *path)
 {
-        struct stat fstat;
+	int i;
 
-        if (stat(path, &fstat) < 0)
-                return (0);
-        return (ft_strichr("drl", ft_filetype(&fstat)) > -1);
+	i = 0;
+	while (i < ac)
+	{
+		if (ft_strlen(av[i]) > 1 && av[i][0] == '-')
+		{
+			ft_verifyflag(av[i], fs);
+			if (fs->terminate_ls == true)
+				return;
+		} else if (ft_isdrl(av[i]))
+			*path = true;
+		i++;
+	}
 }
 
 void	ft_ls(int argc, char **argv)
@@ -108,18 +120,9 @@ void	ft_ls(int argc, char **argv)
 	if (!(flagship = (flagobject*)malloc(sizeof(flagobject))))
 		return ;
 	ft_initflagobject(flagship);
-	while (i < argc)
-	{
-		if (ft_strlen(argv[i]) > 1 && argv[i][0] == '-')
-		{
-			ft_verifyflag(argv[i], flagship);
-			if (flagship->terminate_ls == true)
-				return ;
-		} else if (ft_isdrl(argv[i]))
-			pathtargeted = true;
-		i++;
-	}
-	i = 0;
+	ft_validator(flagship, argc, argv, &pathtargeted);
+	if (flagship->terminate_ls == true)
+		return ;
 	while (i < argc)
 	{
 		if (!(ft_strlen(argv[i]) > 1 && argv[i][0] == '-') && !ft_isdrl(argv[i]))

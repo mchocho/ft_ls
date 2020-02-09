@@ -6,16 +6,24 @@
 /*   By: anonymous <anonymous@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/30 13:23:05 by mchocho           #+#    #+#             */
-/*   Updated: 2019/12/03 14:09:47 by anonymous        ###   ########.fr       */
+/*   Updated: 2020/02/06 16:14:37 by mchocho          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_ls.h"
 
-void	ft_printlist(LinkedList *list, flagobject *flagship)
+static int				ft_isdir(char *path)
 {
-	//t_file *current;
-	int	i;
+	struct stat		fstat;
+
+	if (stat(path, &fstat) < 0)
+		return (0);
+	return (ft_strichr("d", ft_filetype(&fstat)) > -1);
+}
+
+void					ft_printlist(LinkedList *list, flagobject *flagship)
+{
+	int					i;
 
 	if (!flagship->isvalid || flagship->terminate_ls)
 		return ;
@@ -29,7 +37,10 @@ void	ft_printlist(LinkedList *list, flagobject *flagship)
 		{
 			if (i != 0)
 				ft_putchar('\n');
+			if (ft_isdir(list->current->filename))
+				ft_putstr(MAGENTA);
 			ft_putstr(ft_splicepath(list->current->filename));
+			ft_putstr(NO_COL);
 		}
 		list->current = list->current->next;
 		i++;
