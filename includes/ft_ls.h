@@ -6,7 +6,7 @@
 /*   By: mchocho <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/23 15:38:06 by mchocho           #+#    #+#             */
-/*   Updated: 2020/02/09 11:41:07 by mchocho          ###   ########.fr       */
+/*   Updated: 2020/02/09 14:19:14 by mchocho          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,13 +75,13 @@ int				ft_filetype(struct stat *fstat);
 void			ft_addtail(LinkedList *list, char *filename, struct stat *fstat);
 void			ft_cleanlist(LinkedList **list);
 void			ft_destroyflagship(flagobject **flagship);
-int				ft_totalblocks(char *path, int all);
 int				ft_filecount(char *path, int all);
 void			ft_longlist(t_file *file, flagobject *flagship);
 void			ft_ls(int argc, char **argv);
 void			ft_initlist(LinkedList *list);
 int				ft_isvalidoption(char c);
 char			*ft_splicepath(char *path);
+void			ft_swapnodes(LinkedList *list, t_file **next, t_file **previous);
 void			ft_initflagobject(flagobject *flagship);
 void			ft_reverselist(LinkedList *list);
 void			ft_scanfile(char *path, flagobject *flagship);
@@ -93,6 +93,7 @@ void			ft_printlist(LinkedList *list, flagobject *flagship);
 char			*ft_parseurl(char *path);
 int				ft_isdrl(char *path);
 void			ft_errormessage(int err, char c, char *file);
-void			ft_assembleflagship(flagobject *flagship, char option);
+void			ft_assembleflagship(char *flag, flagobject *flagship);
+void			ft_scandetector(flagobject *fs, int ac, char **av, int target);
 
 #endif

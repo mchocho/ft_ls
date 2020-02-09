@@ -1,19 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printoptions.c                                  :+:      :+:    :+:   */
+/*   ft_scandetector.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mchocho <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/08/23 18:31:38 by mchocho           #+#    #+#             */
-/*   Updated: 2020/02/09 13:48:35 by mchocho          ###   ########.fr       */
+/*   Created: 2020/02/09 13:35:50 by mchocho           #+#    #+#             */
+/*   Updated: 2020/02/09 13:39:04 by mchocho          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_ls.h"
 
-void	ft_printoptions(void)
+void	ft_scandetector(flagobject *fs, int ac, char **av, int target)
 {
-	ft_putstr("usage: ls [-ABCFGHLOPRSTUWabcdefghiklmnopqrstuwx1] [file ...]");
+	int i;
+
+	i = 0;
+	if (target && ac)
+		while (i < ac)
+		{
+			if (ft_isdrl(av[i]))
+				ft_scanfile(av[i], fs);
+			i++;
+		}
+	else
+		ft_scanfile("./", fs);
 	return ;
 }

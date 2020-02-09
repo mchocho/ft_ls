@@ -6,7 +6,7 @@
 #    By: mchocho <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/07/23 09:51:23 by mchocho           #+#    #+#              #
-#    Updated: 2020/02/09 11:37:50 by mchocho          ###   ########.fr        #
+#    Updated: 2020/02/09 14:14:24 by mchocho          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,12 +17,15 @@ HEADERS:= ./includes/ft_ls.h
 FLAGS:=	-Wall -Werror -Wextra -c
 
 SRC:=	./src/ft_addtail.c\
+	./src/ft_assembleflagship.c\
 	./src/ft_cleanlist.c\
 	./src/ft_destroyflagship.c\
+	./src/ft_errormessage.c\
 	./src/ft_filecount.c\
 	./src/ft_filetype.c\
 	./src/ft_initlist.c\
 	./src/ft_initflagobject.c\
+	./src/ft_isdrl.c\
 	./src/ft_isvalidoption.c\
 	./src/ft_longlist.c\
 	./src/ft_ls.c\
@@ -30,15 +33,14 @@ SRC:=	./src/ft_addtail.c\
 	./src/ft_printlist.c\
 	./src/ft_printoptions.c\
 	./src/ft_reverselist.c\
+	./src/ft_scandetector.c\
 	./src/ft_scanfile.c\
 	./src/ft_sortbyascii.c\
 	./src/ft_sortbytime.c\
 	./src/ft_sortlist.c\
 	./src/ft_splicepath.c\
 	./src/ft_structcmp.c\
-	./src/ft_isdrl.c\
-	./src/ft_assembleflagship.c\
-	./src/ft_errormessage.c
+	./src/ft_swapnodes.c
 
 TEMP = $(subst /src/,/includes/,$(SRC))
 OBJECTS = $(TEMP:.c=.o)

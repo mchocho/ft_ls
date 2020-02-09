@@ -1,19 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printoptions.c                                  :+:      :+:    :+:   */
+/*   ft_swapnodes.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mchocho <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/08/23 18:31:38 by mchocho           #+#    #+#             */
-/*   Updated: 2020/02/09 13:48:35 by mchocho          ###   ########.fr       */
+/*   Created: 2020/02/09 14:08:28 by mchocho           #+#    #+#             */
+/*   Updated: 2020/02/09 14:15:44 by mchocho          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_ls.h"
 
-void	ft_printoptions(void)
+void	ft_swapnodes(LinkedList *list, t_file **next, t_file **previous)
 {
-	ft_putstr("usage: ls [-ABCFGHLOPRSTUWabcdefghiklmnopqrstuwx1] [file ...]");
-	return ;
+	list->current->next = (*next)->next;
+	(*next)->next = list->current;
+	if (*previous != NULL)
+		(*previous)->next = *next;
+	if (ft_structcmp(list->current, list->head))
+		list->head = *next;
+	if (ft_structcmp(*next, list->tail))
+		list->tail = list->current;
+	list->current = list->head;
+	*previous = NULL;
 }
